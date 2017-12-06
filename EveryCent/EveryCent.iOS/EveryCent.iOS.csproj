@@ -134,7 +134,12 @@
     </Reference>
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
-  <Import Project="..\EveryCent\EveryCent.projitems" Label="Shared" Condition="Exists('..\EveryCent\EveryCent.projitems')" />
+  <ItemGroup>
+    <ProjectReference Include="..\EveryCent.Logic\EveryCent.Logic.csproj">
+      <Project>{84665b9a-048a-4605-88f0-b466395ba2ce}</Project>
+      <Name>EveryCent.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

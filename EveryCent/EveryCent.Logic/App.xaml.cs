@@ -13,7 +13,7 @@ namespace EveryCent
 		{
 			InitializeComponent();
 
-			MainPage = new EveryCent.MainPage();
+            MainPage = new EveryCent.Logic.Views.DashboardPage();
 		}
 
 		protected override void OnStart ()
