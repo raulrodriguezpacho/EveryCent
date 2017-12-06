@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:charting="clr-namespace:XLabs.Forms.Charting.Controls;assembly=XLabs.Forms.Charting"
+             xmlns:translate="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
+             xmlns:charting="clr-namespace:XLabs.Forms.Charting.Controls;assembly=XLabs.Forms.Charting"             
              x:Class="EveryCent.Views.ChartPage">
     <ContentPage.Content>
 
         <StackLayout>
 
-            <Label Text="Every cent is important.." TextColor="Yellow" />
+            <Label Text="{translate:Translate Title}" TextColor="Yellow" BackgroundColor="Black" />
 
             <charting:Chart x:Name="CombinationChart" Color="White" WidthRequest="450" HeightRequest="750" Spacing="10">
 

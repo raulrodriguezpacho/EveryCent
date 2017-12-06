@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EveryCent.DependencyServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,13 @@ namespace EveryCent
         public App()
         {
             InitializeComponent();
+
+            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+            {
+                var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                EveryCent.Resources.AppResources.Culture = ci; // set the RESX for resource localization
+                DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
+            }
 
             MainPage = new EveryCent.Views.DashboardPage();
         }
