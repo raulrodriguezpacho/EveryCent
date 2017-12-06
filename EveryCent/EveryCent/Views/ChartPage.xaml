@@ -7,7 +7,7 @@
 
         <StackLayout>
 
-            <Label Text="Every Cente is important.." TextColor="Yellow" />
+            <Label Text="Every cent is important.." TextColor="Yellow" />
 
             <charting:Chart x:Name="CombinationChart" Color="White" WidthRequest="450" HeightRequest="750" Spacing="10">
 
