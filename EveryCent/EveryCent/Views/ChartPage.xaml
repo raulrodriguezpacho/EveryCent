@@ -4,8 +4,12 @@
              xmlns:charting="clr-namespace:XLabs.Forms.Charting.Controls;assembly=XLabs.Forms.Charting"
              x:Class="EveryCent.Views.ChartPage">
     <ContentPage.Content>
-        
-        <charting:Chart x:Name="CombinationChart" Color="White" WidthRequest="450" HeightRequest="750" Spacing="10">
+
+        <StackLayout>
+
+            <Label Text="Every Cente is important.." TextColor="Yellow" />
+
+            <charting:Chart x:Name="CombinationChart" Color="White" WidthRequest="450" HeightRequest="750" Spacing="10">
 
             <charting:Chart.Series>
                 <charting:Series Type="Bar" Color="Red">
@@ -38,6 +42,8 @@
             </charting:Chart.Series>
 
         </charting:Chart>
-        
+
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>
