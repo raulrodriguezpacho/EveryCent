@@ -148,15 +148,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EveryCent.Logic\EveryCent.Logic.csproj">
-      <Project>{84665b9a-048a-4605-88f0-b466395ba2ce}</Project>
-      <Name>EveryCent.Logic</Name>
+    <ProjectReference Include="..\EveryCent\EveryCent.csproj">
+      <Project>{c4989f15-a2ce-4f47-b655-cbd38be82d7e}</Project>
+      <Name>EveryCent</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
-  <Import Project="..\EveryCent\EveryCent.projitems" Label="Shared" Condition="Exists('..\EveryCent\EveryCent.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

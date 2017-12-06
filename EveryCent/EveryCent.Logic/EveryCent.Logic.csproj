@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.0.0" />
-    <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
     <PackageReference Include="Xamarin.Forms" Version="2.4.0.280" />
   </ItemGroup>
 
