@@ -21,7 +21,7 @@ namespace EveryCent.UWP
         {
             this.InitializeComponent();            
 
-            LoadApplication(new EveryCent.App());
+            LoadApplication(new EveryCent.App(new Platform.PlatformModule()));
         }
     }
 }

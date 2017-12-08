@@ -20,7 +20,7 @@ namespace EveryCent.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
-			LoadApplication (new EveryCent.App ());
+			LoadApplication (new EveryCent.App(new Platform.PlatformModule()));
 		}
 	}
 }

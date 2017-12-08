@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using EveryCent.DependencyServices;
+﻿using Foundation;
 using System.Globalization;
 using System.Threading;
 using EveryCent.Helpers;
+using EveryCent.Services;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(EveryCent.Droid.DependencyServices.Localize))]
-namespace EveryCent.Droid.DependencyServices
+[assembly: Dependency(typeof(EveryCent.iOS.Platform.Localize))]
+namespace EveryCent.iOS.Platform
 {
     public class Localize : ILocalize
     {
@@ -28,8 +18,11 @@ namespace EveryCent.Droid.DependencyServices
         public CultureInfo GetCurrentCultureInfo()
         {
             var netLanguage = "en";
-            var androidLocale = Java.Util.Locale.Default;
-            netLanguage = AndroidToDotnetLanguage(androidLocale.ToString().Replace("_", "-"));
+            if (NSLocale.PreferredLanguages.Length > 0)
+            {
+                var pref = NSLocale.PreferredLanguages[0];
+                netLanguage = iOSToDotnetLanguage(pref);
+            }
             // this gets called a lot - try/catch can be expensive so consider caching or something
             System.Globalization.CultureInfo ci = null;
             try
@@ -53,19 +46,15 @@ namespace EveryCent.Droid.DependencyServices
             }
             return ci;
         }
-        string AndroidToDotnetLanguage(string androidLanguage)
+        string iOSToDotnetLanguage(string iOSLanguage)
         {
-            var netLanguage = androidLanguage;
+            var netLanguage = iOSLanguage;
             //certain languages need to be converted to CultureInfo equivalent
-            switch (androidLanguage)
+            switch (iOSLanguage)
             {
-                case "ms-BN":   // "Malaysian (Brunei)" not supported .NET culture
                 case "ms-MY":   // "Malaysian (Malaysia)" not supported .NET culture
                 case "ms-SG":   // "Malaysian (Singapore)" not supported .NET culture
                     netLanguage = "ms"; // closest supported
-                    break;
-                case "in-ID":  // "Indonesian (Indonesia)" has different code in  .NET
-                    netLanguage = "id-ID"; // correct code for .NET
                     break;
                 case "gsw-CH":  // "Schwiizertüütsch (Swiss German)" not supported .NET culture
                     netLanguage = "de-CH"; // closest supported
@@ -80,6 +69,9 @@ namespace EveryCent.Droid.DependencyServices
             var netLanguage = platCulture.LanguageCode; // use the first part of the identifier (two chars, usually);
             switch (platCulture.LanguageCode)
             {
+                case "pt":
+                    netLanguage = "pt-PT"; // fallback to Portuguese (Portugal)
+                    break;
                 case "gsw":
                     netLanguage = "de-CH"; // equivalent to German (Switzerland) for this app
                     break;
