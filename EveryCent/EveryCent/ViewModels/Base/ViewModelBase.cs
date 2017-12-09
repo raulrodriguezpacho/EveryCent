@@ -1,19 +1,14 @@
-﻿using EveryCent.Services.Dialog;
-using EveryCent.Services.Navigation;
-using System;
-using System.Collections.Generic;
+﻿using EveryCent.Base;
+using EveryCent.Services;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EveryCent.ViewModels.Base
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
-        protected readonly INavigationService NavigationService;
-        protected readonly IDialogService DialogService;
+        protected readonly INavigationService NavigationService;        
 
         private bool _isBusy;
         public bool IsBusy
@@ -37,9 +32,18 @@ namespace EveryCent.ViewModels.Base
         }
 
         public ViewModelBase()
+        {            
+            NavigationService = LocatorBase.Resolve<INavigationService>();
+        }
+
+        public async void ShowAlert(string title, string message, string cancel)
         {
-            DialogService = ViewModelLocator.Resolve<IDialogService>();
-            NavigationService = ViewModelLocator.Resolve<INavigationService>();
+            await App.Current.MainPage.DisplayAlert(title ?? string.Empty, message, cancel);
+        }
+
+        public async Task<bool> ShowToDo(string title, string message, string accept, string cancel)
+        {
+            return await App.Current.MainPage.DisplayAlert(title ?? string.Empty, message, accept, cancel);
         }
     }
 }

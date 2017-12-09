@@ -1,4 +1,4 @@
-﻿using EveryCent.Data.Model;
+﻿using EveryCent.Model;
 using SQLite;
 using System;
 using System.Collections.Generic;

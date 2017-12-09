@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EveryCent.Data.Model
+namespace EveryCent.Model
 {
     public interface IEntity
     {

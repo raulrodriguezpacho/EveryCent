@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EveryCent.Data.Services
+namespace EveryCent.Services
 {
     public interface IRepository<T>
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EveryCent.Services.Navigation
+namespace EveryCent.Services
 {
     public interface INavigationService
     {

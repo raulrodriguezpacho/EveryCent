@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using EveryCent.Base;
 using Xamarin.Forms.Xaml;
 
 namespace EveryCent.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MonthPage : ContentPage
+    public partial class MonthPage : ViewPageBase
     {
         public MonthPage()
         {
