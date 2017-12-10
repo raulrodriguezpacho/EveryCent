@@ -10,31 +10,23 @@ namespace EveryCent.Services
 {
     public class NavigationService : INavigationService
     {
-        public ViewModelBase PreviousPageViewModel => throw new NotImplementedException();
-
-        public Task InitializeAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
-        {
-            throw new NotImplementedException();
-        }
+        public Page NavigationPage => Application.Current.MainPage;
 
         public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
-        {
-            throw new NotImplementedException();
+        {            
+            return this.NavigationPage.Navigation.PushModalAsync(GetPageFromViewModel(typeof(TViewModel)));
         }
 
-        public Task RemoveBackStackAsync()
+        public Task NavigateBackAsync()
         {
-            throw new NotImplementedException();
+            return this.NavigationPage.Navigation.PopModalAsync();
         }
 
-        public Task RemoveLastFromBackStackAsync()
+        private Page GetPageFromViewModel(Type viewModelType)
         {
-            throw new NotImplementedException();
+            var viewName = viewModelType.FullName.Replace(".ViewModels.", ".Views.").Replace("ViewModel", "Page");
+            var viewType = Type.GetType(viewName);            
+            return (Page)Activator.CreateInstance(viewType);
         }
     }
 }

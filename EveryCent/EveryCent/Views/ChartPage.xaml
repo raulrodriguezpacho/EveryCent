@@ -2,14 +2,15 @@
 <base:ViewPageBase xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:EveryCent.Base"
-             xmlns:translate="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
+             xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
              xmlns:charting="clr-namespace:XLabs.Forms.Charting.Controls;assembly=XLabs.Forms.Charting"             
-             x:Class="EveryCent.Views.ChartPage">
+             x:Class="EveryCent.Views.ChartPage"
+             BackgroundColor="{StaticResource PageBackgroundColor}">
     <base:ViewPageBase.Content>
 
         <StackLayout>
 
-            <Label Text="{translate:Translate Title}" TextColor="Yellow" BackgroundColor="Black" />
+            <Label Text="{globalization:Translate Title}" TextColor="Yellow" BackgroundColor="Black" />
 
             <charting:Chart x:Name="CombinationChart" Color="White" WidthRequest="450" HeightRequest="750" Spacing="10">
 

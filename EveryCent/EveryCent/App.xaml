@@ -4,7 +4,13 @@
              x:Class="EveryCent.App">
     <Application.Resources>
 
-        <!-- Application resource dictionary -->
+        <ResourceDictionary>
+
+            <Color x:Key="PageTextColor">Black</Color>
+            <Color x:Key="PageSelectedTextColor">White</Color>
+            <Color x:Key="PageBackgroundColor">White</Color>
+
+        </ResourceDictionary>
 
     </Application.Resources>
 </Application>

@@ -2,12 +2,44 @@
 <base:ViewPageBase xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:EveryCent.Base"
-             x:Class="EveryCent.Views.ListPage">
+             xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
+             x:Class="EveryCent.Views.ListPage"
+             BackgroundColor="{StaticResource PageBackgroundColor}">
     <base:ViewPageBase.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Frame Padding="0" BackgroundColor="White" CornerRadius="5" OutlineColor="LightGray">
+                <Frame.HasShadow>
+                    <OnPlatform x:TypeArguments="x:Boolean"
+                                iOS="False"
+                                Android="True"
+                                WinPhone="False" />
+                </Frame.HasShadow>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToMovementCommand}" CommandParameter="Add" />
+                </Frame.GestureRecognizers>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".7*" />
+                        <RowDefinition Height=".3*" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image.Source>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <OnPlatform.iOS>
+                                    <FileImageSource File="Images/add.png" />
+                                </OnPlatform.iOS>
+                                <OnPlatform.Android>
+                                    <FileImageSource File="add.png" />
+                                </OnPlatform.Android>
+                                <OnPlatform.WinPhone>
+                                    <FileImageSource File="Assets/Images/add.png" />
+                                </OnPlatform.WinPhone>
+                            </OnPlatform>
+                        </Image.Source>
+                    </Image>
+                    <Label Grid.Row="1" Text="{globalization:Translate Add}"/>
+                </Grid>
+            </Frame>
         </StackLayout>
     </base:ViewPageBase.Content>
 </base:ViewPageBase>

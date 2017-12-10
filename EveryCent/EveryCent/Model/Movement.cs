@@ -16,5 +16,6 @@ namespace EveryCent.Model
 
         public int Cost { get; set; } // x100
 
+        public bool Positive { get; set; }
     }
 }

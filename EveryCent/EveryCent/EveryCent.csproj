@@ -40,6 +40,11 @@
     </Compile>
     <Compile Include="Base\LocatorBase.cs" />
     <Compile Include="Base\ViewPageBase.cs" />
+    <Compile Include="Behaviors\BehaviorBase.cs" />
+    <Compile Include="Behaviors\EntryLengthValidatorBehavior.cs" />
+    <Compile Include="Behaviors\EventToCommandBehavior.cs" />
+    <Compile Include="Controls\BindablePicker.cs" />
+    <Compile Include="Controls\WrapPanel.cs" />
     <Compile Include="Helpers\PlatformCulture.cs" />
     <Compile Include="MarkupExtensions\TranslateExtension.cs" />
     <Compile Include="Model\EveryCentDatabase.cs" />

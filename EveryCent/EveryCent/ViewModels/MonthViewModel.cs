@@ -21,5 +21,35 @@ namespace EveryCent.ViewModels
             _navigationService = navigationService;
             _repositoryService = repositoryService;
         }
+
+        private int PasarDias(DayOfWeek caediaunodemes)
+        {
+            int diaspasan = 0;
+            switch (caediaunodemes)
+            {
+                case DayOfWeek.Monday:
+                    diaspasan = 0;
+                    break;
+                case DayOfWeek.Tuesday:
+                    diaspasan = 1;
+                    break;
+                case DayOfWeek.Wednesday:
+                    diaspasan = 2;
+                    break;
+                case DayOfWeek.Thursday:
+                    diaspasan = 3;
+                    break;
+                case DayOfWeek.Friday:
+                    diaspasan = 4;
+                    break;
+                case DayOfWeek.Saturday:
+                    diaspasan = 5;
+                    break;
+                case DayOfWeek.Sunday:
+                    diaspasan = 6;
+                    break;
+            }
+            return diaspasan;
+        }
     }
 }

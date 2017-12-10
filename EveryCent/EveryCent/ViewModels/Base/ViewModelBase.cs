@@ -3,6 +3,7 @@ using EveryCent.Services;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace EveryCent.ViewModels.Base
 {
