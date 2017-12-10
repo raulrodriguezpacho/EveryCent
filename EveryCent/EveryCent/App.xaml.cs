@@ -1,6 +1,6 @@
-﻿using Autofac;
-using Autofac.Core;
+﻿using Autofac.Core;
 using EveryCent.Base;
+using EveryCent.Data;
 using EveryCent.Services;
 using EveryCent.Views;
 using Xamarin.Forms;
@@ -8,7 +8,20 @@ using Xamarin.Forms;
 namespace EveryCent
 {
     public partial class App : Application
-    {                
+    {
+        static EveryCentDatabase database;
+        public static EveryCentDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = LocatorBase.Resolve<EveryCentDatabase>();
+                }
+                return database;
+            }
+        }
+
         public App(IModule platformModule)
         {            
             LocatorBase.Register(platformModule);

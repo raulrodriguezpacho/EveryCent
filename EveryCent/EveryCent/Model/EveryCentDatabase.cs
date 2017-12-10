@@ -1,4 +1,5 @@
 ﻿using EveryCent.Model;
+using EveryCent.Services;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,21 @@ namespace EveryCent.Data
 {
     public class EveryCentDatabase
     {
-        readonly SQLiteAsyncConnection database;
+        readonly SQLiteAsyncConnection _connection;      
+        public SQLiteAsyncConnection Connection
+        {
+            get { return _connection; }
+        }
 
-        public EveryCentDatabase(string dbPath)
+        public EveryCentDatabase(ILocalPath databasePath)
         {
             try
             {
-                database = new SQLiteAsyncConnection(dbPath, false);                
-
-                database.CreateTableAsync<Movement>().Wait();
-
+                var pathToDatabase = databasePath.GetLocalFilePath("everycent.db3");
+                _connection = new SQLiteAsyncConnection(pathToDatabase, false);
+                _connection.CreateTableAsync<Movement>().Wait();                
             }
-            catch (Exception ex) { }
-
+            catch (Exception) { }
         }
     }
 }

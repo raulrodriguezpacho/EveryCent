@@ -3,16 +3,13 @@ using Autofac.Core;
 using EveryCent.Data;
 using EveryCent.Services;
 using EveryCent.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EveryCent.Base
 {
     public static class LocatorBase
     {
+        private static bool _mock;
+
         private static IContainer _container;        
         public static IContainer Container
         {
@@ -22,19 +19,28 @@ namespace EveryCent.Base
             }
         }
 
-        public static void Register(IModule module = null)
+        public static void Register(IModule module = null, bool mock = false)
         {
             var builder = new ContainerBuilder();
             RegisterServices(builder);
             RegisterViewModels(builder);
             if (module != null) RegisterPlatformModule(builder, module);
+            _mock = mock;
             _container = builder.Build();                
         }
 
         private static void RegisterServices(ContainerBuilder builder)
         {
-            builder.RegisterType<Navigation>().As<INavigationService>();
-            builder.RegisterType<MovementRepository>().As<IMovementRepository>();
+            if (!_mock)
+            {
+                builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
+                builder.RegisterType<EveryCentDatabase>().SingleInstance();
+                builder.RegisterType<MovementRepository>().As<IMovementRepository>().SingleInstance();
+            }
+            else
+            {                
+                builder.RegisterInstance(new MovementMockRepository()).As<IMovementRepository>();
+            }
         }
 
         private static void RegisterViewModels(ContainerBuilder builder)

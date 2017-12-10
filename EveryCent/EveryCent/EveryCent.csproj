@@ -64,9 +64,10 @@
     <Compile Include="Services\FileSystem\ILocalPath.cs" />
     <Compile Include="Services\Localization\ILocalize.cs" />
     <Compile Include="Services\Navigation\INavigationService.cs" />
-    <Compile Include="Services\Navigation\Navigation.cs" />
+    <Compile Include="Services\Navigation\NavigationService.cs" />
     <Compile Include="Services\Repository\IMovementRepository.cs" />
     <Compile Include="Services\Repository\IRepository.cs" />
+    <Compile Include="Services\Repository\MovementMockRepository.cs" />
     <Compile Include="Services\Repository\MovementRepository.cs" />
     <Compile Include="Services\Repository\Respository.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />

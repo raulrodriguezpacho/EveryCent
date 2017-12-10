@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace EveryCent.Services
 {
-    public class Navigation : INavigationService
+    public class NavigationService : INavigationService
     {
         public ViewModelBase PreviousPageViewModel => throw new NotImplementedException();
 

@@ -9,18 +9,25 @@ using EveryCent.Services;
 namespace EveryCent.ViewModels
 {
     public class ChartViewModel : ViewModelBase
-    {
-        private readonly INavigationService _navigationService;
+    {        
         private readonly IMovementRepository _repositoryService;
 
-        public ChartViewModel(
-            INavigationService navigationService,
-            IMovementRepository repositoryService)
-        {
-            _navigationService = navigationService;
+        public ChartViewModel(IMovementRepository repositoryService)            
+        {            
             _repositoryService = repositoryService;
 
-            //var temp = _repositoryService.GetAll();
-        }        
+            Temp();
+        }     
+        
+        async void Temp()
+        {
+            await _repositoryService.InsertAsync(new Model.Movement()
+            {
+                Cost = DateTime.Now.Second, Date = DateTime.Now
+            });
+
+            var temp = await _repositoryService.GetAsync();
+            
+        }
     }
 }

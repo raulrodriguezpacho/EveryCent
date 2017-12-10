@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EveryCent.Services
 {
-    public interface IMovementRepository
+    public interface IMovementRepository : IRepository<Movement>
     {
         IList<Movement> GetAll();
     }

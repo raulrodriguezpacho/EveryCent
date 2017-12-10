@@ -7,29 +7,29 @@ using System.Threading.Tasks;
 
 namespace EveryCent.Services
 {
-    public class Repository<T> : IRepository<T> where T : new()
+    public abstract class Repository<T> : IRepository<T> where T : new()
     {
-        protected readonly SQLiteAsyncConnection db;
+        readonly SQLiteAsyncConnection _connection;
 
-        public Repository(SQLiteAsyncConnection db)
+        public Repository()
         {
-            this.db = db;
+            this._connection = App.Database.Connection;
         }
 
-        public async Task<List<T>> Get() => await db.Table<T>().ToListAsync();
+        public virtual async Task<List<T>> GetAsync() => await _connection.Table<T>().ToListAsync();
 
-        public async Task<T> Get(int id) => await db.FindAsync<T>(id);
+        public virtual async Task<T> GetAsync(int id) => await _connection.FindAsync<T>(id);
 
-        public async Task<int> Insert(T entity) => await db.InsertAsync(entity);
+        public virtual async Task<int> InsertAsync(T entity) => await _connection.InsertAsync(entity);
 
-        public async Task<int> InsertAll(List<T> entities) => await db.InsertAllAsync(entities);
+        public virtual async Task<int> InsertAllAsync(List<T> entities) => await _connection.InsertAllAsync(entities);
 
-        public async Task<int> Update(T entity) => await db.UpdateAsync(entity);
+        public virtual async Task<int> UpdateAsync(T entity) => await _connection.UpdateAsync(entity);
 
-        public async Task<int> Delete(T entity) => await db.DeleteAsync(entity);
+        public virtual async Task<int> DeleteAsync(T entity) => await _connection.DeleteAsync(entity);
 
-        public async Task<int> Clear(string tableName) => await db.ExecuteAsync("delete from " + tableName);
+        public virtual async Task<int> ClearAsync(string tableName) => await _connection.ExecuteAsync("delete from " + tableName);
 
-        public async Task<bool> HasData() => await db.Table<T>().CountAsync() > 0;
+        public virtual async Task<bool> HasDataAsync() => await _connection.Table<T>().CountAsync() > 0;
     }
 }

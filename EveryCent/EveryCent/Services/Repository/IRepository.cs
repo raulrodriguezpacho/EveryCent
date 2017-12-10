@@ -8,13 +8,13 @@ namespace EveryCent.Services
 {
     public interface IRepository<T>
     {
-        Task<List<T>> Get();
-        Task<T> Get(int id);
-        Task<int> Insert(T entity);
-        Task<int> InsertAll(List<T> enities);
-        Task<int> Update(T entity);
-        Task<int> Delete(T entity);
-        Task<int> Clear(string tableName);
-        Task<bool> HasData();
+        Task<List<T>> GetAsync();
+        Task<T> GetAsync(int id);
+        Task<int> InsertAsync(T entity);
+        Task<int> InsertAllAsync(List<T> enities);
+        Task<int> UpdateAsync(T entity);
+        Task<int> DeleteAsync(T entity);
+        Task<int> ClearAsync(string tableName);
+        Task<bool> HasDataAsync();
     }
 }
