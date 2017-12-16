@@ -13,6 +13,16 @@ namespace EveryCent.Services
         public IList<Movement> GetAll()
         {
             return null;
-        }        
+        }
+
+        public IList<Movement> GetBetweenMonths(int startMonth, int startYear, int endMonth, int endYear)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Movement> GetByMonth(int month, int year)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

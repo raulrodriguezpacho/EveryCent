@@ -10,5 +10,8 @@ namespace EveryCent.Services
     public interface IMovementRepository : IRepository<Movement>
     {
         IList<Movement> GetAll();
+        IList<Movement> GetByMonth(int month, int year);
+        IList<Movement> GetBetweenMonths(int startMonth, int startYear, int endMonth, int endYear);
+
     }
 }
