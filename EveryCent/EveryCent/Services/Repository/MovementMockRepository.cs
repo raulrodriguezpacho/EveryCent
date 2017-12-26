@@ -34,6 +34,16 @@ namespace EveryCent.Services
             throw new NotImplementedException();
         }
 
+        public IList<Movement> GetBetweenMonths(int startMonth, int startYear, int endMonth, int endYear)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Movement> GetByMonth(int month, int year)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> HasDataAsync()
         {
             throw new NotImplementedException();
