@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Autofac": "3.5.2",
+    "CarouselView.FormsPlugin": "4.2.7",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "sqlite-net-pcl": "1.4.118",
     "Xamarin.Forms": "2.4.0.280",

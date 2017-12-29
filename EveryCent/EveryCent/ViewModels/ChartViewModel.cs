@@ -16,18 +16,7 @@ namespace EveryCent.ViewModels
         {            
             _repositoryService = repositoryService;
 
-            Temp();
         }     
         
-        async void Temp()
-        {
-            await _repositoryService.InsertAsync(new Model.Movement()
-            {
-                Cost = DateTime.Now.Second, Date = DateTime.Now
-            });
-
-            var temp = await _repositoryService.GetAsync();
-            
-        }
     }
 }

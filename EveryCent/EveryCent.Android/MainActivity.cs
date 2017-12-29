@@ -20,7 +20,8 @@ namespace EveryCent.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
-			LoadApplication (new EveryCent.App(new Platform.PlatformModule()));
+            CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();
+            LoadApplication (new EveryCent.App(new Platform.PlatformModule()));
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace EveryCent.Services
 {
     public abstract class Repository<T> : IRepository<T> where T : new()
     {
-        readonly SQLiteAsyncConnection _connection;
+        protected readonly SQLiteAsyncConnection _connection;
 
         public Repository()
         {

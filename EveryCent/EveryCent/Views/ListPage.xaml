@@ -3,8 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:EveryCent.Base"
              xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
+             xmlns:behaviors="clr-namespace:EveryCent.Behaviors"
+             xmlns:converters="clr-namespace:EveryCent.Converters"
+             xmlns:triggers="clr-namespace:EveryCent.Triggers"
+             xmlns:controls="clr-namespace:EveryCent.Controls"
              x:Class="EveryCent.Views.ListPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
+    <base:ViewPageBase.Resources>
+        <ResourceDictionary>
+            <converters:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
+        </ResourceDictionary>
+    </base:ViewPageBase.Resources>
     <base:ViewPageBase.Content>
         <StackLayout>
             <Frame Padding="0" BackgroundColor="White" CornerRadius="5" OutlineColor="LightGray">
@@ -40,6 +49,44 @@
                     <Label Grid.Row="1" Text="{globalization:Translate Add}"/>
                 </Grid>
             </Frame>
+            <SearchBar Placeholder="..."  Text="{Binding SearchText, Mode=TwoWay}" WidthRequest="200">
+                <SearchBar.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding FindMovementCommand}" />
+                </SearchBar.Behaviors>
+            </SearchBar>
+            <controls:BindablePicker HorizontalOptions="FillAndExpand"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        ItemsSource="{Binding Path=Months}"
+                        SelectedItem="{Binding Path=SelectedMonth, Mode=TwoWay}"                     
+                        />
+            <controls:BindablePicker HorizontalOptions="FillAndExpand"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        ItemsSource="{Binding Path=Years}"
+                        SelectedItem="{Binding Path=SelectedYear, Mode=TwoWay}"                     
+                        />
+            <ListView ItemsSource="{Binding Movements}" 
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                RefreshCommand="{Binding RefreshCommand}"
+                >
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="ItemTapped" 
+                        Command="{Binding MovementSelectedCommand}"
+                        Converter="{StaticResource ItemTappedEventArgsConverter}"/>
+                </ListView.Behaviors>
+                <ListView.Triggers>
+                    <EventTrigger Event="ItemSelected">
+                        <triggers:DeselectListViewItemAction></triggers:DeselectListViewItemAction>
+                    </EventTrigger>
+                </ListView.Triggers>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Description}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </base:ViewPageBase.Content>
 </base:ViewPageBase>

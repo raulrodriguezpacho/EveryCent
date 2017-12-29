@@ -22,7 +22,9 @@ namespace EveryCent.Services
 
         public IList<Movement> GetByMonth(int month, int year)
         {
-            throw new NotImplementedException();
+            var result = _connection.Table<Movement>()                
+                .ToListAsync();
+            return result.Result.Where(m => m.Date.Month == month && m.Date.Year == year).ToList();
         }
     }
 }

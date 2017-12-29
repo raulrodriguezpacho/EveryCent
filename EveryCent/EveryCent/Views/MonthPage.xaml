@@ -2,13 +2,73 @@
 <base:ViewPageBase xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:EveryCent.Base"
+             xmlns:controls="clr-namespace:EveryCent.Controls"
+             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             xmlns:converters="clr-namespace:EveryCent.Converters"
+             xmlns:templates="clr-namespace:EveryCent.TemplatesSelector"
              x:Class="EveryCent.Views.MonthPage"
-             BackgroundColor="{StaticResource PageBackgroundColor}">
+             BackgroundColor="{StaticResource PageBackgroundColor}"
+             x:Name="pageMonth">
+    <base:ViewPageBase.Resources>
+        <ResourceDictionary>
+            <converters:BoolInvertConverter x:Key="BoolInvertConverter" />
+            <!-- DataTemplates -->
+            <DataTemplate x:Key="DayZeroTemplate">
+                <ViewCell>
+                    <Grid HeightRequest="{Binding Path=BindingContext.SizeCalendarDay, Source={x:Reference pageMonth}}" 
+                              WidthRequest="{Binding Path=BindingContext.SizeCalendarDay, Source={x:Reference pageMonth}}">
+                        <Label Text="{Binding Number}" BackgroundColor="Transparent" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <!-- DataTemplates Selector-->
+            <templates:CalendarDataTemplateSelector x:Key="CalendarDataTemplateSelector" 
+                DayZeroTemplate="{StaticResource DayZeroTemplate}"
+                DayOnlyNegativeTemplate="{StaticResource DayZeroTemplate}"
+                DayOnlyPositiveTemplate="{StaticResource DayZeroTemplate}"
+                DayPositiveAndNegativeTemplate="{StaticResource DayZeroTemplate}"
+                />
+        </ResourceDictionary>
+    </base:ViewPageBase.Resources>
     <base:ViewPageBase.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <controls:BindablePicker HorizontalOptions="FillAndExpand"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        ItemsSource="{Binding Path=Months}"
+                        SelectedItem="{Binding Path=SelectedMonth, Mode=TwoWay}"                     
+                        />
+            <controls:BindablePicker HorizontalOptions="FillAndExpand"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        ItemsSource="{Binding Path=Years}"
+                        SelectedItem="{Binding Path=SelectedYear, Mode=TwoWay}"                     
+                        />
+
+            <cv:CarouselViewControl x:Name="meses" 
+                        IsEnabled="{Binding IsLoading, Converter={StaticResource BoolInvertConverter}}"                        
+                        Orientation="Horizontal" HeightRequest="{Binding HeightCalendar}"
+                        ShowIndicators="False"
+                        InterPageSpacing="10"                        
+                        ItemsSource="{Binding MovementsMonths}"
+                        Position="{Binding Position}"                    
+                        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"                                            
+                        >
+                <cv:CarouselViewControl.ItemTemplate>
+                    <DataTemplate> 
+                        <Grid HorizontalOptions="FillAndExpand">
+                            <controls:WrapPanel x:Name="days" TemplateSelector="{StaticResource CalendarDataTemplateSelector}"
+                                          MaxItemsRow="7"
+                                          StartPositionX="{Binding Path=BindingContext.StartPositionX, Source={x:Reference pageMonth}}"
+                                          ItemsSource="{Binding Days}" 
+                                          Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="StartAndExpand"
+                                          HeightRequest="{Binding Path=BindingContext.HeightCalendar, Source={x:Reference pageMonth}}"
+                                    />
+                        </Grid>
+                    </DataTemplate>
+                </cv:CarouselViewControl.ItemTemplate>
+            </cv:CarouselViewControl>
+
         </StackLayout>
     </base:ViewPageBase.Content>
 </base:ViewPageBase>

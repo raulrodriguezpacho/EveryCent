@@ -23,7 +23,8 @@ namespace EveryCent.iOS
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init ();
-			LoadApplication (new EveryCent.App (new Platform.PlatformModule()));           
+            CarouselView.FormsPlugin.iOS.CarouselViewRenderer.Init();
+            LoadApplication (new EveryCent.App (new Platform.PlatformModule()));           
 
 			return base.FinishedLaunching (app, options);
 		}

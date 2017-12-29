@@ -4,7 +4,9 @@
              xmlns:views="clr-namespace:EveryCent.Views"
              x:Class="EveryCent.Views.DashboardPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
-    <views:ChartPage Title="Chart" />
-    <views:ListPage Title="List" />
-    <views:MonthPage Title="Month" />
+    <TabbedPage.Children>
+        <views:ChartPage Title="Chart" Icon="chart.png" />
+        <views:ListPage Title="List" />
+        <views:MonthPage Title="Month" />
+    </TabbedPage.Children>
 </TabbedPage>
