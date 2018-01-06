@@ -2,11 +2,12 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:EveryCent.Views"
+             xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
              x:Class="EveryCent.Views.DashboardPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <TabbedPage.Children>
-        <views:ChartPage Title="Chart" Icon="chart.png" />
-        <views:ListPage Title="List" />
-        <views:MonthPage Title="Month" />
+        <views:ChartPage Title="{globalization:Translate Graph}" Icon="chart.png" />
+        <views:ListPage Title="{globalization:Translate List}" Icon="list.png" />
+        <views:MonthPage Title="{globalization:Translate Calendar}" Icon="calendar.png" />
     </TabbedPage.Children>
 </TabbedPage>

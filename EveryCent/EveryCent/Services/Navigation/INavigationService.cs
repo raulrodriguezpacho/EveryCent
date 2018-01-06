@@ -12,8 +12,10 @@ namespace EveryCent.Services
     {
         Page NavigationPage { get; }
 
+        object NavigationData { get; }
+
         Task NavigateBackAsync();
 
-        Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase;        
+        Task NavigateToAsync<TViewModel>(object parameter = null) where TViewModel : ViewModelBase;        
     }
 }

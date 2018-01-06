@@ -15,57 +15,45 @@
         </ResourceDictionary>
     </base:ViewPageBase.Resources>
     <base:ViewPageBase.Content>
+        
         <StackLayout>
-            <Frame Padding="0" BackgroundColor="White" CornerRadius="5" OutlineColor="LightGray">
-                <Frame.HasShadow>
-                    <OnPlatform x:TypeArguments="x:Boolean"
-                                iOS="False"
-                                Android="True"
-                                WinPhone="False" />
-                </Frame.HasShadow>
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding GoToMovementCommand}" CommandParameter="Add" />
-                </Frame.GestureRecognizers>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height=".7*" />
-                        <RowDefinition Height=".3*" />
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image.Source>
-                            <OnPlatform x:TypeArguments="ImageSource">
-                                <OnPlatform.iOS>
-                                    <FileImageSource File="Images/add.png" />
-                                </OnPlatform.iOS>
-                                <OnPlatform.Android>
-                                    <FileImageSource File="add.png" />
-                                </OnPlatform.Android>
-                                <OnPlatform.WinPhone>
-                                    <FileImageSource File="Assets/Images/add.png" />
-                                </OnPlatform.WinPhone>
-                            </OnPlatform>
-                        </Image.Source>
-                    </Image>
-                    <Label Grid.Row="1" Text="{globalization:Translate Add}"/>
-                </Grid>
-            </Frame>
-            <SearchBar Placeholder="..."  Text="{Binding SearchText, Mode=TwoWay}" WidthRequest="200">
-                <SearchBar.Behaviors>
-                    <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding FindMovementCommand}" />
-                </SearchBar.Behaviors>
-            </SearchBar>
-            <controls:BindablePicker HorizontalOptions="FillAndExpand"
-                        BackgroundColor="White"
-                        TextColor="Black"
-                        ItemsSource="{Binding Path=Months}"
-                        SelectedItem="{Binding Path=SelectedMonth, Mode=TwoWay}"                     
-                        />
-            <controls:BindablePicker HorizontalOptions="FillAndExpand"
-                        BackgroundColor="White"
-                        TextColor="Black"
-                        ItemsSource="{Binding Path=Years}"
-                        SelectedItem="{Binding Path=SelectedYear, Mode=TwoWay}"                     
-                        />
+
+            <controls:MonthYearSelectorView />
+
+            <Grid Margin="5,0,5,2">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <SearchBar Placeholder="..."  Text="{Binding SearchText, Mode=TwoWay}" WidthRequest="200" Grid.Column="0">
+                    <SearchBar.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding FindMovementCommand}" />
+                    </SearchBar.Behaviors>
+                </SearchBar>
+
+                <Image Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToMovementCommand}" CommandParameter="Add" />
+                    </Image.GestureRecognizers>
+                    <Image.Source>
+                        <OnPlatform x:TypeArguments="ImageSource">
+                            <OnPlatform.iOS>
+                                <FileImageSource File="Images/add.png" />
+                            </OnPlatform.iOS>
+                            <OnPlatform.Android>
+                                <FileImageSource File="add.png" />
+                            </OnPlatform.Android>
+                            <OnPlatform.WinPhone>
+                                <FileImageSource File="Assets/Images/add.png" />
+                            </OnPlatform.WinPhone>
+                        </OnPlatform>
+                    </Image.Source>
+                </Image>
+
+            </Grid>
+
             <ListView ItemsSource="{Binding Movements}" 
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
@@ -87,6 +75,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            
         </StackLayout>
+        
     </base:ViewPageBase.Content>
 </base:ViewPageBase>

@@ -3,48 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:EveryCent.Base"
              xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
-             xmlns:charting="clr-namespace:XLabs.Forms.Charting.Controls;assembly=XLabs.Forms.Charting"             
+             xmlns:charting="clr-namespace:XLabs.Forms.Charting.Controls;assembly=XLabs.Forms.Charting"       
+             xmlns:controls="clr-namespace:EveryCent.Controls"
              x:Class="EveryCent.Views.ChartPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <base:ViewPageBase.Content>
 
         <StackLayout>
 
-            <Label Text="{globalization:Translate Title}" TextColor="Yellow" BackgroundColor="Black" />
+            <controls:MonthYearSelectorView />
 
-            <charting:Chart x:Name="CombinationChart" Color="White" WidthRequest="450" HeightRequest="750" Spacing="10">
+            <charting:Chart x:Name="CombinationChart" WidthRequest="450" HeightRequest="750" Spacing="10" BackgroundColor="White">
 
-            <charting:Chart.Series>
-                <charting:Series Type="Bar" Color="Red">
+                <charting:Chart.Series>
+                    <charting:Series Type="Bar" Color="Red">
 
-                    <charting:Series.Points>
-                        <charting:DataPoint Label="Jan" Value="25"/>
-                        <charting:DataPoint Label="Feb" Value="40"/>
-                        <charting:DataPoint Label="March" Value="45"/>
-                    </charting:Series.Points>
+                        <charting:Series.Points>
+                            <charting:DataPoint Label="Jan" Value="25"/>
+                            <charting:DataPoint Label="Feb" Value="40"/>
+                            <charting:DataPoint Label="March" Value="45"/>
+                        </charting:Series.Points>
 
-                </charting:Series>
-                <charting:Series Type="Bar" Color="Blue">
+                    </charting:Series>
+                    <charting:Series Type="Bar" Color="Blue">
 
-                    <charting:Series.Points>
-                        <charting:DataPoint Label="Jan" Value="30"/>
-                        <charting:DataPoint Label="Feb" Value="35"/>
-                        <charting:DataPoint Label="March" Value="40"/>
-                    </charting:Series.Points>
+                        <charting:Series.Points>
+                            <charting:DataPoint Label="Jan" Value="30"/>
+                            <charting:DataPoint Label="Feb" Value="35"/>
+                            <charting:DataPoint Label="March" Value="40"/>
+                        </charting:Series.Points>
 
-                </charting:Series>
-                <charting:Series Type="Line" Color="Green">
+                    </charting:Series>
+                    <charting:Series Type="Line" Color="Green">
 
-                    <charting:Series.Points>
-                        <charting:DataPoint Label="Jan" Value="27.5"/>
-                        <charting:DataPoint Label="Feb" Value="37.5"/>
-                        <charting:DataPoint Label="March" Value="42.5"/>
-                    </charting:Series.Points>
+                        <charting:Series.Points>
+                            <charting:DataPoint Label="Jan" Value="27.5"/>
+                            <charting:DataPoint Label="Feb" Value="37.5"/>
+                            <charting:DataPoint Label="March" Value="42.5"/>
+                        </charting:Series.Points>
 
-                </charting:Series>
-            </charting:Chart.Series>
+                    </charting:Series>
+                </charting:Chart.Series>
 
-        </charting:Chart>
+            </charting:Chart>
 
         </StackLayout>
 

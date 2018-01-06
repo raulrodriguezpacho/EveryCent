@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:EveryCent.Controls"
+             xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
+             x:Class="EveryCent.Controls.MonthYearSelectorView">
+  <ContentView.Content>
+
+        <Frame OutlineColor="Gray" CornerRadius="10" Margin="5,5,5,0">
+            
+            <Grid Padding="5,2,5,2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".5*" />
+                    <ColumnDefinition Width=".5*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{globalization:Translate MonthSelect}" Grid.Column="0" VerticalOptions="Center" />
+                    <controls:BindablePicker Grid.Column="1"                        
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        ItemsSource="{Binding Path=Months}"
+                        SelectedItem="{Binding Path=SelectedMonth, Mode=TwoWay}"                     
+                        />
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{globalization:Translate YearSelect}" Grid.Column="0" VerticalOptions="Center" />
+                    <controls:BindablePicker  Grid.Column="1"                    
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        ItemsSource="{Binding Path=Years}"
+                        SelectedItem="{Binding Path=SelectedYear, Mode=TwoWay}"                     
+                        />
+                </Grid>
+
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

@@ -12,8 +12,12 @@ namespace EveryCent.Services
     {
         public Page NavigationPage => Application.Current.MainPage;
 
+        private object _navigationData;
+        public object NavigationData => _navigationData;
+
         public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
-        {            
+        {
+            _navigationData = parameter;
             return this.NavigationPage.Navigation.PushModalAsync(GetPageFromViewModel(typeof(TViewModel)));
         }
 

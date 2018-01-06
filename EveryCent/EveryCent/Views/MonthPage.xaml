@@ -32,18 +32,8 @@
     </base:ViewPageBase.Resources>
     <base:ViewPageBase.Content>
         <StackLayout>
-            <controls:BindablePicker HorizontalOptions="FillAndExpand"
-                        BackgroundColor="White"
-                        TextColor="Black"
-                        ItemsSource="{Binding Path=Months}"
-                        SelectedItem="{Binding Path=SelectedMonth, Mode=TwoWay}"                     
-                        />
-            <controls:BindablePicker HorizontalOptions="FillAndExpand"
-                        BackgroundColor="White"
-                        TextColor="Black"
-                        ItemsSource="{Binding Path=Years}"
-                        SelectedItem="{Binding Path=SelectedYear, Mode=TwoWay}"                     
-                        />
+
+            <controls:MonthYearSelectorView />
 
             <cv:CarouselViewControl x:Name="meses" 
                         IsEnabled="{Binding IsLoading, Converter={StaticResource BoolInvertConverter}}"                        

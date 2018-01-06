@@ -82,5 +82,15 @@ namespace EveryCent.ViewModels.Base
                 return _years;
             }
         }
+
+        protected string GetMonth(int month)
+        {
+            return DateTimeFormatInfo.CurrentInfo.MonthNames[month - 1];
+        }
+
+        protected int GetMonth(string month)
+        {
+            return Convert.ToDateTime("01-" + month + "-2018").Month;
+        }        
     }
 }

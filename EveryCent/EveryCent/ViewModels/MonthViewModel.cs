@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 
 namespace EveryCent.ViewModels
 {
-    public class MonthViewModel : ViewModelBase
+    public class MonthViewModel : ViewModelBase, IDateViewModel
     {
         private readonly INavigationService _navigationService;
         private readonly IMovementRepository _repositoryService;

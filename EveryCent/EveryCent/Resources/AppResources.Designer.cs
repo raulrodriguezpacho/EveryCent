@@ -71,11 +71,47 @@ namespace EveryCent.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Calendar.
+        /// </summary>
+        public static string Calendar {
+            get {
+                return ResourceManager.GetString("Calendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancel.
         /// </summary>
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Graph.
+        /// </summary>
+        public static string Graph {
+            get {
+                return ResourceManager.GetString("Graph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a List.
+        /// </summary>
+        public static string List {
+            get {
+                return ResourceManager.GetString("List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Month: .
+        /// </summary>
+        public static string MonthSelect {
+            get {
+                return ResourceManager.GetString("MonthSelect", resourceCulture);
             }
         }
         
@@ -94,6 +130,15 @@ namespace EveryCent.Resources {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Year: .
+        /// </summary>
+        public static string YearSelect {
+            get {
+                return ResourceManager.GetString("YearSelect", resourceCulture);
             }
         }
     }

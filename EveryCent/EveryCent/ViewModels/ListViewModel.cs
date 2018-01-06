@@ -14,7 +14,7 @@ using System.Globalization;
 
 namespace EveryCent.ViewModels
 {
-    public class ListViewModel : ViewModelBase
+    public class ListViewModel : ViewModelBase, IDateViewModel
     {
         private readonly INavigationService _navigationService;
         private readonly IMovementRepository _repositoryService;
@@ -91,7 +91,7 @@ namespace EveryCent.ViewModels
             {
                 return _goToMovementCommand ?? (_goToMovementCommand = new Command(() =>
                 {
-                    _navigationService.NavigateToAsync<MovementViewModel>(null);
+                    _navigationService.NavigateToAsync<MovementViewModel>(new Tuple<int, int>(GetMonth(_selectedMonth), _selectedYear));
                 }));
             }
         }

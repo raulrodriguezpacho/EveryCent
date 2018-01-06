@@ -7,7 +7,7 @@
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <base:ViewPageBase.Content>
         <StackLayout>
-            <Frame Padding="0" BackgroundColor="White" CornerRadius="5" OutlineColor="LightGray">
+            <Frame Padding="0" BackgroundColor="Yellow" CornerRadius="5" OutlineColor="Blue">
                 <Frame.HasShadow>
                     <OnPlatform x:TypeArguments="x:Boolean"
                                 iOS="False"

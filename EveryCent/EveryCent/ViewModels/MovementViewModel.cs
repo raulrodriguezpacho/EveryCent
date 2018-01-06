@@ -100,6 +100,13 @@ namespace EveryCent.ViewModels
             _repositoryService = repositoryService;
 
             IsPositive = true;
+            if (_navigationService.NavigationData != null)
+            {
+                Date = new DateTime(
+                    ((Tuple<int, int>)_navigationService.NavigationData).Item2,
+                    ((Tuple<int, int>)_navigationService.NavigationData).Item1,
+                    1);
+            }
         }
     }
 }
