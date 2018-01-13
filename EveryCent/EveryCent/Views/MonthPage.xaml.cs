@@ -10,7 +10,7 @@ namespace EveryCent.Views
     {
         public MonthPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         protected override void OnAppearing()
@@ -28,7 +28,7 @@ namespace EveryCent.Views
         public void PositionSelected(object sender, int position)
         {
             if (this.BindingContext != null && this.BindingContext is MonthViewModel)
-            {
+            {                
                 string posicionMes = DateTimeFormatInfo.CurrentInfo.MonthNames[position];
                 if (((MonthViewModel)this.BindingContext).SelectedMonth != posicionMes)
                     ((MonthViewModel)this.BindingContext).SelectedMonth = posicionMes;

@@ -26,14 +26,14 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private decimal _cost;
-        public decimal Cost
+        private decimal _amount;
+        public decimal Amount
         {
-            get { return _cost; }
+            get { return _amount; }
             set
             {
-                _cost = value;
-                OnPropertyChanged("Cost");
+                _amount = value;
+                OnPropertyChanged("Amount");
             }
         }        
 
@@ -81,7 +81,7 @@ namespace EveryCent.ViewModels
                 {                    
                     var result = await _repositoryService.InsertAsync(new Model.Movement()
                     {
-                        Cost = (int)(Cost * 100),
+                        Amount = (int)(Amount * 100),
                         Date = DateTime.Now,
                         Positive = IsPositive,
                         Description = Description

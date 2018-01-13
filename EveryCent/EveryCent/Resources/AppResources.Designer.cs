@@ -71,6 +71,15 @@ namespace EveryCent.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Amount.
+        /// </summary>
+        public static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Calendar.
         /// </summary>
         public static string Calendar {
@@ -89,11 +98,56 @@ namespace EveryCent.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Details.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Graph.
         /// </summary>
         public static string Graph {
             get {
                 return ResourceManager.GetString("Graph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Income.
+        /// </summary>
+        public static string Income {
+            get {
+                return ResourceManager.GetString("Income", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Income (else Spend).
+        /// </summary>
+        public static string IncomeSpend {
+            get {
+                return ResourceManager.GetString("IncomeSpend", resourceCulture);
             }
         }
         
@@ -121,6 +175,15 @@ namespace EveryCent.Resources {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Spend.
+        /// </summary>
+        public static string Spend {
+            get {
+                return ResourceManager.GetString("Spend", resourceCulture);
             }
         }
         

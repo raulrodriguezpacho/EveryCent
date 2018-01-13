@@ -77,9 +77,9 @@
                 Orientation="Horizontal" HeightRequest="{Binding HeightCalendar}"
                 ShowIndicators="False"
                 InterPageSpacing="10"                        
-                ItemsSource="{Binding MovementsMonths}"
-                Position="{Binding Position}"                    
-                VerticalOptions="Start" HorizontalOptions="FillAndExpand"                                            
+                ItemsSource="{Binding MovementsMonths}"                         
+                VerticalOptions="Start" HorizontalOptions="FillAndExpand"         
+                Position="{Binding Position}"  
                 >
                 <cv:CarouselViewControl.ItemTemplate>
                     <DataTemplate> 

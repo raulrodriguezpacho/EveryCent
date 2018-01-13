@@ -43,7 +43,8 @@ namespace EveryCent.ViewModels
                 {
                     _selectedMonth = value;
                     OnPropertyChanged("SelectedMonth");
-                    ShowMonthMovements(GetMonth(value), _selectedYear);
+                    if (_position != Months.IndexOf(_selectedMonth))                    
+                        Position = Months.IndexOf(_selectedMonth);                                        
                 }                
             }
         }
@@ -69,8 +70,11 @@ namespace EveryCent.ViewModels
             get { return _position; }
             set
             {
-                _position = value;
-                OnPropertyChanged("Position");
+                if (_position != value)
+                {
+                    _position = value;
+                    OnPropertyChanged("Position");
+                }
             }
         }
 
@@ -149,8 +153,7 @@ namespace EveryCent.ViewModels
             try
             {
                 await CreateMonths(year);
-                //if (!_movementsMonths.IsNullOrEmpty())
-                //    Position = month - 1;
+                
             }
             catch (Exception ex) { }
             finally
@@ -192,6 +195,8 @@ namespace EveryCent.ViewModels
         private async Task<bool> CreateMonths(int year)
         {
             bool ret = false;
+            var auxSelectedMonth = _selectedMonth;
+            var auxSelectedPosition = _position;
             if (!MovementsMonths.IsNullOrEmpty())
                 MovementsMonths.Clear();
             for (int i = 1; i <= 12; i++)
@@ -203,6 +208,8 @@ namespace EveryCent.ViewModels
                     Days = new ObservableCollection<Day>(await CreateMonthCalendar(i, year))
                 });
             }
+            SelectedMonth = auxSelectedMonth;
+            Position = auxSelectedPosition;
             ret = true;
             return ret;
         }

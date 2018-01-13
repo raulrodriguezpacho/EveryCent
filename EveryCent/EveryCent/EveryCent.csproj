@@ -85,6 +85,9 @@
     <Compile Include="Services\Repository\Respository.cs" />
     <Compile Include="TemplatesSelector\CalendarDataTemplateSelector.cs" />
     <Compile Include="Triggers\DeselectListViewItemAction.cs" />
+    <Compile Include="Validations\IsNotAmountValidation.cs" />
+    <Compile Include="Validations\IsNotNullOrEmptyValidation.cs" />
+    <Compile Include="Validations\IValidate.cs" />
     <Compile Include="ViewModels\Base\IDateViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\ChartViewModel.cs" />

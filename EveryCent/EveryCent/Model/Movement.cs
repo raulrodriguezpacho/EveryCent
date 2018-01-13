@@ -14,7 +14,7 @@ namespace EveryCent.Model
 
         public DateTime Date { get; set; }
 
-        public int Cost { get; set; } // x100
+        public int Amount { get; set; } // x100
 
         public bool Positive { get; set; }
 

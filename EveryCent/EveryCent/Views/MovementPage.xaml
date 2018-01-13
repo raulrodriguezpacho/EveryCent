@@ -6,90 +6,87 @@
              x:Class="EveryCent.Views.MovementPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <base:ViewPageBase.Content>
-        <StackLayout>
-            <Frame Padding="0" BackgroundColor="Yellow" CornerRadius="5" OutlineColor="Blue">
-                <Frame.HasShadow>
-                    <OnPlatform x:TypeArguments="x:Boolean"
-                                iOS="False"
-                                Android="True"
-                                WinPhone="False" />
-                </Frame.HasShadow>
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding BackToDashboardCommand}" />
-                </Frame.GestureRecognizers>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height=".7*" />
-                        <RowDefinition Height=".3*" />
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image.Source>
-                            <OnPlatform x:TypeArguments="ImageSource">
-                                <OnPlatform.iOS>
-                                    <FileImageSource File="Images/cancel.png" />
-                                </OnPlatform.iOS>
-                                <OnPlatform.Android>
-                                    <FileImageSource File="cancel.png" />
-                                </OnPlatform.Android>
-                                <OnPlatform.WinPhone>
-                                    <FileImageSource File="Assets/Images/cancel.png" />
-                                </OnPlatform.WinPhone>
-                            </OnPlatform>
-                        </Image.Source>
-                    </Image>
-                    <Label Grid.Row="1" Text="{globalization:Translate Cancel}"/>
-                </Grid>
-            </Frame>
-            <Frame Padding="0" BackgroundColor="White" CornerRadius="5" OutlineColor="LightGray">
-                <Frame.HasShadow>
-                    <OnPlatform x:TypeArguments="x:Boolean"
-                                iOS="False"
-                                Android="True"
-                                WinPhone="False" />
-                </Frame.HasShadow>
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding SaveCommand}" />
-                </Frame.GestureRecognizers>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height=".7*" />
-                        <RowDefinition Height=".3*" />
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image.Source>
-                            <OnPlatform x:TypeArguments="ImageSource">
-                                <OnPlatform.iOS>
-                                    <FileImageSource File="Images/save.png" />
-                                </OnPlatform.iOS>
-                                <OnPlatform.Android>
-                                    <FileImageSource File="save.png" />
-                                </OnPlatform.Android>
-                                <OnPlatform.WinPhone>
-                                    <FileImageSource File="Assets/Images/save.png" />
-                                </OnPlatform.WinPhone>
-                            </OnPlatform>
-                        </Image.Source>
-                    </Image>
-                    <Label Grid.Row="1" Text="{globalization:Translate Save}"/>
-                </Grid>
-            </Frame>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width=".25*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0"></Label>
-                <Entry Grid.Column="1" Grid.Row="0" Text="{Binding Cost}" ></Entry>
-                <Switch Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" IsToggled="{Binding IsPositive, Mode=TwoWay}" />
-                <DatePicker Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Date="{Binding Date}" ></DatePicker>
-                <Editor Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Description}"></Editor>
+
+        <TableView Intent="Form">
+            
+            <TableRoot Title="Movement">
+
+                <TableSection Title="{globalization:Translate Details}">
+                    <EntryCell Text="{Binding Amount}" Label="{globalization:Translate Amount}" Keyboard="Numeric" />
+                    <SwitchCell Text="{globalization:Translate IncomeSpend}" On="{Binding IsPositive}" />
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="18,0,5,2">
+                            <Label Text="{globalization:Translate Date}" VerticalOptions="Center" />
+                            <DatePicker Date="{Binding Date}"></DatePicker>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
                 
-            </Grid>
-        </StackLayout>
+                <TableSection Title="{globalization:Translate Description}">
+                    <ViewCell>
+                        <Grid Margin="5,0,5,2">
+                            <Editor Text="{Binding Description}" HeightRequest="100"></Editor>
+                        </Grid>
+                    </ViewCell>
+                </TableSection>
+
+                <TableSection Title="Options">
+                    <ViewCell>
+                        <Grid Margin="5,0,5,2">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BackToDashboardCommand}" CommandParameter="Cancel" />
+                                </Image.GestureRecognizers>
+                                <Image.Source>
+                                    <OnPlatform x:TypeArguments="ImageSource">
+                                        <OnPlatform.iOS>
+                                            <FileImageSource File="Images/cancel.png" />
+                                        </OnPlatform.iOS>
+                                        <OnPlatform.Android>
+                                            <FileImageSource File="cancel.png" />
+                                        </OnPlatform.Android>
+                                        <OnPlatform.WinPhone>
+                                            <FileImageSource File="Assets/Images/cancel.png" />
+                                        </OnPlatform.WinPhone>
+                                    </OnPlatform>
+                                </Image.Source>
+                            </Image>
+
+                            <Image Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SaveCommand}" CommandParameter="Save" />
+                                </Image.GestureRecognizers>
+                                <Image.Source>
+                                    <OnPlatform x:TypeArguments="ImageSource">
+                                        <OnPlatform.iOS>
+                                            <FileImageSource File="Images/ok.png" />
+                                        </OnPlatform.iOS>
+                                        <OnPlatform.Android>
+                                            <FileImageSource File="ok.png" />
+                                        </OnPlatform.Android>
+                                        <OnPlatform.WinPhone>
+                                            <FileImageSource File="Assets/Images/ok.png" />
+                                        </OnPlatform.WinPhone>
+                                    </OnPlatform>
+                                </Image.Source>
+                            </Image>
+
+                        </Grid>
+                        
+                    </ViewCell>
+                    
+                </TableSection>
+                
+            </TableRoot>
+            
+        </TableView>
+
     </base:ViewPageBase.Content>
 </base:ViewPageBase>
