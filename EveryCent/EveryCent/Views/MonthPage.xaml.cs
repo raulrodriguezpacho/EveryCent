@@ -1,4 +1,6 @@
 ﻿using EveryCent.Base;
+using EveryCent.ViewModels;
+using System.Globalization;
 using Xamarin.Forms.Xaml;
 
 namespace EveryCent.Views
@@ -9,6 +11,28 @@ namespace EveryCent.Views
         public MonthPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            meses.PositionSelected += PositionSelected;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            meses.PositionSelected -= PositionSelected;
+        }
+
+        public void PositionSelected(object sender, int position)
+        {
+            if (this.BindingContext != null && this.BindingContext is MonthViewModel)
+            {
+                string posicionMes = DateTimeFormatInfo.CurrentInfo.MonthNames[position];
+                if (((MonthViewModel)this.BindingContext).SelectedMonth != posicionMes)
+                    ((MonthViewModel)this.BindingContext).SelectedMonth = posicionMes;
+            }
         }
     }
 }

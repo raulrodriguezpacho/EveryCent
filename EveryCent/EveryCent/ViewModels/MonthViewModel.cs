@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using EveryCent.Helpers;
 using System.Collections.ObjectModel;
+using EveryCent.Model;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace EveryCent.ViewModels
 {
@@ -15,6 +18,7 @@ namespace EveryCent.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IMovementRepository _repositoryService;
+        private readonly IDeviceService _deviceService;
 
         private DateTime _now = DateTime.Now;
 
@@ -35,8 +39,12 @@ namespace EveryCent.ViewModels
             get { return _selectedMonth; }
             set
             {
-                _selectedMonth = value;
-                OnPropertyChanged("SelectedMonth");                
+                if (_selectedMonth != value)
+                {
+                    _selectedMonth = value;
+                    OnPropertyChanged("SelectedMonth");
+                    ShowMonthMovements(GetMonth(value), _selectedYear);
+                }                
             }
         }
 
@@ -50,16 +58,7 @@ namespace EveryCent.ViewModels
                 {
                     _selectedYear = value;
                     OnPropertyChanged("SelectedYear");
-                    if (value == _now.Year)
-                    {
-                        SelectedMonth = DateTimeFormatInfo.CurrentInfo.MonthNames[_now.Month - 1];
-                        ShowMonthMovements(_now.Month, value);
-                    }
-                    else
-                    {
-                        SelectedMonth = DateTimeFormatInfo.CurrentInfo.MonthNames[0];
-                        ShowMonthMovements(1, value);
-                    }
+                    ShowMonthMovements(GetMonth(_selectedMonth), value);
                 }                
             }
         }
@@ -86,7 +85,7 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private double _heightCalendar = 300;
+        private double _heightCalendar = 200;
         public double HeightCalendar
         {
             get { return _heightCalendar; }
@@ -119,13 +118,29 @@ namespace EveryCent.ViewModels
             }
         }
 
+        private ICommand _viewMomementsDayCommand;
+        public ICommand ViewMomementsDayCommand
+        {
+            get
+            {
+                return _viewMomementsDayCommand ?? (_viewMomementsDayCommand = new Command((param) =>
+                {
+                    // TODO: navigate to MovementsDayViewModel..
+                }));
+            }
+        }
+
         public MonthViewModel(
             INavigationService navigationService,
-            IMovementRepository repositoryService
+            IMovementRepository repositoryService,
+            IDeviceService deviceService
             )
         {
             _navigationService = navigationService;
-            _repositoryService = repositoryService;            
+            _repositoryService = repositoryService;
+            _deviceService = deviceService;            
+
+            ShowMonthMovements(GetMonth(_selectedMonth), _selectedYear);
         }
 
         private async void ShowMonthMovements(int month, int year)
@@ -134,8 +149,8 @@ namespace EveryCent.ViewModels
             try
             {
                 await CreateMonths(year);
-                if (!_movementsMonths.IsNullOrEmpty())
-                    Position = month - 1;
+                //if (!_movementsMonths.IsNullOrEmpty())
+                //    Position = month - 1;
             }
             catch (Exception ex) { }
             finally
@@ -223,20 +238,5 @@ namespace EveryCent.ViewModels
             catch (Exception ex) { }
             return days;
         }
-    }
-
-    public class Month
-    {
-        public int Number { get; set; }
-        public string Name { get; set; }
-        public IList<Day> Days { get; set; }
-    }
-
-    public class Day
-    {
-        public int Number { get; set; }
-        public string WeekDay { get; set; }
-        public bool IsPositive { get; set; }
-        public bool IsNegative { get; set; }
-    }
+    }       
 }

@@ -10,6 +10,7 @@ namespace EveryCent.Droid.Platform
             base.Load(builder);
             builder.RegisterType<Localize>().As<ILocalize>();
             builder.RegisterType<LocalPath>().As<ILocalPath>();
+            builder.RegisterType<DeviceService>().As<IDeviceService>();
         }
     }
 }
