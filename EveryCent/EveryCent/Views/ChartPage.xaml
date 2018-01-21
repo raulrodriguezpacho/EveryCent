@@ -13,29 +13,35 @@
 
             <controls:MonthYearSelectorView />
 
-            <Grid>
+            <Grid x:Name="chartGrid" Padding="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.5*" />
                     <ColumnDefinition Width="0.5*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="{globalization:Translate ViewYearChart}" Grid.Column="0" />
-                <Switch IsToggled="{Binding MonthsVisible}" Grid.Column="1" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                
+                <Label Text="{globalization:Translate ViewYearChart}" Grid.Column="0" Grid.Row="0" />
+                <Switch IsToggled="{Binding MonthsVisible}" Grid.Column="1" Grid.Row="0" />
+
+                <charting:Chart x:Name="chart" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                    DataSource="{Binding ChartData, Mode=TwoWay}"
+                    HeightRequest="500"
+                    Spacing="10"                
+                    XPath="Item1"
+                    YPath="Item2"                 
+                    Color="White">
+
+                    <charting:Chart.Series>
+                        <charting:Series Type="Bar" Color="YellowGreen"/>
+                        <charting:Series Type="Bar" Color="Red"/>
+                    </charting:Chart.Series>
+
+                </charting:Chart>
+
             </Grid>
-            
-            <charting:Chart x:Name="movementsChart" 
-                DataSource="{Binding ChartData}"
-                HeightRequest="500"
-                Spacing="10"                
-                XPath="Item1"
-                YPath="Item2"                 
-                Color="White">
-
-                <charting:Chart.Series>
-                    <charting:Series Type="Bar" Color="YellowGreen"/>
-                    <charting:Series Type="Bar" Color="OrangeRed"/>
-                </charting:Chart.Series>
-
-            </charting:Chart>
 
         </StackLayout>
 

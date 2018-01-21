@@ -31,7 +31,7 @@ namespace EveryCent
 
         public App(IModule platformModule)
         {            
-            LocatorBase.Register(platformModule, true);
+            LocatorBase.Register(platformModule, true); // NOW MOCKING!!
             InitializeComponent();
             SetLanguage();
             //if (!Application.Current.Properties.ContainsKey("Currency"))

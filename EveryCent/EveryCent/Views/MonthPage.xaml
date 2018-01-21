@@ -22,33 +22,42 @@
             </DataTemplate>
             <DataTemplate x:Key="DayNoneTemplate">
                 <ViewCell>
-                    <Frame CornerRadius="5" 
+                    <Frame CornerRadius="5" BackgroundColor="Transparent"
                         VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0"
                         WidthRequest="50" 
                         HeightRequest="50">
-                        <Label Text="{Binding Number}" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" />
+                        <Label Text="{Binding Number}" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
                     </Frame>
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="DayOnlyNegativeTemplate">
                 <ViewCell>
-                    <Grid WidthRequest="50">
-                        <Label Text="{Binding Number}" BackgroundColor="Transparent" />
-                    </Grid>
+                    <Frame CornerRadius="5" BackgroundColor="Red"
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0"
+                        WidthRequest="50" 
+                        HeightRequest="50">
+                        <Label Text="{Binding Number}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
+                    </Frame>
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="DayOnlyPositiveTemplate">
                 <ViewCell>
-                    <Grid WidthRequest="50">
-                        <Label Text="{Binding Number}" BackgroundColor="Transparent" />
-                    </Grid>
+                    <Frame CornerRadius="5" BackgroundColor="YellowGreen"
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0"
+                        WidthRequest="50" 
+                        HeightRequest="50">
+                        <Label Text="{Binding Number}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" />
+                    </Frame>
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="DayPositiveAndNegativeTemplate">
                 <ViewCell>
-                    <Grid WidthRequest="50">
-                        <Label Text="{Binding Number}" BackgroundColor="Transparent" />
-                    </Grid>
+                    <Frame CornerRadius="5" BackgroundColor="Orange"
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0"
+                        WidthRequest="50" 
+                        HeightRequest="50">
+                        <Label Text="{Binding Number}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
+                    </Frame>
                 </ViewCell>
             </DataTemplate>
             <!-- DataTemplates Selector-->

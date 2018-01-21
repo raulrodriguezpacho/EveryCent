@@ -89,7 +89,7 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private double _heightCalendar = 200;
+        private double _heightCalendar = 400;
         public double HeightCalendar
         {
             get { return _heightCalendar; }
@@ -211,7 +211,7 @@ namespace EveryCent.ViewModels
                 DayOfWeek diaSemana = firstDayOfMonth.DayOfWeek;
                 int monthDays = DateTime.DaysInMonth(year, month);
                 
-                // TODO: get movements data
+                var movements = _repositoryService.GetByMonth(GetMonth(_selectedMonth), _selectedYear);
 
                 for (int i = 0; i < BlankDays(diaSemana); i++)
                 {
@@ -227,7 +227,9 @@ namespace EveryCent.ViewModels
                             Number = i,
                             WeekDay = string.Format("{0:ddd}", new DateTime(year, month, i)),
                             Month = month,
-                            Year = year
+                            Year = year,
+                            IsPositive =  movements.Any(m => m.IsPositive && m.Date.Day == i),
+                            IsNegative = movements.Any(m => !m.IsPositive && m.Date.Day == i)
                         });
                 }
             }

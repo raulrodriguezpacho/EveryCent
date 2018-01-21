@@ -7,6 +7,7 @@
              xmlns:converters="clr-namespace:EveryCent.Converters"
              xmlns:triggers="clr-namespace:EveryCent.Triggers"
              xmlns:controls="clr-namespace:EveryCent.Controls"
+             xmlns:templates="clr-namespace:EveryCent.TemplatesSelector"
              x:Class="EveryCent.Views.ListPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <base:ViewPageBase.Resources>
@@ -14,6 +15,46 @@
             <converters:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
             <converters:IntlToTwoDecimalPlacesConverter x:Key="IntlToTwoDecimalPlacesConverter" />
             <converters:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
+            <!-- DataTemplates -->
+            <DataTemplate x:Key="PositiveTemplate">
+                <ViewCell>
+                    <Grid BackgroundColor="YellowGreen">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".5*" />
+                            <RowDefinition Height=".5*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".7*" />
+                            <ColumnDefinition Width=".3*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="0" />
+                        <Label Text="{Binding Date, Converter={StaticResource DateTimeToDateConverter}}" Grid.Row="1" Grid.Column="0"/>
+                        <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="NegativeTemplate">
+                <ViewCell>
+                    <Grid BackgroundColor="Red">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".5*" />
+                            <RowDefinition Height=".5*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".7*" />
+                            <ColumnDefinition Width=".3*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="0" />
+                        <Label Text="{Binding Date, Converter={StaticResource DateTimeToDateConverter}}" Grid.Row="1" Grid.Column="0"/>
+                        <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <!-- DataTemplate Selector -->
+            <templates:ListDataTemplateSelector x:Key="ListDataTemplateSelector"
+                PositiveTemplate="{StaticResource PositiveTemplate}"
+                NegativeTemplate="{StaticResource NegativeTemplate}"
+                />
         </ResourceDictionary>
     </base:ViewPageBase.Resources>
     <base:ViewPageBase.Content>
@@ -60,7 +101,8 @@
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                 RefreshCommand="{Binding RefreshCommand}"
-                HasUnevenRows="False"
+                HasUnevenRows="False" 
+                      ItemTemplate="{StaticResource ListDataTemplateSelector}"
                 >
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior EventName="ItemTapped" 
@@ -72,7 +114,7 @@
                         <triggers:DeselectListViewItemAction></triggers:DeselectListViewItemAction>
                     </EventTrigger>
                 </ListView.Triggers>
-                <ListView.ItemTemplate>
+                <!--<ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
@@ -90,7 +132,7 @@
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>
+                </ListView.ItemTemplate>-->
             </ListView>
             
         </StackLayout>

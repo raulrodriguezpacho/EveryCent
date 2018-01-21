@@ -8,6 +8,7 @@ using EveryCent.Services;
 using System.Globalization;
 using EveryCent.Model;
 using EveryCent.Helpers;
+using System.Collections.ObjectModel;
 
 namespace EveryCent.ViewModels
 {
@@ -25,7 +26,8 @@ namespace EveryCent.ViewModels
             set
             {
                 _selectedMonth = value;
-                OnPropertyChanged("SelectedMonth");                
+                OnPropertyChanged("SelectedMonth");
+                GetData();
             }
         }
 
@@ -47,12 +49,13 @@ namespace EveryCent.ViewModels
             set
             {
                 _selectedYear = value;
-                OnPropertyChanged("SelectedYear");                
+                OnPropertyChanged("SelectedYear");
+                GetData();
             }
         }
 
-        private List<List<Tuple<string, decimal>>> _chartData;
-        public List<List<Tuple<string, decimal>>> ChartData
+        private ObservableCollection<List<Tuple<string, decimal>>> _chartData;
+        public ObservableCollection<List<Tuple<string, decimal>>> ChartData
         {
             get
             {
@@ -111,14 +114,16 @@ namespace EveryCent.ViewModels
                 for (int i = 1; i <= daysOfMonth; i++)
                 {
                     var income = movements.Where(m => m.IsPositive && m.Date.Day == i).Sum(m => (decimal)m.Amount/100);
-                    _serieIncome.Add(new Tuple<string, decimal>(GetMonthShort(i), income));
+                    _serieIncome.Add(new Tuple<string, decimal>(i.ToString(), income));
                     var spend = movements.Where(m => !m.IsPositive && m.Date.Day == i).Sum(m => (decimal)m.Amount/100);
-                    _serieSpend.Add(new Tuple<string, decimal>(GetMonthShort(i), spend));
+                    _serieSpend.Add(new Tuple<string, decimal>(i.ToString(), spend));
 
                 }
             }
 
-            ChartData = new List<List<Tuple<string, decimal>>>()
+            if (!_chartData.IsNullOrEmpty())
+                ChartData.Clear();            
+            ChartData = new ObservableCollection<List<Tuple<string, decimal>>>()
             {
                 _serieIncome, _serieSpend
             };

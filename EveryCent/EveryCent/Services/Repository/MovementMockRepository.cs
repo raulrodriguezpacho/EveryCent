@@ -31,7 +31,8 @@ namespace EveryCent.Services
 
         public Task<Movement> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            Random r = new Random();            
+            return Task.Run(() => new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 1), Description = "movement 1", IsPositive = true });
         }
 
         public IList<Movement> GetBetweenMonths(int startMonth, int startYear, int endMonth, int endYear)
@@ -44,51 +45,29 @@ namespace EveryCent.Services
             Random r = new Random();
             
             List<Movement> movements = new List<Movement>();
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 1), Description = "movement 1", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 2), Description = "movement 2", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 3), Description = "movement 3", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 4), Description = "movement 4", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 4), Description = "movement 5", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 6), Description = "movement 6", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 7), Description = "movement 7", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 8), Description = "movement 8", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 8), Description = "movement 9", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 8), Description = "movement 10", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 12), Description = "movement 11", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 14), Description = "movement 12", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 20), Description = "movement 13", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 23), Description = "movement 14", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 23), Description = "movement 15", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 24), Description = "movement 16", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 25), Description = "movement 17", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 27), Description = "movement 18", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 28), Description = "movement 19", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 28), Description = "movement 20", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 28), Description = "movement 21", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 29), Description = "movement 22", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 30), Description = "movement 23", IsPositive = true });
-
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 1), Description = "movement 1", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 2), Description = "movement 2", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 3), Description = "movement 3", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 4), Description = "movement 4", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 4), Description = "movement 5", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 6), Description = "movement 6", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 7), Description = "movement 7", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 8), Description = "movement 8", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 8), Description = "movement 9", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 8), Description = "movement 10", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 12), Description = "movement 11", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 14), Description = "movement 12", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 20), Description = "movement 13", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 23), Description = "movement 14", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 23), Description = "movement 15", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 24), Description = "movement 16", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 25), Description = "movement 17", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 27), Description = "movement 18", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 28), Description = "movement 19", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 28), Description = "movement 20", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 28), Description = "movement 21", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 1), Description = "movement 1", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 2), Description = "movement 2", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 3), Description = "movement 3", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 4), Description = "movement 4", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 4), Description = "movement 5", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 6), Description = "movement 6", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 7), Description = "movement 7", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 8), Description = "movement 8", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 8), Description = "movement 9", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 8), Description = "movement 10", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 12), Description = "movement 11", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 14), Description = "movement 12", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 20), Description = "movement 13", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 23), Description = "movement 14", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 23), Description = "movement 15", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 24), Description = "movement 16", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 25), Description = "movement 17", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 27), Description = "movement 18", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 28), Description = "movement 19", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 28), Description = "movement 20", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 28), Description = "movement 21", IsPositive = false });
+            if (month != 2)
+                movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 30), Description = "movement 23", IsPositive = true });            
 
             return movements;
         }
@@ -102,50 +81,50 @@ namespace EveryCent.Services
         {
             Random r = new Random();
             List<Movement> movements = new List<Movement>();
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 1), Description = "movement 1", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 2), Description = "movement 2", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 3), Description = "movement 3", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 4), Description = "movement 4", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 4), Description = "movement 5", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 6), Description = "movement 6", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 7), Description = "movement 7", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 8), Description = "movement 8", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 8), Description = "movement 9", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 8), Description = "movement 10", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 12), Description = "movement 11", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 14), Description = "movement 12", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 20), Description = "movement 13", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 23), Description = "movement 14", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 23), Description = "movement 15", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 24), Description = "movement 16", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 25), Description = "movement 17", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 27), Description = "movement 18", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 28), Description = "movement 19", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 28), Description = "movement 20", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 28), Description = "movement 21", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 29), Description = "movement 22", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 1, 30), Description = "movement 23", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 1), Description = "movement 1", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 2), Description = "movement 2", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 3), Description = "movement 3", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 4), Description = "movement 4", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 4), Description = "movement 5", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 6), Description = "movement 6", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 7), Description = "movement 7", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 8), Description = "movement 8", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 8), Description = "movement 9", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 8), Description = "movement 10", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 12), Description = "movement 11", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 14), Description = "movement 12", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 20), Description = "movement 13", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 23), Description = "movement 14", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 23), Description = "movement 15", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 24), Description = "movement 16", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 25), Description = "movement 17", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 27), Description = "movement 18", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 28), Description = "movement 19", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 28), Description = "movement 20", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 28), Description = "movement 21", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 29), Description = "movement 22", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 1, 30), Description = "movement 23", IsPositive = true });
 
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 1), Description = "movement 1", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 2), Description = "movement 2", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 3), Description = "movement 3", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 4), Description = "movement 4", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 4), Description = "movement 5", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 6), Description = "movement 6", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 7), Description = "movement 7", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 8), Description = "movement 8", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 8), Description = "movement 9", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 8), Description = "movement 10", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 12), Description = "movement 11", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 14), Description = "movement 12", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 20), Description = "movement 13", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 23), Description = "movement 14", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 23), Description = "movement 15", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 24), Description = "movement 16", IsPositive = true });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 25), Description = "movement 17", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 27), Description = "movement 18", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 28), Description = "movement 19", IsPositive = false });
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(2018, 2, 28), Description = "movement 20", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 1), Description = "movement 1", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 2), Description = "movement 2", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 3), Description = "movement 3", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 4), Description = "movement 4", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 4), Description = "movement 5", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 6), Description = "movement 6", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 7), Description = "movement 7", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 8), Description = "movement 8", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 8), Description = "movement 9", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 8), Description = "movement 10", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 12), Description = "movement 11", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 14), Description = "movement 12", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 20), Description = "movement 13", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 23), Description = "movement 14", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 23), Description = "movement 15", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 24), Description = "movement 16", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 25), Description = "movement 17", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 27), Description = "movement 18", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 28), Description = "movement 19", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, 2, 28), Description = "movement 20", IsPositive = true });
 
             return movements;
         }

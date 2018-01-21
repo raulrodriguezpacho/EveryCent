@@ -29,7 +29,7 @@ namespace EveryCent.TemplatesSelector
                 else
                 {
                     template = DayNoneTemplate;
-                    if (day.IsNegative && day.IsNegative)
+                    if (day.IsPositive && day.IsNegative)
                     {
                         template = DayPositiveAndNegativeTemplate;
                     }

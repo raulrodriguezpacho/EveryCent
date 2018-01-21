@@ -84,6 +84,7 @@
     <Compile Include="Services\Repository\MovementRepository.cs" />
     <Compile Include="Services\Repository\Respository.cs" />
     <Compile Include="TemplatesSelector\CalendarDataTemplateSelector.cs" />
+    <Compile Include="TemplatesSelector\ListDataTemplateSelector.cs" />
     <Compile Include="Triggers\DeselectListViewItemAction.cs" />
     <Compile Include="Validations\IsNotAmountValidation.cs" />
     <Compile Include="Validations\IsNotNullOrEmptyValidation.cs" />
