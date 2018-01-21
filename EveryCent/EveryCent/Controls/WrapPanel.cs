@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace EveryCent.Controls
@@ -178,11 +179,22 @@ namespace EveryCent.Controls
 
             var view = (content is View) ? content as View : ((ViewCell)content).View;
             view.BindingContext = item;
-
-            //May add this support in later
-            //view.GestureRecognizers.Add(
-            //    new TapGestureRecognizer { Command = ItemClickCommand, CommandParameter = item });
+            
+            view.GestureRecognizers.Add(new TapGestureRecognizer { Command = ItemClickCommand, CommandParameter = item });
             return view;
+        }
+
+        private ICommand _itemClickCommand;
+        public ICommand ItemClickCommand
+        {
+            get
+            {
+                return _itemClickCommand ?? (_itemClickCommand = new Command((param) =>
+                {
+                    var _navigationService = Base.LocatorBase.Resolve<Services.INavigationService>();
+                    _navigationService.NavigateToAsync<ViewModels.MovementsDayViewModel>((Model.Day)param);
+                }));
+            }
         }
 
         /// <summary>

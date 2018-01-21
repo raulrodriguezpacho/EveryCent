@@ -12,5 +12,7 @@ namespace EveryCent.Model
         public string WeekDay { get; set; }
         public bool IsPositive { get; set; }
         public bool IsNegative { get; set; }
+        public int Month { get; set; }
+        public int Year { get; set; }
     }
 }

@@ -12,6 +12,8 @@
     <base:ViewPageBase.Resources>
         <ResourceDictionary>
             <converters:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
+            <converters:IntlToTwoDecimalPlacesConverter x:Key="IntlToTwoDecimalPlacesConverter" />
+            <converters:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
         </ResourceDictionary>
     </base:ViewPageBase.Resources>
     <base:ViewPageBase.Content>
@@ -58,6 +60,7 @@
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                 RefreshCommand="{Binding RefreshCommand}"
+                HasUnevenRows="False"
                 >
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior EventName="ItemTapped" 
@@ -71,7 +74,21 @@
                 </ListView.Triggers>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Description}" />
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height=".5*" />
+                                    <RowDefinition Height=".5*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".7*" />
+                                    <ColumnDefinition Width=".3*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding Date, Converter={StaticResource DateTimeToDateConverter}}" Grid.Row="1" Grid.Column="0"/>
+                                <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
+                            </Grid>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

@@ -1,12 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<base:ViewPageBase xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:EveryCent.Base"
+             xmlns:converters="clr-namespace:EveryCent.Converters"
+             xmlns:behaviors="clr-namespace:EveryCent.Behaviors"
+             xmlns:triggers="clr-namespace:EveryCent.Triggers"
              x:Class="EveryCent.Views.MovementsDayPage">
-    <ContentPage.Content>
+    <base:ViewPageBase.Resources>
+        <ResourceDictionary>
+            <converters:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
+            <converters:IntlToTwoDecimalPlacesConverter x:Key="IntlToTwoDecimalPlacesConverter" />
+            <converters:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
+        </ResourceDictionary>
+    </base:ViewPageBase.Resources>
+    <base:ViewPageBase.Content>
+
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <ListView ItemsSource="{Binding Movements}"                 
+                >
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="ItemTapped" 
+                        Command="{Binding MovementSelectedCommand}"
+                        Converter="{StaticResource ItemTappedEventArgsConverter}"/>
+                </ListView.Behaviors>
+                <ListView.Triggers>
+                    <EventTrigger Event="ItemSelected">
+                        <triggers:DeselectListViewItemAction></triggers:DeselectListViewItemAction>
+                    </EventTrigger>
+                </ListView.Triggers>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height=".5*" />
+                                    <RowDefinition Height=".5*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".7*" />
+                                    <ColumnDefinition Width=".3*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding Date, Converter={StaticResource DateTimeToDateConverter}}" Grid.Row="1" Grid.Column="0"/>
+                                <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+        
+    </base:ViewPageBase.Content>
+</base:ViewPageBase>

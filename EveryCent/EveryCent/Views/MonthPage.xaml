@@ -26,11 +26,6 @@
                         VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0"
                         WidthRequest="50" 
                         HeightRequest="50">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer
-                                
-                                CommandParameter="{Binding .}"/>
-                        </Frame.GestureRecognizers>
                         <Label Text="{Binding Number}" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" />
                     </Frame>
                 </ViewCell>

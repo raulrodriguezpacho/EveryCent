@@ -6,9 +6,16 @@ using EveryCent.Views;
 using Xamarin.Forms;
 
 namespace EveryCent
-{
+{    
     public partial class App : Application
     {
+        public static string[] Currency =
+        {
+            "€",
+            "$",            
+            "£",
+        };
+
         static EveryCentDatabase database;
         public static EveryCentDatabase Database
         {
@@ -24,9 +31,14 @@ namespace EveryCent
 
         public App(IModule platformModule)
         {            
-            LocatorBase.Register(platformModule);
+            LocatorBase.Register(platformModule, true);
             InitializeComponent();
             SetLanguage();
+            //if (!Application.Current.Properties.ContainsKey("Currency"))
+            //{
+            //    MainPage = new CurrencyPage();
+            //    return;
+            //}
             MainPage = new DashboardPage();
         }        
 

@@ -78,7 +78,7 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private double _sizeCalendarDay = 50;
+        private double _sizeCalendarDay = 30;
         public double SizeCalendarDay
         {
             get { return _sizeCalendarDay; }
@@ -120,19 +120,7 @@ namespace EveryCent.ViewModels
                 _isLoading = value;
                 OnPropertyChanged("IsLoading");
             }
-        }
-
-        private ICommand _viewMomementsDayCommand;
-        public ICommand ViewMomementsDayCommand
-        {
-            get
-            {
-                return _viewMomementsDayCommand ?? (_viewMomementsDayCommand = new Command((param) =>
-                {
-                    // TODO: navigate to MovementsDayViewModel..
-                }));
-            }
-        }
+        }        
 
         public MonthViewModel(
             INavigationService navigationService,
@@ -228,7 +216,7 @@ namespace EveryCent.ViewModels
                 for (int i = 0; i < BlankDays(diaSemana); i++)
                 {
                     days.Add(
-                        new Day() { Number = 0, WeekDay = "" }
+                        new Day() { Number = 0, WeekDay = "", Month = month, Year = year, IsNegative = false, IsPositive = false }
                         );
                 }
                 for (int i = 1; i <= monthDays; i++)
@@ -238,7 +226,8 @@ namespace EveryCent.ViewModels
                         {
                             Number = i,
                             WeekDay = string.Format("{0:ddd}", new DateTime(year, month, i)),
-                            
+                            Month = month,
+                            Year = year
                         });
                 }
             }

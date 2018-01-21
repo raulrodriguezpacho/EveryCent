@@ -1,4 +1,5 @@
-﻿using EveryCent.Services;
+﻿using EveryCent.Model;
+using EveryCent.Services;
 using EveryCent.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace EveryCent.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IMovementRepository _repositoryService;
 
+        private int _movementID = 0;
+
         private bool _isPositive;
         public bool IsPositive
         {
@@ -26,7 +29,7 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private decimal _amount;
+        private decimal _amount = 0;
         public decimal Amount
         {
             get { return _amount; }
@@ -77,16 +80,31 @@ namespace EveryCent.ViewModels
         {
             get
             {
-                return _saveCommand ?? (_saveCommand = new Command(async() =>
-                {                    
-                    var result = await _repositoryService.InsertAsync(new Model.Movement()
+                return _saveCommand ?? (_saveCommand = new Command(() =>
+                {
+                    if (_movementID == 0)
                     {
-                        Amount = (int)(Amount * 100),
-                        Date = DateTime.Now,
-                        Positive = IsPositive,
-                        Description = Description
-                    });
-                    base.ShowAlert("save", result.ToString(), "ok");
+                        var result = _repositoryService.InsertAsync(new Model.Movement()
+                        {
+                            Amount = (int)(Amount * 100),
+                            Date = Date,
+                            IsPositive = IsPositive,
+                            Description = Description
+                        });
+                        //ShowAlert("save", result.ToString(), "ok");
+                    }
+                    else
+                    {
+                        var result = _repositoryService.UpdateAsync(new Model.Movement()
+                        {
+                            ID = _movementID,
+                            Amount = (int)(Amount * 100),
+                            Date = Date,
+                            IsPositive = IsPositive,
+                            Description = Description
+                        });
+                        //ShowAlert("update", result.ToString(), "ok");
+                    }
                 }));
             }
         }
@@ -102,10 +120,37 @@ namespace EveryCent.ViewModels
             IsPositive = true;
             if (_navigationService.NavigationData != null)
             {
-                Date = new DateTime(
-                    ((Tuple<int, int>)_navigationService.NavigationData).Item2,
-                    ((Tuple<int, int>)_navigationService.NavigationData).Item1,
-                    1);
+                if (_navigationService.NavigationData is int)
+                {
+                    GetMovement((int)_navigationService.NavigationData);
+                }
+                else if (_navigationService.NavigationData is Tuple<int, int>)
+                {
+                    Date = new DateTime(
+                        ((Tuple<int, int>)_navigationService.NavigationData).Item2,
+                        ((Tuple<int, int>)_navigationService.NavigationData).Item1,
+                        1);
+                } 
+                else if (_navigationService.NavigationData is Tuple<int, int, int>)
+                {
+                    Date = new DateTime(
+                        ((Tuple<int, int, int>)_navigationService.NavigationData).Item3,
+                        ((Tuple<int, int, int>)_navigationService.NavigationData).Item2,
+                        ((Tuple<int, int, int>)_navigationService.NavigationData).Item1);
+                }
+            }
+        }
+
+        private async void GetMovement(int id)
+        {
+            var movement =  await _repositoryService.GetAsync(id);
+            if (movement != null)
+            {
+                IsPositive = movement.IsPositive;
+                Date = movement.Date;
+                Amount = (decimal)movement.Amount / 100;
+                Description = movement.Description;
+                _movementID = movement.ID;
             }
         }
     }

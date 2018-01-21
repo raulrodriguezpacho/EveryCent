@@ -13,36 +13,26 @@
 
             <controls:MonthYearSelectorView />
 
-            <charting:Chart x:Name="CombinationChart" WidthRequest="450" HeightRequest="750" Spacing="10" BackgroundColor="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="{globalization:Translate ViewYearChart}" Grid.Column="0" />
+                <Switch IsToggled="{Binding MonthsVisible}" Grid.Column="1" />
+            </Grid>
+            
+            <charting:Chart x:Name="movementsChart" 
+                DataSource="{Binding ChartData}"
+                HeightRequest="500"
+                Spacing="10"                
+                XPath="Item1"
+                YPath="Item2"                 
+                Color="White">
 
                 <charting:Chart.Series>
-                    <charting:Series Type="Bar" Color="Red">
-
-                        <charting:Series.Points>
-                            <charting:DataPoint Label="Jan" Value="25"/>
-                            <charting:DataPoint Label="Feb" Value="40"/>
-                            <charting:DataPoint Label="March" Value="45"/>
-                        </charting:Series.Points>
-
-                    </charting:Series>
-                    <charting:Series Type="Bar" Color="Blue">
-
-                        <charting:Series.Points>
-                            <charting:DataPoint Label="Jan" Value="30"/>
-                            <charting:DataPoint Label="Feb" Value="35"/>
-                            <charting:DataPoint Label="March" Value="40"/>
-                        </charting:Series.Points>
-
-                    </charting:Series>
-                    <charting:Series Type="Line" Color="Green">
-
-                        <charting:Series.Points>
-                            <charting:DataPoint Label="Jan" Value="27.5"/>
-                            <charting:DataPoint Label="Feb" Value="37.5"/>
-                            <charting:DataPoint Label="March" Value="42.5"/>
-                        </charting:Series.Points>
-
-                    </charting:Series>
+                    <charting:Series Type="Bar" Color="YellowGreen"/>
+                    <charting:Series Type="Bar" Color="OrangeRed"/>
                 </charting:Chart.Series>
 
             </charting:Chart>

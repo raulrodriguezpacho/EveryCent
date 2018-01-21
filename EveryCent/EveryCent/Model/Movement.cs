@@ -16,8 +16,10 @@ namespace EveryCent.Model
 
         public int Amount { get; set; } // x100
 
-        public bool Positive { get; set; }
+        public bool IsPositive { get; set; }
 
         public string Description { get; set; }
+
+
     }
 }

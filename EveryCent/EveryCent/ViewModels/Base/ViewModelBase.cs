@@ -88,6 +88,11 @@ namespace EveryCent.ViewModels.Base
             return DateTimeFormatInfo.CurrentInfo.MonthNames[month - 1];
         }
 
+        protected string GetMonthShort(int month)
+        {
+            return DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(month);
+        }
+
         protected int GetMonth(string month)
         {
             return Convert.ToDateTime("01-" + month + "-2018").Month;

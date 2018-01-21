@@ -36,9 +36,9 @@ namespace EveryCent.ViewModels
             get
             {
                 if (string.IsNullOrEmpty(_searchText))
-                    return _repositoryService.GetByMonth(Convert.ToDateTime("01-" + _selectedMonth + "-2000").Month, _selectedYear).ToObservableCollection();
+                    return _repositoryService.GetByMonth(GetMonth(_selectedMonth), _selectedYear).ToObservableCollection();
                 else
-                    return (from M in _repositoryService.GetByMonth(Convert.ToDateTime("01-" + _selectedMonth + "-2000").Month, _selectedYear)
+                    return (from M in _repositoryService.GetByMonth(GetMonth(_selectedMonth), _selectedYear)
                             where M.Description.ToLower().Contains(_searchText.ToLower())
                             select M).ToObservableCollection();                
             }
@@ -101,7 +101,7 @@ namespace EveryCent.ViewModels
         {
             get
             {
-                return _refreshCommand ?? (_refreshCommand = new Command(async() =>
+                return _refreshCommand ?? (_refreshCommand = new Command(() =>
                 {
                     IsRefreshing = true;
                     SearchText = "";                    
@@ -118,7 +118,7 @@ namespace EveryCent.ViewModels
             {
                 return _movementSelectedCommand ?? (_movementSelectedCommand = new Command((param) =>
                 {
-                    _navigationService.NavigateToAsync<MovementViewModel>(param);
+                    _navigationService.NavigateToAsync<MovementViewModel>(((Movement)param).ID);
                 }));
             }
         }

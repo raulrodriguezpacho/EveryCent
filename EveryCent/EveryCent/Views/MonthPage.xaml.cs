@@ -1,6 +1,7 @@
 ﻿using EveryCent.Base;
 using EveryCent.ViewModels;
 using System.Globalization;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace EveryCent.Views
@@ -10,7 +11,7 @@ namespace EveryCent.Views
     {
         public MonthPage()
         {
-            InitializeComponent();            
+            InitializeComponent();                        
         }
 
         protected override void OnAppearing()

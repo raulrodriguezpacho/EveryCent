@@ -197,6 +197,15 @@ namespace EveryCent.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a View by year.
+        /// </summary>
+        public static string ViewYearChart {
+            get {
+                return ResourceManager.GetString("ViewYearChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Year: .
         /// </summary>
         public static string YearSelect {

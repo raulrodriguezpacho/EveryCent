@@ -21,11 +21,11 @@ namespace EveryCent.Base
 
         public static void Register(IModule module = null, bool mock = false)
         {
+            _mock = mock;
             var builder = new ContainerBuilder();
             RegisterServices(builder);
             RegisterViewModels(builder);
-            if (module != null) RegisterPlatformModule(builder, module);
-            _mock = mock;
+            if (module != null) RegisterPlatformModule(builder, module);            
             _container = builder.Build();                
         }
 
@@ -38,7 +38,8 @@ namespace EveryCent.Base
                 builder.RegisterType<MovementRepository>().As<IMovementRepository>().SingleInstance();
             }
             else
-            {                
+            {
+                builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
                 builder.RegisterInstance(new MovementMockRepository()).As<IMovementRepository>();
             }
         }
@@ -49,6 +50,8 @@ namespace EveryCent.Base
             builder.RegisterType<ListViewModel>();
             builder.RegisterType<MonthViewModel>();
             builder.RegisterType<MovementViewModel>();
+            builder.RegisterType<CurrencyViewModel>();
+            builder.RegisterType<MovementsDayViewModel>();
         }
 
         private static void RegisterPlatformModule(ContainerBuilder builder, IModule module)
