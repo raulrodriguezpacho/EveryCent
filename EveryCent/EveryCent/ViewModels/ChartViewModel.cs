@@ -76,57 +76,37 @@ namespace EveryCent.ViewModels
         }
 
         private void GetData()
-        {
-            List<Movement> movements;
-            if (!_monthsVisible)
-            {
-                movements = _repositoryService.GetByYear(_selectedYear).ToList();
-            }
-            else
-            {
-                movements = _repositoryService.GetByMonth(GetMonth(_selectedMonth), _selectedYear).ToList();
-            }
-            TransformToChartData(movements, !_monthsVisible);
+        {            
+            var movements = _repositoryService.GetByYear(_selectedYear).ToList();
+            TransformToChartData(movements);
         }
 
-        private void TransformToChartData(IList<Movement> movements, bool byYear)
+        private void TransformToChartData(IList<Movement> movements)
         {
             if (movements.IsNullOrEmpty())
                 return;
 
             _serieIncome.Clear();
-            _serieSpend.Clear();            
-            
-            if (byYear)
+            _serieSpend.Clear();
+
+            try
             {
-                for (int i =1; i <=12; i++)
+                for (int i = 1; i <= 12; i++)
                 {
-                    var income = movements.Where(m => m.IsPositive && m.Date.Month == i).Sum(m => (decimal)m.Amount/100);
+                    var income = movements.Where(m => m.IsPositive && m.Date.Month == i).Sum(m => (decimal)m.Amount / 100);
                     _serieIncome.Add(new Tuple<string, decimal>(GetMonthShort(i), income));
-                    var spend = movements.Where(m => !m.IsPositive && m.Date.Month == i).Sum(m => (decimal)m.Amount/100);
+                    var spend = movements.Where(m => !m.IsPositive && m.Date.Month == i).Sum(m => (decimal)m.Amount / 100);
                     _serieSpend.Add(new Tuple<string, decimal>(GetMonthShort(i), spend));
-
                 }
-            }
-            else
-            {
-                var daysOfMonth = DateTime.DaysInMonth(_selectedYear, GetMonth(_selectedMonth));
-                for (int i = 1; i <= daysOfMonth; i++)
+
+                if (!_chartData.IsNullOrEmpty())
+                    ChartData.Clear();
+                ChartData = new ObservableCollection<List<Tuple<string, decimal>>>()
                 {
-                    var income = movements.Where(m => m.IsPositive && m.Date.Day == i).Sum(m => (decimal)m.Amount/100);
-                    _serieIncome.Add(new Tuple<string, decimal>(i.ToString(), income));
-                    var spend = movements.Where(m => !m.IsPositive && m.Date.Day == i).Sum(m => (decimal)m.Amount/100);
-                    _serieSpend.Add(new Tuple<string, decimal>(i.ToString(), spend));
-
-                }
+                    _serieIncome, _serieSpend
+                };
             }
-
-            if (!_chartData.IsNullOrEmpty())
-                ChartData.Clear();            
-            ChartData = new ObservableCollection<List<Tuple<string, decimal>>>()
-            {
-                _serieIncome, _serieSpend
-            };
+            catch { }
         }
     }
 }

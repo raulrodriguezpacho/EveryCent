@@ -33,5 +33,14 @@ namespace EveryCent.Helpers
         {
             return input >= minDate && input <= maxDate;
         }
+
+        public static bool IsNullOrZero(this decimal? amount)
+        {
+            if (!amount.HasValue)
+                return true;
+            if (amount.Value == 0)
+                return true;
+            return false;
+        }
     }
 }

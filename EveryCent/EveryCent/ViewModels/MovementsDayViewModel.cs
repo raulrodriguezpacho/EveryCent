@@ -18,6 +18,15 @@ namespace EveryCent.ViewModels
         private readonly IMovementRepository _repositoryService;
 
         private Day _day;
+        public Day Day
+        {
+            get { return _day; }
+            set
+            {
+                _day = value;
+                OnPropertyChanged("Day");
+            }
+        }
 
         private ObservableCollection<Movement> _movements;
         public ObservableCollection<Movement> Movements
@@ -57,6 +66,18 @@ namespace EveryCent.ViewModels
             }
         }
 
+        private ICommand _cancelMovementCommand;
+        public ICommand CancelMovementCommand
+        {
+            get
+            {
+                return _cancelMovementCommand ?? (_cancelMovementCommand = new Command(() =>
+                {
+                    _navigationService.NavigateBackAsync();
+                }));
+            }
+        }
+
         public MovementsDayViewModel(
             INavigationService navigationService,
             IMovementRepository repositoryService
@@ -68,15 +89,16 @@ namespace EveryCent.ViewModels
             {
                 if (_navigationService.NavigationData is Day)
                 {
-                    _day = (Day)_navigationService.NavigationData;                    
-                    GetMovements(_day.Month, _day.Year);
+                    Day = (Day)_navigationService.NavigationData;
+                    GetData(_day);
                 }
             }
         }
 
-        private async void GetMovements(int month, int year)
+        private void GetData(Day day)
         {
-            Movements = new ObservableCollection<Movement>(await _repositoryService.GetByMonthAsync(month, year));
-        }
+            var movements = _repositoryService.GetByDay(_day.Year, day.Month, day.Number);
+            Movements = new ObservableCollection<Movement>(movements);
+        }        
     }
 }

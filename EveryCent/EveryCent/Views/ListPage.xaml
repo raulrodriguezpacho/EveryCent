@@ -15,38 +15,43 @@
             <converters:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
             <converters:IntlToTwoDecimalPlacesConverter x:Key="IntlToTwoDecimalPlacesConverter" />
             <converters:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
+            <converters:DateToDayConverter x:Key="DateToDayConverter" />
             <!-- DataTemplates -->
             <DataTemplate x:Key="PositiveTemplate">
                 <ViewCell>
-                    <Grid BackgroundColor="YellowGreen">
+                    <Grid BackgroundColor="Transparent" Padding="10,2,10,2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height=".5*" />
                             <RowDefinition Height=".5*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width=".7*" />
-                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".5*" />
+                            <ColumnDefinition Width=".5*" />
                         </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="0" />
-                        <Label Text="{Binding Date, Converter={StaticResource DateTimeToDateConverter}}" Grid.Row="1" Grid.Column="0"/>
-                        <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
+                        <Label Text="{Binding Date, Converter={StaticResource DateToDayConverter}}" Style="{StaticResource labelMedStyle}" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}, ConverterParameter=P}" Style="{StaticResource labelMedStyle}" Grid.Column="1" Grid.Row="0" 
+                            HorizontalOptions="End" TextColor="Green"/>
+                        <Label Text="{Binding Description}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource labelMiniStyle}" TextColor="Black" 
+                            HorizontalOptions="StartAndExpand"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="NegativeTemplate">
                 <ViewCell>
-                    <Grid BackgroundColor="Red">
+                    <Grid BackgroundColor="Transparent" Padding="10,2,10,2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height=".5*" />
                             <RowDefinition Height=".5*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width=".7*" />
-                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".5*" />
+                            <ColumnDefinition Width=".5*" />
                         </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="0" />
-                        <Label Text="{Binding Date, Converter={StaticResource DateTimeToDateConverter}}" Grid.Row="1" Grid.Column="0"/>
-                        <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
+                        <Label Text="{Binding Date, Converter={StaticResource DateToDayConverter}}" Style="{StaticResource labelMedStyle}" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}, ConverterParameter=N}" Style="{StaticResource labelMedStyle}" Grid.Column="1" Grid.Row="0" 
+                            HorizontalOptions="End" TextColor="Red"/>
+                        <Label Text="{Binding Description}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource labelMiniStyle}" TextColor="Black" 
+                            HorizontalOptions="StartAndExpand"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>
@@ -63,7 +68,9 @@
 
             <controls:MonthYearSelectorView />
 
-            <Grid Margin="5,0,5,2">
+            <controls:MonthYearBalanceView />
+
+            <Grid Margin="0,0,0,5" Padding="10,0,5,0" BackgroundColor="LightGray">
                 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -76,24 +83,26 @@
                     </SearchBar.Behaviors>
                 </SearchBar>
 
-                <Image Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10">
-                    <Image.GestureRecognizers>
+                <Frame Grid.Column="1" HorizontalOptions="End" Style="{StaticResource frameOptionStyle}">
+                    <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToMovementCommand}" CommandParameter="Add" />
-                    </Image.GestureRecognizers>
-                    <Image.Source>
-                        <OnPlatform x:TypeArguments="ImageSource">
-                            <OnPlatform.iOS>
-                                <FileImageSource File="Images/add.png" />
-                            </OnPlatform.iOS>
-                            <OnPlatform.Android>
-                                <FileImageSource File="add.png" />
-                            </OnPlatform.Android>
-                            <OnPlatform.WinPhone>
-                                <FileImageSource File="Assets/Images/add.png" />
-                            </OnPlatform.WinPhone>
-                        </OnPlatform>
-                    </Image.Source>
-                </Image>
+                    </Frame.GestureRecognizers>
+                    <Image HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image.Source>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <OnPlatform.iOS>
+                                    <FileImageSource File="Images/add.png" />
+                                </OnPlatform.iOS>
+                                <OnPlatform.Android>
+                                    <FileImageSource File="add.png" />
+                                </OnPlatform.Android>
+                                <OnPlatform.WinPhone>
+                                    <FileImageSource File="Assets/Images/add.png" />
+                                </OnPlatform.WinPhone>
+                            </OnPlatform>
+                        </Image.Source>
+                    </Image>
+                </Frame>
 
             </Grid>
 
@@ -101,8 +110,9 @@
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                 RefreshCommand="{Binding RefreshCommand}"
-                HasUnevenRows="False" 
-                      ItemTemplate="{StaticResource ListDataTemplateSelector}"
+                HasUnevenRows="True" 
+                SeparatorColor="Black" SeparatorVisibility="Default"
+                ItemTemplate="{StaticResource ListDataTemplateSelector}"
                 >
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior EventName="ItemTapped" 
@@ -114,25 +124,6 @@
                         <triggers:DeselectListViewItemAction></triggers:DeselectListViewItemAction>
                     </EventTrigger>
                 </ListView.Triggers>
-                <!--<ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".5*" />
-                                    <RowDefinition Height=".5*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width=".7*" />
-                                    <ColumnDefinition Width=".3*" />
-                                </Grid.ColumnDefinitions>
-                                <Label Text="{Binding Description}" Grid.Row="0" Grid.Column="0" />
-                                <Label Text="{Binding Date, Converter={StaticResource DateTimeToDateConverter}}" Grid.Row="1" Grid.Column="0"/>
-                                <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>-->
             </ListView>
             
         </StackLayout>

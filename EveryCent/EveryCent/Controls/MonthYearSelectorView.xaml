@@ -4,9 +4,9 @@
              xmlns:controls="clr-namespace:EveryCent.Controls"
              xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
              x:Class="EveryCent.Controls.MonthYearSelectorView">
-  <ContentView.Content>
+    <ContentView.Content>
 
-        <Frame OutlineColor="Gray" CornerRadius="10" Margin="5,5,5,0">
+        <Frame OutlineColor="Black" CornerRadius="5" Margin="5" Padding="5,0,5,0">
             
             <Grid Padding="5,2,5,2">
                 <Grid.RowDefinitions>

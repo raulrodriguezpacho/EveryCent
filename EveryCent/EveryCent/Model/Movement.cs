@@ -19,7 +19,5 @@ namespace EveryCent.Model
         public bool IsPositive { get; set; }
 
         public string Description { get; set; }
-
-
     }
 }

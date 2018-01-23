@@ -14,5 +14,6 @@ namespace EveryCent.Services
         Task<IList<Movement>> GetByMonthAsync(int month, int year);
         IList<Movement> GetBetweenMonths(int startMonth, int startYear, int endMonth, int endYear);
         IList<Movement> GetByYear(int year);
+        IList<Movement> GetByDay(int year, int month, int day);
     }
 }

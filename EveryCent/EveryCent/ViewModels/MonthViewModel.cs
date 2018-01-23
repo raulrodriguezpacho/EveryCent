@@ -120,7 +120,29 @@ namespace EveryCent.ViewModels
                 _isLoading = value;
                 OnPropertyChanged("IsLoading");
             }
-        }        
+        }
+
+        private string[] _dayLetters = new string[7];
+        public string[] DayLetters
+        {
+            get { return _dayLetters; }
+            set
+            {
+                _dayLetters = value;
+                OnPropertyChanged("DayLetters");
+            }
+        }
+
+        private Balance _balance;
+        public Balance Balance
+        {
+            get { return _balance; }
+            set
+            {
+                _balance = value;
+                OnPropertyChanged("Balance");
+            }
+        }
 
         public MonthViewModel(
             INavigationService navigationService,
@@ -130,9 +152,19 @@ namespace EveryCent.ViewModels
         {
             _navigationService = navigationService;
             _repositoryService = repositoryService;
-            _deviceService = deviceService;            
+            _deviceService = deviceService;
 
+            ShowDayLetters();
             ShowMonthMovements(GetMonth(_selectedMonth), _selectedYear);
+        }
+
+        private void ShowDayLetters()
+        {
+            if (!DayLetters.IsNullOrEmpty())                
+            for (int i = 1; i <= 7; i++)
+            {
+                DayLetters[i - 1] = DateTimeFormatInfo.CurrentInfo.ShortestDayNames[i - 1];
+            }
         }
 
         private async void ShowMonthMovements(int month, int year)
@@ -140,10 +172,9 @@ namespace EveryCent.ViewModels
             IsLoading = true;            
             try
             {
-                await CreateMonths(year);
-                
+                await CreateMonths(year);                
             }
-            catch (Exception ex) { }
+            catch { }
             finally
             {
                 IsLoading = false;
@@ -213,6 +244,15 @@ namespace EveryCent.ViewModels
                 
                 var movements = _repositoryService.GetByMonth(GetMonth(_selectedMonth), _selectedYear);
 
+                var income = movements.Where(m => m.IsPositive).Sum(m => (decimal)m.Amount / 100);
+                var spend = movements.Where(m => !m.IsPositive).Sum(m => (decimal)m.Amount / 100);
+                Balance = new Balance()
+                {
+                    Income = income,
+                    Spend = spend,
+                    IsPositive = income - spend > 0
+                };                
+
                 for (int i = 0; i < BlankDays(diaSemana); i++)
                 {
                     days.Add(
@@ -233,8 +273,8 @@ namespace EveryCent.ViewModels
                         });
                 }
             }
-            catch (Exception ex) { }
+            catch { }
             return days;
-        }
+        }        
     }       
 }

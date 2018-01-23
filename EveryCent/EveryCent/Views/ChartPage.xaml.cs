@@ -17,8 +17,7 @@ namespace EveryCent.Views
             base.OnAppearing();
 
             var size = LocatorBase.Resolve<IDeviceService>();
-            chart.WidthRequest = size.GetDeviceSize().Width * 2 -  chart.Spacing; // ??
-            
+            chart.WidthRequest = size.GetDeviceSize().Width * 2 -  chart.Spacing; // ??            
         }
     }
 }

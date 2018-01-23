@@ -161,11 +161,38 @@ namespace EveryCent.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Amount must be greater than 0.
+        /// </summary>
+        public static string MandatoryMessage {
+            get {
+                return ResourceManager.GetString("MandatoryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Month: .
         /// </summary>
         public static string MonthSelect {
             get {
                 return ResourceManager.GetString("MonthSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Movement for the month...
+        /// </summary>
+        public static string MovementPageTitle {
+            get {
+                return ResourceManager.GetString("MovementPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Movements of the day...
+        /// </summary>
+        public static string MovementsDayPageTitle {
+            get {
+                return ResourceManager.GetString("MovementsDayPageTitle", resourceCulture);
             }
         }
         

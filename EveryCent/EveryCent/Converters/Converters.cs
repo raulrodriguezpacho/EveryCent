@@ -1,4 +1,5 @@
 ﻿using EveryCent.Base;
+using EveryCent.Model;
 using EveryCent.Services;
 using System;
 using System.Collections.Generic;
@@ -63,7 +64,10 @@ namespace EveryCent.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {                        
             decimal amount = (decimal)int.Parse(value.ToString()) / 100;
-            return decimal.Parse(amount.ToString()).ToString("N2") + " " + (Application.Current.Properties.ContainsKey("Currency") ? Application.Current.Properties["Currency"] : "");
+            return 
+                (parameter.ToString() == "N" ? "-" : "+") +
+                decimal.Parse(amount.ToString()).ToString("N2") + " " + 
+                (Application.Current.Properties.ContainsKey("Currency") ? Application.Current.Properties["Currency"] : "");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -82,6 +86,116 @@ namespace EveryCent.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
+        }
+    }
+
+    public class DateToDayConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((DateTime)value).Day.ToString("d", culture) + " " + culture.DateTimeFormat.GetAbbreviatedDayName(((DateTime)value).DayOfWeek);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class DayToDateConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var day = ((Day)value);
+            var dateTime = new DateTime(day.Year, day.Month, day.Number);
+            return culture.DateTimeFormat.GetAbbreviatedDayName((dateTime).DayOfWeek) + " " +
+                ((Day)value).Number.ToString() + " " +                 
+                culture.DateTimeFormat.GetAbbreviatedMonthName(day.Month) + " " +
+                day.Year.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class BalanceToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var balance = ((Balance)value).Income - ((Balance)value).Spend;
+            var sign = "";
+            if (balance > 0)
+                sign = "+ ";
+            else if (balance < 0)
+                sign = "";
+            return sign + decimal.Parse((((Balance)value).Income - ((Balance)value).Spend).ToString()).ToString("N2");   
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class BalanceToColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((bool)value ? Color.Green : Color.Red);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class DateToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var datetime = ((DateTime)value);            
+            return
+                culture.DateTimeFormat.GetAbbreviatedMonthName(datetime.Month) + " " +
+                datetime.Year.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class DescriptionToCharsLeftConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return string.Format("[{0}]", int.Parse(parameter.ToString()) - (value == null ? 0 : value?.ToString().Length));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class DecimalToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is decimal)
+                return value.ToString();
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            decimal dec;
+            if (decimal.TryParse(value as string, out dec))
+                return dec;
+            return value;
         }
     }
 }

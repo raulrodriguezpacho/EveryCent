@@ -1,4 +1,5 @@
-﻿using EveryCent.Model;
+﻿using EveryCent.Helpers;
+using EveryCent.Model;
 using EveryCent.Services;
 using EveryCent.ViewModels.Base;
 using System;
@@ -29,17 +30,20 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private decimal _amount = 0;
+        private decimal _amount;
         public decimal Amount
         {
             get { return _amount; }
             set
-            {
+            {                
+                if (value == 0)
+                    Mandatory = true;
+                else
+                    Mandatory = false;
                 _amount = value;
                 OnPropertyChanged("Amount");
             }
         }        
-
 
         private DateTime _date;
         public DateTime Date
@@ -52,7 +56,7 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private string _description;
+        private string _description = string.Empty;
         public string Description
         {
             get { return _description; }
@@ -63,13 +67,24 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private ICommand _backToDashboardCommand;
-        public ICommand BackToDashboardCommand
+        private bool _mandatory = false;
+        public bool Mandatory
+        {
+            get { return _mandatory; }
+            set
+            {
+                _mandatory = value;
+                OnPropertyChanged("Mandatory");
+            }
+        }
+
+        private ICommand _cancelMovementCommand;
+        public ICommand CancelMovementCommand
         {
             get
             {
-                return _backToDashboardCommand ?? (_backToDashboardCommand = new Command(() =>
-                {
+                return _cancelMovementCommand ?? (_cancelMovementCommand = new Command(() =>
+                {                    
                     _navigationService.NavigateBackAsync();
                 }));
             }
@@ -82,6 +97,13 @@ namespace EveryCent.ViewModels
             {
                 return _saveCommand ?? (_saveCommand = new Command(() =>
                 {
+                    Mandatory = false;                    
+                    if (Amount == 0)
+                    {
+                        Mandatory = true;
+                        return;
+                    }
+
                     if (_movementID == 0)
                     {
                         var result = _repositoryService.InsertAsync(new Model.Movement()
@@ -91,7 +113,7 @@ namespace EveryCent.ViewModels
                             IsPositive = IsPositive,
                             Description = Description
                         });
-                        //ShowAlert("save", result.ToString(), "ok");
+                        //ShowAlert("save", result.ToString(), "ok");                        
                     }
                     else
                     {
@@ -105,6 +127,7 @@ namespace EveryCent.ViewModels
                         });
                         //ShowAlert("update", result.ToString(), "ok");
                     }
+                    _navigationService.NavigateBackAsync();
                 }));
             }
         }
@@ -118,6 +141,7 @@ namespace EveryCent.ViewModels
             _repositoryService = repositoryService;
 
             IsPositive = true;
+            Mandatory = false;
             if (_navigationService.NavigationData != null)
             {
                 if (_navigationService.NavigationData is int)

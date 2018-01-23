@@ -41,9 +41,13 @@
     <Compile Include="Base\LocatorBase.cs" />
     <Compile Include="Base\ViewPageBase.cs" />
     <Compile Include="Behaviors\BehaviorBase.cs" />
+    <Compile Include="Behaviors\EditorLengthValidatorBehavior.cs" />
     <Compile Include="Behaviors\EntryLengthValidatorBehavior.cs" />
     <Compile Include="Behaviors\EventToCommandBehavior.cs" />
     <Compile Include="Controls\BindablePicker.cs" />
+    <Compile Include="Controls\MonthYearBalanceView.xaml.cs">
+      <DependentUpon>MonthYearBalanceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MonthYearSelectorView.xaml.cs">
       <DependentUpon>MonthYearSelectorView.xaml</DependentUpon>
     </Compile>
@@ -52,6 +56,7 @@
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\PlatformCulture.cs" />
     <Compile Include="MarkupExtensions\TranslateExtension.cs" />
+    <Compile Include="Model\Balance.cs" />
     <Compile Include="Model\Day.cs" />
     <Compile Include="Model\EveryCentDatabase.cs" />
     <Compile Include="Model\IEntity.cs" />
@@ -218,6 +223,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\CurrencyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\MonthYearBalanceView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -41,9 +41,12 @@ namespace EveryCent.ViewModels.Base
             NavigationService = LocatorBase.Resolve<INavigationService>();
         }
 
-        public async void ShowAlert(string title, string message, string cancel)
+        public void ShowAlert(string title, string message, string cancel)
         {
-            await App.Current.MainPage.DisplayAlert(title ?? string.Empty, message, cancel);
+            try
+            {                
+                App.Current.MainPage.DisplayAlert(title ?? string.Empty, message, cancel);                
+            } catch (Exception ex) { }
         }
 
         public async Task<bool> ShowToDo(string title, string message, string accept, string cancel)

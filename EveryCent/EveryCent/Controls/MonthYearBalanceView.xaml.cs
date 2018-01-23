@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace EveryCent.Views
+namespace EveryCent.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DashboardPage : TabbedPage
+    public partial class MonthYearBalanceView : ContentView
     {
-        public DashboardPage()
+        public MonthYearBalanceView()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
     }
 }

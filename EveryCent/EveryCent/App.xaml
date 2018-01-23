@@ -10,6 +10,34 @@
             <Color x:Key="PageSelectedTextColor">White</Color>
             <Color x:Key="PageBackgroundColor">White</Color>
 
+            <Style x:Key="labelMiniStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="labelMedStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="labelBigStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="frameOptionStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="WidthRequest" Value="50" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="Padding" Value="0" />
+            </Style>
+            
         </ResourceDictionary>
 
     </Application.Resources>

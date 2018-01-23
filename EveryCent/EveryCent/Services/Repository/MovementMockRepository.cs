@@ -40,12 +40,24 @@ namespace EveryCent.Services
             throw new NotImplementedException();
         }
 
+        public IList<Movement> GetByDay(int year, int month, int day)
+        {
+            Random r = new Random();
+
+            List<Movement> movements = new List<Movement>();
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, day), Description = "movement 1", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, day), Description = "movement 2", IsPositive = false });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, day), Description = "movement 3", IsPositive = false });
+
+            return movements;
+        }
+
         public IList<Movement> GetByMonth(int month, int year)
         {
             Random r = new Random();
             
             List<Movement> movements = new List<Movement>();
-            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 1), Description = "movement 1", IsPositive = true });
+            movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 1), Description = "movement 1 iweufiwu fkjw jfn knfkjsdnjnsdkfjn ksfn ksdjf ksjf kjsdn kjnsfkns kdfjns kdjf ksnf ksjn", IsPositive = true });
             movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 2), Description = "movement 2", IsPositive = false });
             movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 3), Description = "movement 3", IsPositive = false });
             movements.Add(new Movement() { Amount = r.Next(0, 50000), Date = new DateTime(year, month, 4), Description = "movement 4", IsPositive = false });
@@ -141,7 +153,7 @@ namespace EveryCent.Services
 
         public Task<int> InsertAsync(Movement entity)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => 1);
         }
 
         public Task<int> UpdateAsync(Movement entity)

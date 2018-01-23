@@ -13,20 +13,7 @@
 
             <controls:MonthYearSelectorView />
 
-            <Grid x:Name="chartGrid" Padding="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="0.5*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                
-                <Label Text="{globalization:Translate ViewYearChart}" Grid.Column="0" Grid.Row="0" />
-                <Switch IsToggled="{Binding MonthsVisible}" Grid.Column="1" Grid.Row="0" />
-
-                <charting:Chart x:Name="chart" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+            <charting:Chart x:Name="chart" 
                     DataSource="{Binding ChartData, Mode=TwoWay}"
                     HeightRequest="500"
                     Spacing="10"                
@@ -34,14 +21,12 @@
                     YPath="Item2"                 
                     Color="White">
 
-                    <charting:Chart.Series>
-                        <charting:Series Type="Bar" Color="YellowGreen"/>
-                        <charting:Series Type="Bar" Color="Red"/>
-                    </charting:Chart.Series>
+                <charting:Chart.Series>
+                    <charting:Series Type="Bar" Color="Green"/>
+                    <charting:Series Type="Bar" Color="Red"/>
+                </charting:Chart.Series>
 
-                </charting:Chart>
-
-            </Grid>
+            </charting:Chart>
 
         </StackLayout>
 
