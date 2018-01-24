@@ -5,7 +5,7 @@
              xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"   
              xmlns:renderers="clr-namespace:EveryCent.Renderers"
              x:Class="EveryCent.Views.DashboardPage"
-             BackgroundColor="{StaticResource PageBackgroundColor}" BarBackgroundColor="White" BarTextColor="Black">
+             BackgroundColor="{StaticResource PageBackgroundColor}" BarBackgroundColor="#FFDDDDDD" BarTextColor="Black">
     <renderers:CustomTabbedPage.Children>
         <views:ChartPage Title="{globalization:Translate Graph}">
             <views:ChartPage.Icon>

@@ -42,6 +42,7 @@
     <Compile Include="Base\ViewPageBase.cs" />
     <Compile Include="Behaviors\BehaviorBase.cs" />
     <Compile Include="Behaviors\EditorLengthValidatorBehavior.cs" />
+    <Compile Include="Behaviors\EntryDecimalValidatorBehavior.cs" />
     <Compile Include="Behaviors\EntryLengthValidatorBehavior.cs" />
     <Compile Include="Behaviors\EventToCommandBehavior.cs" />
     <Compile Include="Controls\BindablePicker.cs" />
@@ -80,6 +81,7 @@
       <DependentUpon>AppResources.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\Device\IDeviceService.cs" />
+    <Compile Include="Services\Device\IKeyboardService.cs" />
     <Compile Include="Services\FileSystem\ILocalPath.cs" />
     <Compile Include="Services\Localization\ILocalize.cs" />
     <Compile Include="Services\Navigation\INavigationService.cs" />

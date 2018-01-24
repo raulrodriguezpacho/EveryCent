@@ -11,6 +11,7 @@ namespace EveryCent.Droid.Platform
             builder.RegisterType<Localize>().As<ILocalize>();
             builder.RegisterType<LocalPath>().As<ILocalPath>();
             builder.RegisterType<DeviceService>().As<IDeviceService>();
+            builder.RegisterType<KeyboardService>().As<IKeyboardService>();
         }
     }
 }

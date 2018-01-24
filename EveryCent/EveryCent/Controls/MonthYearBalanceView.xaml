@@ -11,13 +11,13 @@
     </ContentView.Resources>
     <ContentView.Content>
 
-        <Frame BackgroundColor="{Binding Path=Balance.IsPositive, Converter={StaticResource BalanceToColorConverter}}" CornerRadius="0" Margin="0,-5,0,5" Padding="5">
+        <Grid BackgroundColor="{Binding Path=Balance.IsPositive, Converter={StaticResource BalanceToColorConverter}}" Padding="10,5,10,5">
 
             <Label Text="{Binding Balance, Converter={StaticResource BalanceToStringConverter}}" 
                 TextColor="White" 
                 HorizontalOptions="EndAndExpand" />
 
-        </Frame>
+        </Grid>
         
     </ContentView.Content>
 

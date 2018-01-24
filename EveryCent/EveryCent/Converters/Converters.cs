@@ -67,7 +67,7 @@ namespace EveryCent.Converters
             return 
                 (parameter.ToString() == "N" ? "-" : "+") +
                 decimal.Parse(amount.ToString()).ToString("N2") + " " + 
-                (Application.Current.Properties.ContainsKey("Currency") ? Application.Current.Properties["Currency"] : "");
+                (Application.Current.Properties.ContainsKey("Currency") ? Application.Current.Properties["Currency"].ToString() : "");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -130,7 +130,8 @@ namespace EveryCent.Converters
                 sign = "+ ";
             else if (balance < 0)
                 sign = "";
-            return sign + decimal.Parse((((Balance)value).Income - ((Balance)value).Spend).ToString()).ToString("N2");   
+            return sign + decimal.Parse((((Balance)value).Income - ((Balance)value).Spend).ToString()).ToString("N2") + " " +
+                (Application.Current.Properties.ContainsKey("Currency") ? Application.Current.Properties["Currency"].ToString() : "");   
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -181,21 +182,35 @@ namespace EveryCent.Converters
         }
     }
 
-    public class DecimalToStringConverter : IValueConverter
+    public class IsPositiveToStringConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is decimal)
-                return value.ToString();
-            return value;
+            if ((bool)value)
+                return Resources.AppResources.Income;
+            else
+                return Resources.AppResources.Spend;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            decimal dec;
-            if (decimal.TryParse(value as string, out dec))
-                return dec;
-            return value;
+            return null;
+        }
+    }
+
+    public class IsPositiveToColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((bool)value)
+                return Color.Green;
+            else
+                return Color.Red;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
         }
     }
 }

@@ -8,7 +8,7 @@
 
             <Color x:Key="PageTextColor">Black</Color>
             <Color x:Key="PageSelectedTextColor">White</Color>
-            <Color x:Key="PageBackgroundColor">White</Color>
+            <Color x:Key="PageBackgroundColor">#FFEEEEEE</Color>
 
             <Style x:Key="labelMiniStyle" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Start" />
@@ -37,7 +37,24 @@
                 <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="Padding" Value="0" />
             </Style>
-            
+
+            <Style x:Key="datePickerStyle" TargetType="DatePicker">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <Style x:Key="editorStyle" TargetType="Editor">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
         </ResourceDictionary>
 
     </Application.Resources>

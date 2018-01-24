@@ -78,7 +78,7 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private double _sizeCalendarDay = 30;
+        private double _sizeCalendarDay = 50;
         public double SizeCalendarDay
         {
             get { return _sizeCalendarDay; }
@@ -89,7 +89,7 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private double _heightCalendar = 400;
+        private double _heightCalendar = 6 * 50;
         public double HeightCalendar
         {
             get { return _heightCalendar; }

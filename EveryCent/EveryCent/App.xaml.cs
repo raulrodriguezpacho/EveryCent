@@ -39,6 +39,7 @@ namespace EveryCent
             //    MainPage = new CurrencyPage();
             //    return;
             //}            
+            Application.Current.Properties["Currency"] = Currency[0];
             MainPage = new DashboardPage();            
         }        
 

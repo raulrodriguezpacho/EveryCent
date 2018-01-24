@@ -7,10 +7,11 @@
              xmlns:triggers="clr-namespace:EveryCent.Triggers"
              xmlns:templates="clr-namespace:EveryCent.TemplatesSelector"
              xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
+             xmlns:controls="clr-namespace:EveryCent.Controls"
              x:Class="EveryCent.Views.MovementsDayPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <base:ViewPageBase.Padding>
-        <OnPlatform x:TypeArguments="Thickness"  iOS="0,20,0,0" />
+        <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
     </base:ViewPageBase.Padding>
     <base:ViewPageBase.Resources>
         <ResourceDictionary>
@@ -71,7 +72,7 @@
 
             <Label Text="{globalization:Translate MovementsDayPageTitle}" Style="{StaticResource labelBigStyle}" />
 
-            <Grid Margin="0,0,0,5" Padding="10,0,5,0" BackgroundColor="LightGray">
+            <Grid Padding="10,0,5,0" BackgroundColor="#FFAAAAAA">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -79,7 +80,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="{Binding Day, Converter={StaticResource DayToDateConverter}}" Style="{StaticResource labelMedStyle}" Grid.Column="0"/>
+                <Label Text="{Binding Day, Converter={StaticResource DayToDateConverter}}" Style="{StaticResource labelBigStyle}" Grid.Column="0"/>
 
                 <Frame Grid.Column="1" HorizontalOptions="End" Style="{StaticResource frameOptionStyle}">
                     <Frame.GestureRecognizers>
@@ -125,7 +126,9 @@
 
             </Grid>
 
-            <ListView ItemsSource="{Binding Movements}" 
+            <controls:MonthYearBalanceView />
+            
+            <ListView ItemsSource="{Binding Movements}" BackgroundColor="White"
                 IsPullToRefreshEnabled="False"                
                 HasUnevenRows="True" 
                 SeparatorColor="Black" SeparatorVisibility="Default"

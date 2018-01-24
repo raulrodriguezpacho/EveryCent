@@ -88,9 +88,33 @@ namespace EveryCent.Controls
             set { SetValue(StartPositionXProperty, value); }
         }
 
+        private double _deviceWidthCell = 30;
+        private double _startPositionPanel = 0;
+
         public WrapPanel()
         {
+            var _deviceService = Base.LocatorBase.Resolve<Services.IDeviceService>();
+            Size deviceSize = _deviceService.GetDeviceSize();
+            if (deviceSize.Width / 7 > 50)
+            {
+                _deviceWidthCell = 50;
+                _startPositionPanel = 0;
+            }
+            else if (deviceSize.Width / 7 > 40)
+            {
+                _deviceWidthCell = 40;
+                _startPositionPanel = 0;
+            }
+            else
+            {
+                _deviceWidthCell = 30;
+                _startPositionPanel = 0;
+            }
 
+            var vm = Base.LocatorBase.Resolve<ViewModels.MonthViewModel>();
+            vm.SizeCalendarDay = _deviceWidthCell;
+            vm.HeightCalendar = _deviceWidthCell * 6;
+            vm.StartPositionX = _startPositionPanel;
         }
 
         private void ItemsSource_OnPropertyChanged(BindableObject bindable, IEnumerable oldvalue, IEnumerable newvalue)
@@ -178,6 +202,7 @@ namespace EveryCent.Controls
                 throw new Exception(content.GetType().ToString());
 
             var view = (content is View) ? content as View : ((ViewCell)content).View;
+            view.WidthRequest = view.HeightRequest = _deviceWidthCell;
             view.BindingContext = item;
             
             view.GestureRecognizers.Add(new TapGestureRecognizer { Command = ItemClickCommand, CommandParameter = item });

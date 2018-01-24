@@ -25,10 +25,8 @@
             </DataTemplate>
             <DataTemplate x:Key="DayNoneTemplate">
                 <ViewCell>
-                    <Frame CornerRadius="5" BackgroundColor="Transparent"
-                        VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0"
-                        WidthRequest="50" 
-                        HeightRequest="50">
+                    <Frame CornerRadius="5" BackgroundColor="White"
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
                         <Label Text="{Binding Number}" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
                     </Frame>
                 </ViewCell>
@@ -36,9 +34,7 @@
             <DataTemplate x:Key="DayOnlyNegativeTemplate">
                 <ViewCell>
                     <Frame CornerRadius="5" BackgroundColor="Red"
-                        VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0"
-                        WidthRequest="50" 
-                        HeightRequest="50">
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
                         <Label Text="{Binding Number}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
                     </Frame>
                 </ViewCell>
@@ -46,9 +42,7 @@
             <DataTemplate x:Key="DayOnlyPositiveTemplate">
                 <ViewCell>
                     <Frame CornerRadius="5" BackgroundColor="Green" 
-                        VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0"
-                        WidthRequest="50" 
-                        HeightRequest="50">
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
                         <Label Text="{Binding Number}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
                     </Frame>
                 </ViewCell>
@@ -56,9 +50,7 @@
             <DataTemplate x:Key="DayPositiveAndNegativeTemplate">
                 <ViewCell>
                     <Frame CornerRadius="5" BackgroundColor="Orange"
-                        VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0"
-                        WidthRequest="50" 
-                        HeightRequest="50">
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
                         <Label Text="{Binding Number}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
                     </Frame>
                 </ViewCell>
@@ -81,7 +73,7 @@
 
             <controls:MonthYearBalanceView />
 
-            <Grid HorizontalOptions="CenterAndExpand" Margin="20,0,20,0">
+            <Grid HorizontalOptions="Center" Margin="20,0,20,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
                 </Grid.RowDefinitions>
@@ -94,27 +86,27 @@
                     <ColumnDefinition Width=".14*" />
                     <ColumnDefinition Width=".14*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="{Binding DayLetters[1]}" TextColor="Black" Grid.Column="0" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label Text="{Binding DayLetters[2]}" TextColor="Black" Grid.Column="1" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label Text="{Binding DayLetters[3]}" TextColor="Black" Grid.Column="2" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label Text="{Binding DayLetters[4]}" TextColor="Black" Grid.Column="3" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label Text="{Binding DayLetters[5]}" TextColor="Black" Grid.Column="4" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label Text="{Binding DayLetters[6]}" TextColor="Black" Grid.Column="5" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label Text="{Binding DayLetters[0]}" TextColor="Black" Grid.Column="6" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[1]}" Grid.Column="0" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[2]}" Grid.Column="1" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[3]}" Grid.Column="2" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[4]}" Grid.Column="3" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[5]}" Grid.Column="4" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[6]}" Grid.Column="5" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[0]}" Grid.Column="6" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
             </Grid>
 
-            <cv:CarouselViewControl x:Name="meses" 
+            <cv:CarouselViewControl x:Name="meses" BackgroundColor="White"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource BoolInvertConverter}}"                        
                 Orientation="Horizontal" HeightRequest="{Binding HeightCalendar}"
                 ShowIndicators="False"
                 InterPageSpacing="10"                        
                 ItemsSource="{Binding MovementsMonths}"                         
                 VerticalOptions="Start" HorizontalOptions="FillAndExpand"         
-                Position="{Binding Position}"  
+                Position="{Binding Position}"
                 >
                 <cv:CarouselViewControl.ItemTemplate>
                     <DataTemplate> 
-                        <Grid HorizontalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="CenterAndExpand">
                             <controls:WrapPanel x:Name="days" TemplateSelector="{StaticResource CalendarDataTemplateSelector}"
                                 MaxItemsRow="7"
                                 StartPositionX="{Binding Path=BindingContext.StartPositionX, Source={x:Reference page}}"

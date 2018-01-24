@@ -26,7 +26,6 @@ namespace EveryCent.Behaviors
         private void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
             var entry = (Entry)sender;
-
             if (entry.Text.Length > this.MaxLength)
             {
                 string entryText = entry.Text;

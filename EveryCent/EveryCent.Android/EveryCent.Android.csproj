@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Platform\DeviceService.cs" />
+    <Compile Include="Platform\KeyboardService.cs" />
     <Compile Include="Platform\Localize.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Platform\LocalPath.cs" />

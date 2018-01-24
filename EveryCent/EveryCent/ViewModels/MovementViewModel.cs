@@ -1,4 +1,5 @@
-﻿using EveryCent.Helpers;
+﻿using EveryCent.Base;
+using EveryCent.Helpers;
 using EveryCent.Model;
 using EveryCent.Services;
 using EveryCent.ViewModels.Base;
@@ -25,25 +26,21 @@ namespace EveryCent.ViewModels
             get { return _isPositive; }
             set
             {
-                _isPositive = value;
+                _isPositive = value;                
                 OnPropertyChanged("IsPositive");
             }
         }
 
-        private decimal _amount;
-        public decimal Amount
+        private string _amount;
+        public string Amount
         {
             get { return _amount; }
             set
-            {                
-                if (value == 0)
-                    Mandatory = true;
-                else
-                    Mandatory = false;
+            {                                
                 _amount = value;
                 OnPropertyChanged("Amount");
             }
-        }        
+        }
 
         private DateTime _date;
         public DateTime Date
@@ -67,14 +64,24 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private bool _mandatory = false;
-        public bool Mandatory
+        public string AmountLabel
         {
-            get { return _mandatory; }
+            get
+            {
+                return Resources.AppResources.Amount +
+                    (!Application.Current.Properties.ContainsKey("Currency") ?  "" :
+                        " (" + Application.Current.Properties["Currency"].ToString() + ")");
+            }
+        }
+
+        private string _incomeSpendLabel = Resources.AppResources.Income;
+        public string IncomeSpendLabel
+        {
+            get { return _incomeSpendLabel; }
             set
             {
-                _mandatory = value;
-                OnPropertyChanged("Mandatory");
+                _incomeSpendLabel = value;
+                OnPropertyChanged("IncomeSpendLabel");
             }
         }
 
@@ -97,10 +104,19 @@ namespace EveryCent.ViewModels
             {
                 return _saveCommand ?? (_saveCommand = new Command(() =>
                 {
-                    Mandatory = false;                    
-                    if (Amount == 0)
+                    var keyboardService = LocatorBase.Resolve<IKeyboardService>();
+                    keyboardService.HideKeyboard();
+
+                    decimal amountResult = decimal.Zero;
+                    var ret = decimal.TryParse(_amount, out amountResult);
+                    if (!ret)
                     {
-                        Mandatory = true;
+                        ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.NotDecimalMsg, Resources.AppResources.Ok);
+                        return;
+                    }                    
+                    if (amountResult == 0)
+                    {
+                        ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.AmountZeroMsg, Resources.AppResources.Ok);
                         return;
                     }
 
@@ -108,26 +124,37 @@ namespace EveryCent.ViewModels
                     {
                         var result = _repositoryService.InsertAsync(new Model.Movement()
                         {
-                            Amount = (int)(Amount * 100),
+                            Amount = (int)(amountResult * 100),
                             Date = Date,
                             IsPositive = IsPositive,
                             Description = Description
                         });
-                        //ShowAlert("save", result.ToString(), "ok");                        
+                        if (result.Result == 1)
+                        {
+                            ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.MovementInsertedMsg, Resources.AppResources.Ok);
+                            _navigationService.NavigateBackAsync();
+                        }
+                        else
+                            ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.MovementErrorSavingMsg, Resources.AppResources.Ok);
                     }
                     else
                     {
                         var result = _repositoryService.UpdateAsync(new Model.Movement()
                         {
                             ID = _movementID,
-                            Amount = (int)(Amount * 100),
+                            Amount = (int)(amountResult * 100),
                             Date = Date,
                             IsPositive = IsPositive,
                             Description = Description
                         });
-                        //ShowAlert("update", result.ToString(), "ok");
-                    }
-                    _navigationService.NavigateBackAsync();
+                        if (result.Result == 1)
+                        {
+                            ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.MovementUpdatedMsg, Resources.AppResources.Ok);
+                            _navigationService.NavigateBackAsync();
+                        }
+                        else
+                            ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.MovementErrorSavingMsg, Resources.AppResources.Ok);
+                    }                                                        
                 }));
             }
         }
@@ -140,8 +167,7 @@ namespace EveryCent.ViewModels
             _navigationService = navigationService;
             _repositoryService = repositoryService;
 
-            IsPositive = true;
-            Mandatory = false;
+            IsPositive = false;            
             if (_navigationService.NavigationData != null)
             {
                 if (_navigationService.NavigationData is int)
@@ -172,7 +198,7 @@ namespace EveryCent.ViewModels
             {
                 IsPositive = movement.IsPositive;
                 Date = movement.Date;
-                Amount = (decimal)movement.Amount / 100;
+                Amount = ((decimal)movement.Amount / 100).ToString();
                 Description = movement.Description;
                 _movementID = movement.ID;
             }

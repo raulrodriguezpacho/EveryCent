@@ -42,11 +42,8 @@ namespace EveryCent.ViewModels.Base
         }
 
         public void ShowAlert(string title, string message, string cancel)
-        {
-            try
-            {                
-                App.Current.MainPage.DisplayAlert(title ?? string.Empty, message, cancel);                
-            } catch (Exception ex) { }
+        {            
+            App.Current.MainPage.DisplayAlert(title ?? string.Empty, message, cancel);                            
         }
 
         public async Task<bool> ShowToDo(string title, string message, string accept, string cancel)

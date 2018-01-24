@@ -16,10 +16,10 @@
 
             <controls:MonthYearSelectorView />
 
-            <charting:Chart x:Name="chart" 
+            <charting:Chart x:Name="chart" BackgroundColor="White"
                     DataSource="{Binding ChartData, Mode=TwoWay}"
                     HeightRequest="500"
-                    Spacing="10"                
+                    Spacing="10"
                     XPath="Item1"
                     YPath="Item2"                 
                     Color="White">

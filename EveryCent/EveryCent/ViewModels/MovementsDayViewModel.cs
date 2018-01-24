@@ -42,6 +42,17 @@ namespace EveryCent.ViewModels
             }
         }
 
+        private Balance _balance = new Balance() { Income = 0, Spend = 0 };
+        public Balance Balance
+        {
+            get { return _balance; }
+            set
+            {
+                _balance = value;
+                OnPropertyChanged("Balance");
+            }
+        }
+
         private ICommand _goToMovementCommand;
         public ICommand GoToMovementCommand
         {
@@ -99,6 +110,15 @@ namespace EveryCent.ViewModels
         {
             var movements = _repositoryService.GetByDay(_day.Year, day.Month, day.Number);
             Movements = new ObservableCollection<Movement>(movements);
+
+            var income = movements.Where(m => m.IsPositive).Sum(m => (decimal)m.Amount / 100);
+            var spend = movements.Where(m => !m.IsPositive).Sum(m => (decimal)m.Amount / 100);
+            Balance = new Balance()
+            {
+                Income = income,
+                Spend = spend,
+                IsPositive = income - spend > 0
+            };
         }        
     }
 }

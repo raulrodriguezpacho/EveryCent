@@ -123,9 +123,8 @@ namespace EveryCent.ViewModels
             get
             {
                 return _movementSelectedCommand ?? (_movementSelectedCommand = new Command((param) =>
-                {
-                    ShowAlert("ein", "", "ein");
-                    //_navigationService.NavigateToAsync<MovementViewModel>(((Movement)param).ID);
+                {                    
+                    _navigationService.NavigateToAsync<MovementViewModel>(((Movement)param).ID);
                 }));
             }
         }

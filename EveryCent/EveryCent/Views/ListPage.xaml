@@ -73,20 +73,21 @@
 
             <controls:MonthYearBalanceView />
 
-            <Grid Margin="0,0,0,5" Padding="10,0,5,0" BackgroundColor="LightGray">
+            <Grid Margin="0,0,0,5" Padding="5,0,5,0" BackgroundColor="#FFAAAAAA">
                 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <SearchBar Placeholder="..."  Text="{Binding SearchText, Mode=TwoWay}" WidthRequest="200" Grid.Column="0">
+                <SearchBar Placeholder="..."  Text="{Binding SearchText, Mode=TwoWay}" WidthRequest="200" Grid.Column="0"
+                    BackgroundColor="White" TextColor="Black" HeightRequest="40" VerticalOptions="CenterAndExpand">
                     <SearchBar.Behaviors>
                         <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding FindMovementCommand}" />
                     </SearchBar.Behaviors>
                 </SearchBar>
 
-                <Frame Grid.Column="1" HorizontalOptions="End" Style="{StaticResource frameOptionStyle}">
+                <Frame Grid.Column="1" HorizontalOptions="End" Style="{StaticResource frameOptionStyle}" HeightRequest="56">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToMovementCommand}" CommandParameter="Add" />
                     </Frame.GestureRecognizers>
@@ -109,7 +110,7 @@
 
             </Grid>
 
-            <ListView ItemsSource="{Binding Movements}" 
+            <ListView ItemsSource="{Binding Movements}" BackgroundColor="White"
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                 RefreshCommand="{Binding RefreshCommand}"

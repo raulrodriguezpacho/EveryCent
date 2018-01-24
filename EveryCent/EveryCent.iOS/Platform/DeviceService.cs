@@ -18,6 +18,6 @@ namespace EveryCent.iOS.Platform
                 Width = UIScreen.MainScreen.Bounds.Width,
                 Height = UIScreen.MainScreen.Bounds.Height
             };
-        }
+        }        
     }
 }

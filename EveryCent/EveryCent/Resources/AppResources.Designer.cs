@@ -80,6 +80,15 @@ namespace EveryCent.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Amount value must be greater than 0!.
+        /// </summary>
+        public static string AmountZeroMsg {
+            get {
+                return ResourceManager.GetString("AmountZeroMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Calendar.
         /// </summary>
         public static string Calendar {
@@ -179,6 +188,24 @@ namespace EveryCent.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Error trying saving movement, please try again!.
+        /// </summary>
+        public static string MovementErrorSavingMsg {
+            get {
+                return ResourceManager.GetString("MovementErrorSavingMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Movement saved!.
+        /// </summary>
+        public static string MovementInsertedMsg {
+            get {
+                return ResourceManager.GetString("MovementInsertedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Movement for the month...
         /// </summary>
         public static string MovementPageTitle {
@@ -188,11 +215,47 @@ namespace EveryCent.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Saving movement...
+        /// </summary>
+        public static string MovementSavingTitle {
+            get {
+                return ResourceManager.GetString("MovementSavingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Movements of the day...
         /// </summary>
         public static string MovementsDayPageTitle {
             get {
                 return ResourceManager.GetString("MovementsDayPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Movements updated!.
+        /// </summary>
+        public static string MovementUpdatedMsg {
+            get {
+                return ResourceManager.GetString("MovementUpdatedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Amount value is mandatory!.
+        /// </summary>
+        public static string NotDecimalMsg {
+            get {
+                return ResourceManager.GetString("NotDecimalMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a OK.
+        /// </summary>
+        public static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
         

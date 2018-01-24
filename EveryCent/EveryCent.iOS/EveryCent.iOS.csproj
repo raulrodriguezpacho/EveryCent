@@ -94,6 +94,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Platform\DeviceService.cs" />
+    <Compile Include="Platform\KeyboardService.cs" />
     <Compile Include="Platform\Localize.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

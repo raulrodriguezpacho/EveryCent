@@ -123,6 +123,9 @@
   <data name="Amount" xml:space="preserve">
     <value>Amount</value>
   </data>
+  <data name="AmountZeroMsg" xml:space="preserve">
+    <value>Amount value must be greater than 0!</value>
+  </data>
   <data name="Calendar" xml:space="preserve">
     <value>Calendar</value>
   </data>
@@ -156,11 +159,29 @@
   <data name="MonthSelect" xml:space="preserve">
     <value>Month: </value>
   </data>
+  <data name="MovementErrorSavingMsg" xml:space="preserve">
+    <value>Error trying saving movement, please try again!</value>
+  </data>
+  <data name="MovementInsertedMsg" xml:space="preserve">
+    <value>Movement saved!</value>
+  </data>
   <data name="MovementPageTitle" xml:space="preserve">
     <value>Movement for the month..</value>
   </data>
+  <data name="MovementSavingTitle" xml:space="preserve">
+    <value>Saving movement..</value>
+  </data>
   <data name="MovementsDayPageTitle" xml:space="preserve">
     <value>Movements of the day..</value>
+  </data>
+  <data name="MovementUpdatedMsg" xml:space="preserve">
+    <value>Movements updated!</value>
+  </data>
+  <data name="NotDecimalMsg" xml:space="preserve">
+    <value>Amount value is mandatory!</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>

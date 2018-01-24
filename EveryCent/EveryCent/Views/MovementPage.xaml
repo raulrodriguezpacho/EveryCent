@@ -8,13 +8,14 @@
              x:Class="EveryCent.Views.MovementPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <base:ViewPageBase.Padding>
-        <OnPlatform x:TypeArguments="Thickness"  iOS="0,20,0,0" />
+        <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
     </base:ViewPageBase.Padding>
     <base:ViewPageBase.Resources>
         <ResourceDictionary>
             <converters:DateToStringConverter x:Key="DateToStringConverter" />
             <converters:DescriptionToCharsLeftConverter x:Key="DescriptionToCharsLeftConverter" />
-            <converters:DecimalToStringConverter x:Key="DecimalToStringConverter" />
+            <converters:IsPositiveToStringConverter x:Key="IsPositiveToStringConverter" />
+            <converters:IsPositiveToColorConverter x:Key="IsPositiveToColorConverter" />
         </ResourceDictionary>
     </base:ViewPageBase.Resources>
     <base:ViewPageBase.Content>
@@ -23,7 +24,7 @@
 
             <Label Text="{globalization:Translate MovementPageTitle}" Style="{StaticResource labelBigStyle}" />
 
-            <Grid Margin="0,0,0,5" Padding="10,0,5,0" BackgroundColor="LightGray">
+            <Grid Padding="10,0,5,0" BackgroundColor="#FFAAAAAA">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -31,7 +32,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="{Binding Date, Converter={StaticResource DateToStringConverter}}" Style="{StaticResource labelMedStyle}" Grid.Column="0"/>
+                <Label Text="{Binding Date, Converter={StaticResource DateToStringConverter}}" Style="{StaticResource labelBigStyle}" Grid.Column="0"/>
 
                 <Frame Grid.Column="1" HorizontalOptions="End" Style="{StaticResource frameOptionStyle}">
                     <Frame.GestureRecognizers>
@@ -94,21 +95,28 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Text="{globalization:Translate Amount}" Style="{StaticResource labelMedStyle}" Grid.Row="0" Grid.Column="0"/>
-                    <Entry Text="{Binding Amount, Converter={StaticResource DecimalToStringConverter}}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1" />
+                    <Label Text="{Binding AmountLabel}" Style="{StaticResource labelMedStyle}" Grid.Row="0" Grid.Column="0"/>
+                    <Entry Text="{Binding Amount}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1"
+                        Style="{StaticResource entryStyle}">
+                        <Entry.Behaviors>
+                            <behaviors:EntryDecimalValidatorBehavior MaxLength="16" />
+                        </Entry.Behaviors>
+                    </Entry>
 
-                    <Label Text="{globalization:Translate MandatoryMessage}" IsVisible="{Binding Mandatory}" TextColor="Red" Style="{StaticResource labelMiniStyle}" Grid.Row="1" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" />
+                    <!--<Label Text="{globalization:Translate MandatoryMessage}" IsVisible="{Binding Mandatory}" TextColor="Red" Style="{StaticResource labelMiniStyle}" Grid.Row="1" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" />-->
 
-                    <Label Text="{globalization:Translate IncomeSpend}" Grid.Row="2" Grid.Column="0" Style="{StaticResource labelMedStyle}" />
-                    <Switch IsToggled="{Binding IsPositive}" Grid.Row="2" Grid.Column="1" />
+                    <Label Text="{Binding IsPositive, Converter={StaticResource IsPositiveToStringConverter}}" Grid.Row="2" Grid.Column="0" Style="{StaticResource labelMedStyle}" 
+                        TextColor="{Binding IsPositive, Converter={StaticResource IsPositiveToColorConverter}}" FontAttributes="Bold"/>
+                    <Switch IsToggled="{Binding IsPositive}" Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" />
 
                     <Label Text="{globalization:Translate Date}" Grid.Row="3" Grid.Column="0" Style="{StaticResource labelMedStyle}" />
                     <DatePicker Date="{Binding Date}" Grid.Row="3" Grid.Column="1" />
 
                     <Label Text="{globalization:Translate Details}" Grid.Row="4" Grid.Column="0" Style="{StaticResource labelMedStyle}" />
                     <Label Text="{Binding Description, Converter={StaticResource DescriptionToCharsLeftConverter}, ConverterParameter=100}" Grid.Row="4" Grid.Column="1" Margin="0,0,5,0"
-                        Style="{StaticResource labelMiniStyle}" HorizontalOptions="End" TextColor="LightGray" />
-                    <Editor Text="{Binding Description}" HeightRequest="120" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#EEEEEE" Margin="0,0,5,0">
+                        Style="{StaticResource labelMiniStyle}" HorizontalOptions="End" VerticalOptions="End" TextColor="Gray" />
+                    <Editor Text="{Binding Description}" HeightRequest="100" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,5,0"
+                        Style="{StaticResource editorStyle}">
                         <Editor.Behaviors>
                             <behaviors:EditorLengthValidatorBehavior MaxLength="100" />
                         </Editor.Behaviors>
