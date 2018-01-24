@@ -1,13 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<renderers:CustomTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:EveryCent.Views"
-             xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
+             xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"   
+             xmlns:renderers="clr-namespace:EveryCent.Renderers"
              x:Class="EveryCent.Views.DashboardPage"
-             BackgroundColor="{StaticResource PageBackgroundColor}">
-    <TabbedPage.Children>
-        <views:ChartPage Title="{globalization:Translate Graph}" Icon="chart.png" />
-        <views:ListPage Title="{globalization:Translate List}" Icon="list.png" />
-        <views:MonthPage Title="{globalization:Translate Calendar}" Icon="calendar.png" />
-    </TabbedPage.Children>
-</TabbedPage>
+             BackgroundColor="{StaticResource PageBackgroundColor}" BarBackgroundColor="White" BarTextColor="Black">
+    <renderers:CustomTabbedPage.Children>
+        <views:ChartPage Title="{globalization:Translate Graph}">
+            <views:ChartPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <OnPlatform.iOS>
+                        <FileImageSource File="Images/chart.png" />
+                    </OnPlatform.iOS>
+                    <OnPlatform.Android>
+                        <FileImageSource File="chart.png" />
+                    </OnPlatform.Android>
+                    <OnPlatform.WinPhone>
+                        <FileImageSource File="Assets/Images/chart.png" />
+                    </OnPlatform.WinPhone>
+                </OnPlatform>
+            </views:ChartPage.Icon>
+        </views:ChartPage>
+        <views:ListPage Title="{globalization:Translate List}">
+            <views:ListPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <OnPlatform.iOS>
+                        <FileImageSource File="Images/list.png" />
+                    </OnPlatform.iOS>
+                    <OnPlatform.Android>
+                        <FileImageSource File="list.png" />
+                    </OnPlatform.Android>
+                    <OnPlatform.WinPhone>
+                        <FileImageSource File="Assets/Images/list.png" />
+                    </OnPlatform.WinPhone>
+                </OnPlatform>
+            </views:ListPage.Icon>
+        </views:ListPage>
+        <views:MonthPage Title="{globalization:Translate Calendar}">
+            <views:MonthPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <OnPlatform.iOS>
+                        <FileImageSource File="Images/calendar.png" />
+                    </OnPlatform.iOS>
+                    <OnPlatform.Android>
+                        <FileImageSource File="calendar.png" />
+                    </OnPlatform.Android>
+                    <OnPlatform.WinPhone>
+                        <FileImageSource File="Assets/Images/calendar.png" />
+                    </OnPlatform.WinPhone>
+                </OnPlatform>
+            </views:MonthPage.Icon>
+        </views:MonthPage>
+    </renderers:CustomTabbedPage.Children>
+</renderers:CustomTabbedPage>

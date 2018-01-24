@@ -7,6 +7,9 @@
              xmlns:controls="clr-namespace:EveryCent.Controls"
              x:Class="EveryCent.Views.ChartPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
+    <base:ViewPageBase.Padding>
+        <OnPlatform x:TypeArguments="Thickness"  iOS="0,20,0,0" />
+    </base:ViewPageBase.Padding>
     <base:ViewPageBase.Content>
 
         <StackLayout>

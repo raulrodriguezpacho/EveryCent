@@ -10,6 +10,9 @@
              xmlns:templates="clr-namespace:EveryCent.TemplatesSelector"
              x:Class="EveryCent.Views.ListPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
+    <base:ViewPageBase.Padding>
+        <OnPlatform x:TypeArguments="Thickness"  iOS="0,20,0,0" />
+    </base:ViewPageBase.Padding>
     <base:ViewPageBase.Resources>
         <ResourceDictionary>
             <converters:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />

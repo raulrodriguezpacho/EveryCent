@@ -3087,6 +3087,9 @@ namespace EveryCent.Droid
 			// aapt resource value: 0x7f0c001e
 			public const int highlighted_text_material_light = 2131492894;
 			
+			// aapt resource value: 0x7f0c006c
+			public const int icon_tab = 2131492972;
+			
 			// aapt resource value: 0x7f0c001f
 			public const int material_blue_grey_800 = 2131492895;
 			
@@ -3180,11 +3183,11 @@ namespace EveryCent.Droid
 			// aapt resource value: 0x7f0c003c
 			public const int switch_thumb_disabled_material_light = 2131492924;
 			
-			// aapt resource value: 0x7f0c006c
-			public const int switch_thumb_material_dark = 2131492972;
-			
 			// aapt resource value: 0x7f0c006d
-			public const int switch_thumb_material_light = 2131492973;
+			public const int switch_thumb_material_dark = 2131492973;
+			
+			// aapt resource value: 0x7f0c006e
+			public const int switch_thumb_material_light = 2131492974;
 			
 			// aapt resource value: 0x7f0c003d
 			public const int switch_thumb_normal_material_dark = 2131492925;

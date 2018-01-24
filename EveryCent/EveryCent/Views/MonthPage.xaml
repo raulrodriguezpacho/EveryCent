@@ -9,6 +9,9 @@
              x:Class="EveryCent.Views.MonthPage"
              BackgroundColor="{StaticResource PageBackgroundColor}"
              x:Name="page">
+    <base:ViewPageBase.Padding>
+        <OnPlatform x:TypeArguments="Thickness"  iOS="0,20,0,0" />
+    </base:ViewPageBase.Padding>
     <base:ViewPageBase.Resources>
         <ResourceDictionary>
             <converters:BoolInvertConverter x:Key="BoolInvertConverter" />

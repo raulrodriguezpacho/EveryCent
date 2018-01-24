@@ -24,9 +24,9 @@ namespace EveryCent.iOS
 		{
 			global::Xamarin.Forms.Forms.Init ();
             CarouselView.FormsPlugin.iOS.CarouselViewRenderer.Init();
-            LoadApplication (new EveryCent.App (new Platform.PlatformModule()));           
-
-			return base.FinishedLaunching (app, options);
+            LoadApplication (new EveryCent.App (new Platform.PlatformModule()));
+            UITabBar.Appearance.SelectedImageTintColor = UIColor.Black;
+            return base.FinishedLaunching (app, options);
 		}
 	}
 }

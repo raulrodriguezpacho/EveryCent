@@ -7,6 +7,9 @@
              xmlns:behaviors="clr-namespace:EveryCent.Behaviors"
              x:Class="EveryCent.Views.MovementPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
+    <base:ViewPageBase.Padding>
+        <OnPlatform x:TypeArguments="Thickness"  iOS="0,20,0,0" />
+    </base:ViewPageBase.Padding>
     <base:ViewPageBase.Resources>
         <ResourceDictionary>
             <converters:DateToStringConverter x:Key="DateToStringConverter" />

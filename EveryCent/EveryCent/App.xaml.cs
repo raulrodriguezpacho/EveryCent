@@ -38,8 +38,8 @@ namespace EveryCent
             //{
             //    MainPage = new CurrencyPage();
             //    return;
-            //}
-            MainPage = new DashboardPage();
+            //}            
+            MainPage = new DashboardPage();            
         }        
 
         private void SetLanguage()

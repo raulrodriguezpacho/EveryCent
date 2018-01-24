@@ -9,6 +9,9 @@
              xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
              x:Class="EveryCent.Views.MovementsDayPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
+    <base:ViewPageBase.Padding>
+        <OnPlatform x:TypeArguments="Thickness"  iOS="0,20,0,0" />
+    </base:ViewPageBase.Padding>
     <base:ViewPageBase.Resources>
         <ResourceDictionary>
             <converters:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
