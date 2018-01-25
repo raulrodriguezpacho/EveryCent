@@ -146,6 +146,19 @@ namespace EveryCent.ViewModels
             }
         }
 
+        private ICommand _deleteMovementCommand;
+        public ICommand DeleteMovementCommand
+        {
+            get
+            {
+                return _deleteMovementCommand ?? (_deleteMovementCommand = new Command((param) =>
+                {
+                    _repositoryService.DeleteAsync((Movement)param);
+                    RefreshCommand.Execute(null);
+                }));
+            }
+        }
+
         public ListViewModel(
             INavigationService navigationService,
             IMovementRepository repositoryService        

@@ -204,4 +204,7 @@
   <data name="YearSelect" xml:space="preserve">
     <value>Anno: </value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminare</value>
+  </data>
 </root>

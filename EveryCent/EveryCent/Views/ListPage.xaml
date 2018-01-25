@@ -23,6 +23,9 @@
             <!-- DataTemplates -->
             <DataTemplate x:Key="PositiveTemplate">
                 <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem Clicked="MenuItem_Clicked" CommandParameter="{Binding .}" Text="{globalization:Translate Delete}" IsDestructive="True" />
+                    </ViewCell.ContextActions>
                     <Grid BackgroundColor="Transparent" Padding="10,2,10,2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height=".5*" />
@@ -42,6 +45,9 @@
             </DataTemplate>
             <DataTemplate x:Key="NegativeTemplate">
                 <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem Clicked="MenuItem_Clicked" CommandParameter="{Binding .}" Text="{globalization:Translate Delete}" IsDestructive="True" />
+                    </ViewCell.ContextActions>
                     <Grid BackgroundColor="Transparent" Padding="10,2,10,2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height=".5*" />
@@ -111,7 +117,7 @@
 
             </Grid>
 
-            <ListView ItemsSource="{Binding Movements}" BackgroundColor="White"
+            <ListView x:Name="movementList" ItemsSource="{Binding Movements}" BackgroundColor="White"
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                 RefreshCommand="{Binding RefreshCommand}"

@@ -1,4 +1,5 @@
-﻿using EveryCent.Model;
+﻿using EveryCent.Base;
+using EveryCent.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace EveryCent.TemplatesSelector
             {                
                 if (!((Movement)item).IsPositive)
                     template = NegativeTemplate;                
-            }
+            }            
             return template;
         }
     }

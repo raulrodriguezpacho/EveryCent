@@ -89,6 +89,19 @@ namespace EveryCent.ViewModels
             }
         }
 
+        private ICommand _deleteMovementCommand;
+        public ICommand DeleteMovementCommand
+        {
+            get
+            {
+                return _deleteMovementCommand ?? (_deleteMovementCommand = new Command((param) =>
+                {
+                    _repositoryService.DeleteAsync((Movement)param);
+                    GetData(_day);
+                }));
+            }
+        }
+
         public MovementsDayViewModel(
             INavigationService navigationService,
             IMovementRepository repositoryService

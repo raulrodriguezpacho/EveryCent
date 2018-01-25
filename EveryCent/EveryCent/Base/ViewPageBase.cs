@@ -23,7 +23,7 @@ namespace EveryCent.Base
             var viewModelName = viewType.FullName.Replace(".Views.", ".ViewModels.").Replace("Page", "ViewModel");
             var viewModelType = Type.GetType(viewModelName);
             _viewModel = (ViewModelBase)LocatorBase.Container.Resolve(viewModelType);
-            BindingContext = _viewModel;            
+            BindingContext = _viewModel;                 
         }        
     }
 }
