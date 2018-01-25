@@ -251,7 +251,7 @@ namespace EveryCent.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Movements updated!.
+        ///   Busca una cadena traducida similar a Movement updated!.
         /// </summary>
         public static string MovementUpdatedMsg {
             get {

@@ -118,90 +118,90 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Aggiungere</value>
   </data>
   <data name="Amount" xml:space="preserve">
-    <value>Amount</value>
+    <value>Quantità</value>
   </data>
   <data name="AmountZeroMsg" xml:space="preserve">
-    <value>Amount value must be greater than 0!</value>
+    <value>La quantità deve essere maggiore di 0!</value>
   </data>
   <data name="Calendar" xml:space="preserve">
-    <value>Calendar</value>
+    <value>Calendario</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annulla</value>
+  </data>
+  <data name="CurrencyPageSubTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CurrencyPageTitle" xml:space="preserve">
+    <value>Selezione di valuta..</value>
   </data>
   <data name="Date" xml:space="preserve">
-    <value>Date</value>
+    <value>Data</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Descrizione</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>Details</value>
+    <value>Dettagli</value>
   </data>
   <data name="Graph" xml:space="preserve">
-    <value>Graph</value>
+    <value>Grafico</value>
   </data>
   <data name="Income" xml:space="preserve">
-    <value>Income</value>
+    <value>Reddito</value>
   </data>
   <data name="IncomeSpend" xml:space="preserve">
-    <value>Income (else Spend)</value>
+    <value>Reddito (se non spesa)</value>
   </data>
   <data name="List" xml:space="preserve">
-    <value>List</value>
+    <value>Elenco</value>
   </data>
   <data name="MandatoryMessage" xml:space="preserve">
-    <value>Amount must be greater than 0</value>
+    <value>La quantità deve essere maggiore di 0!</value>
   </data>
   <data name="MonthSelect" xml:space="preserve">
-    <value>Month: </value>
+    <value>Mese: </value>
   </data>
   <data name="MovementErrorSavingMsg" xml:space="preserve">
-    <value>Error trying saving movement, please try again!</value>
+    <value>Errore mantenendo movimento, si prega di riprovare!</value>
   </data>
   <data name="MovementInsertedMsg" xml:space="preserve">
-    <value>Movement saved!</value>
+    <value>Movimento salvato!</value>
   </data>
   <data name="MovementPageTitle" xml:space="preserve">
-    <value>Movement for the month..</value>
+    <value>Movimento per il mese..</value>
   </data>
   <data name="MovementSavingTitle" xml:space="preserve">
-    <value>Saving movement..</value>
+    <value>Movimento di risparmio</value>
   </data>
   <data name="MovementsDayPageTitle" xml:space="preserve">
-    <value>Movements of the day..</value>
+    <value>Movimenti del giorno..</value>
   </data>
   <data name="MovementUpdatedMsg" xml:space="preserve">
-    <value>Movement updated!</value>
+    <value>Sposta aggiornato!</value>
   </data>
   <data name="NotDecimalMsg" xml:space="preserve">
-    <value>Amount value is mandatory!</value>
+    <value>La quantità è obbligatoria!</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Salvare</value>
   </data>
   <data name="Spend" xml:space="preserve">
-    <value>Spend</value>
+    <value>Spese</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Evey cent..</value>
+    <value>Ogni centesimo..</value>
   </data>
   <data name="ViewYearChart" xml:space="preserve">
-    <value>View by year</value>
+    <value>Vedere per anno</value>
   </data>
   <data name="YearSelect" xml:space="preserve">
-    <value>Year: </value>
-  </data>
-  <data name="CurrencyPageTitle" xml:space="preserve">
-    <value>Select currency..</value>
-  </data>
-  <data name="CurrencyPageSubTitle" xml:space="preserve">
-    <value />
+    <value>Anno: </value>
   </data>
 </root>
