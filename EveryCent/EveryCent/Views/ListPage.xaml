@@ -9,7 +9,8 @@
              xmlns:controls="clr-namespace:EveryCent.Controls"
              xmlns:templates="clr-namespace:EveryCent.TemplatesSelector"
              x:Class="EveryCent.Views.ListPage"
-             BackgroundColor="{StaticResource PageBackgroundColor}">
+             BackgroundColor="{StaticResource PageBackgroundColor}"
+             >
     <base:ViewPageBase.Padding>
         <OnPlatform x:TypeArguments="Thickness"  iOS="0,20,0,0" />
     </base:ViewPageBase.Padding>
@@ -33,7 +34,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Date, Converter={StaticResource DateToDayConverter}}" Style="{StaticResource labelMedStyle}" Grid.Row="0" Grid.Column="0"/>
                         <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}, ConverterParameter=P}" Style="{StaticResource labelMedStyle}" Grid.Column="1" Grid.Row="0" 
-                            HorizontalOptions="End" TextColor="Green"/>
+                            HorizontalOptions="End" TextColor="Green"/>                        
                         <Label Text="{Binding Description}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource labelMiniStyle}" TextColor="Black" 
                             HorizontalOptions="StartAndExpand"/>
                     </Grid>

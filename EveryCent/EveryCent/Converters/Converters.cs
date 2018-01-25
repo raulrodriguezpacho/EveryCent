@@ -64,9 +64,9 @@ namespace EveryCent.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {                        
             decimal amount = (decimal)int.Parse(value.ToString()) / 100;
-            return 
+            return
                 (parameter.ToString() == "N" ? "-" : "+") +
-                decimal.Parse(amount.ToString()).ToString("N2") + " " + 
+                decimal.Parse(amount.ToString()).ToString("N2") + " " +
                 (Application.Current.Properties.ContainsKey("Currency") ? Application.Current.Properties["Currency"].ToString() : "");
         }
 
@@ -130,8 +130,9 @@ namespace EveryCent.Converters
                 sign = "+ ";
             else if (balance < 0)
                 sign = "";
-            return sign + decimal.Parse((((Balance)value).Income - ((Balance)value).Spend).ToString()).ToString("N2") + " " +
-                (Application.Current.Properties.ContainsKey("Currency") ? Application.Current.Properties["Currency"].ToString() : "");   
+            //return sign + decimal.Parse((((Balance)value).Income - ((Balance)value).Spend).ToString()).ToString("N2") + " " +
+            //    (Application.Current.Properties.ContainsKey("Currency") ? Application.Current.Properties["Currency"].ToString() : "");
+            return sign + decimal.Parse((((Balance)value).Income - ((Balance)value).Spend).ToString()).ToString("N2");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

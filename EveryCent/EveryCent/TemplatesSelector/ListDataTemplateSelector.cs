@@ -19,7 +19,7 @@ namespace EveryCent.TemplatesSelector
             if (item is Movement)
             {                
                 if (!((Movement)item).IsPositive)
-                    template = NegativeTemplate;
+                    template = NegativeTemplate;                
             }
             return template;
         }

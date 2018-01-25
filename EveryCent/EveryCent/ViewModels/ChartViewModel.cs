@@ -9,12 +9,16 @@ using System.Globalization;
 using EveryCent.Model;
 using EveryCent.Helpers;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Xamarin.Forms;
+using EveryCent.Base;
 
 namespace EveryCent.ViewModels
 {
     public class ChartViewModel : ViewModelBase, IDateViewModel
     {        
         private readonly IMovementRepository _repositoryService;
+        private readonly INavigationService _navigationService;
 
         private List<Tuple<string, decimal>> _serieIncome = new List<Tuple<string, decimal>>();
         private List<Tuple<string, decimal>> _serieSpend = new List<Tuple<string, decimal>>();        
@@ -30,16 +34,10 @@ namespace EveryCent.ViewModels
                 GetData();
             }
         }
-
-        private bool _monthsVisible = false;
+        
         public bool MonthsVisible
         {
-            get { return _monthsVisible; }
-            set
-            {
-                _monthsVisible = value;
-                OnPropertyChanged("MonthsVisible");                
-            }
+            get { return false; }            
         }
 
         private int _selectedYear = DateTime.Now.Year;
@@ -68,11 +66,30 @@ namespace EveryCent.ViewModels
             }
         }
 
-        public ChartViewModel(IMovementRepository repositoryService)            
+        private ICommand _goToCurrencyCommand;
+        public ICommand GoToCurrencyCommand
+        {
+            get
+            {
+                return _goToCurrencyCommand ?? (_goToCurrencyCommand = new Command(() =>
+                {                    
+                    _navigationService.NavigateToAsync<CurrencyViewModel>();
+                }));
+            }
+        }
+
+        public ChartViewModel(
+            IMovementRepository repositoryService,
+            INavigationService navigationService)            
         {            
             _repositoryService = repositoryService;
-
+            _navigationService = navigationService;
             GetData();
+
+            MessagingCenter.Subscribe<ViewModelBase, string>(this, "currency", (sender, arg) =>
+            {
+                CurrentCurrency = arg;
+            });
         }
 
         private void GetData()

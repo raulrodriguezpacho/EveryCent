@@ -55,5 +55,10 @@
     </array>
     <key>CFBundleDevelopmentRegion</key>
     <string>en</string>
+    <key>UIAppFonts</key>
+    <array>
+      <string>materialicons.ttf</string>
+      <string>fontawesome.ttf</string>
+    </array>
   </dict>
 </plist>

@@ -51,7 +51,7 @@ namespace EveryCent.Base
             builder.RegisterType<MonthViewModel>();
             builder.RegisterType<MovementViewModel>();
             builder.RegisterType<CurrencyViewModel>();
-            builder.RegisterType<MovementsDayViewModel>();
+            builder.RegisterType<MovementsDayViewModel>();            
         }
 
         private static void RegisterPlatformModule(ContainerBuilder builder, IModule module)

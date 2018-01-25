@@ -36,6 +36,18 @@ namespace EveryCent.ViewModels.Base
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public string CurrentCurrency
+        {
+            get
+            {
+                return (Application.Current.Properties.ContainsKey("Currency") ? Application.Current.Properties["Currency"].ToString() : "");
+            }
+            set
+            {
+                OnPropertyChanged("CurrentCurrency");
+            }
+        }
+
         public ViewModelBase()
         {            
             NavigationService = LocatorBase.Resolve<INavigationService>();

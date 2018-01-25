@@ -13,8 +13,8 @@ namespace EveryCent
         {
             "€",
             "$",            
-            "£",
-        };
+            "£"            
+        };        
 
         static EveryCentDatabase database;
         public static EveryCentDatabase Database
@@ -33,13 +33,7 @@ namespace EveryCent
         {            
             LocatorBase.Register(platformModule, true); // NOW MOCKING!!
             InitializeComponent();
-            SetLanguage();
-            //if (!Application.Current.Properties.ContainsKey("Currency"))
-            //{
-            //    MainPage = new CurrencyPage();
-            //    return;
-            //}            
-            Application.Current.Properties["Currency"] = Currency[0];
+            SetLanguage();                        
             MainPage = new DashboardPage();            
         }        
 

@@ -33,6 +33,11 @@ namespace EveryCent.ViewModels
             }
         }
 
+        public bool MonthsVisible
+        {
+            get { return true; }
+        }
+
         private string _selectedMonth = DateTimeFormatInfo.CurrentInfo.MonthNames[DateTime.Now.Month - 1];
         public string SelectedMonth
         {
@@ -142,7 +147,7 @@ namespace EveryCent.ViewModels
                 _balance = value;
                 OnPropertyChanged("Balance");
             }
-        }
+        }        
 
         public MonthViewModel(
             INavigationService navigationService,
@@ -156,6 +161,11 @@ namespace EveryCent.ViewModels
 
             ShowDayLetters();
             ShowMonthMovements(GetMonth(_selectedMonth), _selectedYear);
+
+            MessagingCenter.Subscribe<ViewModelBase, string>(this, "currency", (sender, arg) =>
+            {
+                CurrentCurrency = arg;
+            });
         }
 
         private void ShowDayLetters()

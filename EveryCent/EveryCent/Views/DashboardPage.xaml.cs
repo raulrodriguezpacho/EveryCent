@@ -15,7 +15,7 @@ namespace EveryCent.Views
     {
         public DashboardPage()
         {
-            InitializeComponent();            
+            InitializeComponent();                 
         }
     }
 }

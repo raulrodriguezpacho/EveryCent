@@ -44,6 +44,11 @@ namespace EveryCent.ViewModels
             }
         }
 
+        public bool MonthsVisible
+        {
+            get { return true; }
+        }
+
         private string _searchText;
         public string SearchText
         {
@@ -148,6 +153,12 @@ namespace EveryCent.ViewModels
         {
             _navigationService = navigationService;
             _repositoryService = repositoryService;
+
+            MessagingCenter.Subscribe<ViewModelBase, string>(this, "currency", (sender, arg) =>
+            {
+                CurrentCurrency = arg;
+                RefreshCommand.Execute(null);
+            });
         }        
 
         private ObservableCollection<Movement> GetMovements()

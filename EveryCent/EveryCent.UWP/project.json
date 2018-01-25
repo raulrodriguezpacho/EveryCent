@@ -4,6 +4,7 @@
     "CarouselView.FormsPlugin": "4.2.7",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "sqlite-net-pcl": "1.4.118",
+    "Xam.Plugins.Forms.ImageCircle": "1.8.1",
     "Xamarin.Forms": "2.4.0.280",
     "XLabs.Forms.Charting": "2.0.5782"
   },

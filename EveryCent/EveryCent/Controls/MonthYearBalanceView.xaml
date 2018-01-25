@@ -11,12 +11,18 @@
     </ContentView.Resources>
     <ContentView.Content>
 
-        <Grid BackgroundColor="{Binding Path=Balance.IsPositive, Converter={StaticResource BalanceToColorConverter}}" Padding="10,5,10,5">
-
+        <Grid BackgroundColor="{Binding Path=Balance.IsPositive, Converter={StaticResource BalanceToColorConverter}}" Padding="10,5,10,5"
+            HorizontalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
             <Label Text="{Binding Balance, Converter={StaticResource BalanceToStringConverter}}" 
-                TextColor="White" 
-                HorizontalOptions="EndAndExpand" />
-
+                Style="{StaticResource labelMedStyle}"
+                TextColor="White" Grid.Column="1"
+                HorizontalOptions="EndAndExpand" Margin="0,0,2,0" />
+            <Label Text="{Binding CurrentCurrency}" TextColor="White" Grid.Column="2" Style="{StaticResource labelMedStyle}" />
         </Grid>
         
     </ContentView.Content>

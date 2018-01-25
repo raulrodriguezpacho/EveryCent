@@ -2,8 +2,12 @@
 <base:ViewPageBase xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:EveryCent.Base"
+             xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"  
+             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             xmlns:cic="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              x:Class="EveryCent.Views.CurrencyPage"
-             BackgroundColor="{StaticResource PageBackgroundColor}">
+             BackgroundColor="{StaticResource PageBackgroundColor}"
+             x:Name="currencyPage">
     <base:ViewPageBase.Padding>
         <OnPlatform x:TypeArguments="Thickness"  iOS="0,20,0,0" />
     </base:ViewPageBase.Padding>
@@ -11,8 +15,62 @@
 
         <StackLayout>
 
-            
-            
+            <Label Text="{globalization:Translate CurrencyPageTitle}" Style="{StaticResource labelBigStyle}" />
+
+            <Grid Padding="10,0,5,0" BackgroundColor="#FFAAAAAA">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="{globalization:Translate CurrencyPageSubTitle}" Style="{StaticResource labelBigStyle}" Grid.Column="0"/>
+
+                <Frame Grid.Column="1" HorizontalOptions="End" Style="{StaticResource frameOptionStyle}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CancelPropertyCommand}" />
+                    </Frame.GestureRecognizers>
+                    <Image HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image.Source>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <OnPlatform.iOS>
+                                    <FileImageSource File="Images/cancel.png" />
+                                </OnPlatform.iOS>
+                                <OnPlatform.Android>
+                                    <FileImageSource File="cancel.png" />
+                                </OnPlatform.Android>
+                                <OnPlatform.WinPhone>
+                                    <FileImageSource File="Assets/Images/cancel.png" />
+                                </OnPlatform.WinPhone>
+                            </OnPlatform>
+                        </Image.Source>
+                    </Image>
+                </Frame>
+
+            </Grid>
+
+            <cv:CarouselViewControl x:Name="currencies"
+                Orientation="Horizontal" 
+                ShowIndicators="True"
+                InterPageSpacing="10" 
+                Position="{Binding Position}"
+                ItemsSource="{Binding Currencies}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <cv:CarouselViewControl.ItemTemplate>
+                    <DataTemplate> 
+
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.SavePropertyCommand, Source={x:Reference Name=currencyPage}}" />
+                            </Grid.GestureRecognizers>
+                            <cic:CircleImage HeightRequest="160" WidthRequest="160" BorderThickness="3" BorderColor="Goldenrod" FillColor="Gold" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <Label Text="{Binding .}" Style="{StaticResource labelSuperStyle}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Grid>
+
+                    </DataTemplate>
+                </cv:CarouselViewControl.ItemTemplate>
+            </cv:CarouselViewControl>
+
+
         </StackLayout>
 
     </base:ViewPageBase.Content>

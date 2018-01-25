@@ -10,5 +10,6 @@ namespace EveryCent.ViewModels.Base
     {
         string SelectedMonth { get; set; }
         int SelectedYear { get; set; }
+        bool MonthsVisible { get; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
 
 namespace EveryCent.iOS
@@ -24,6 +24,7 @@ namespace EveryCent.iOS
 		{
 			global::Xamarin.Forms.Forms.Init ();
             CarouselView.FormsPlugin.iOS.CarouselViewRenderer.Init();
+            ImageCircleRenderer.Init();
             LoadApplication (new EveryCent.App (new Platform.PlatformModule()));
             UITabBar.Appearance.SelectedImageTintColor = UIColor.Black;
             return base.FinishedLaunching (app, options);

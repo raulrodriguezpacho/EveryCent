@@ -1,4 +1,5 @@
 ﻿using EveryCent.Base;
+using EveryCent.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,27 @@ namespace EveryCent.Views
         public CurrencyPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            currencies.PositionSelected += PositionSelected;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            currencies.PositionSelected -= PositionSelected;
+        }
+
+        public void PositionSelected(object sender, int position)
+        {
+            if (this.BindingContext != null && this.BindingContext is CurrencyViewModel)
+            {                
+                if (((CurrencyViewModel)this.BindingContext).Position != position)
+                    ((CurrencyViewModel)this.BindingContext).Position = position;
+            }
         }
     }
 }

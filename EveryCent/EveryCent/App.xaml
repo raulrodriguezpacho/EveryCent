@@ -31,6 +31,13 @@
                 <Setter Property="TextColor" Value="Black" />
             </Style>
 
+            <Style x:Key="labelSuperStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="100" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
             <Style x:Key="frameOptionStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="WidthRequest" Value="50" />

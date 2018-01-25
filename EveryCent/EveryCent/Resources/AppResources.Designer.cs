@@ -107,6 +107,24 @@ namespace EveryCent.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a .
+        /// </summary>
+        public static string CurrencyPageSubTitle {
+            get {
+                return ResourceManager.GetString("CurrencyPageSubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select currency...
+        /// </summary>
+        public static string CurrencyPageTitle {
+            get {
+                return ResourceManager.GetString("CurrencyPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Date.
         /// </summary>
         public static string Date {

@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace EveryCent.Droid
 {
@@ -20,7 +21,8 @@ namespace EveryCent.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
-            CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();            
+            CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();
+            ImageCircleRenderer.Init();
             LoadApplication(new EveryCent.App(new Platform.PlatformModule()));            
 		}
 	}

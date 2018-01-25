@@ -4,7 +4,7 @@
              xmlns:base="clr-namespace:EveryCent.Base"
              xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
              xmlns:charting="clr-namespace:XLabs.Forms.Charting.Controls;assembly=XLabs.Forms.Charting"       
-             xmlns:controls="clr-namespace:EveryCent.Controls"
+             xmlns:controls="clr-namespace:EveryCent.Controls"             
              x:Class="EveryCent.Views.ChartPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <base:ViewPageBase.Padding>
@@ -14,7 +14,7 @@
 
         <StackLayout>
 
-            <controls:MonthYearSelectorView />
+            <controls:MonthYearSelectorView Grid.Column="1" />
 
             <charting:Chart x:Name="chart" BackgroundColor="White"
                     DataSource="{Binding ChartData, Mode=TwoWay}"
