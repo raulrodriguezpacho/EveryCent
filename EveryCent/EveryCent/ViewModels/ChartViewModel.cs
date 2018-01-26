@@ -52,7 +52,7 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private ObservableCollection<List<Tuple<string, decimal>>> _chartData;
+        private ObservableCollection<List<Tuple<string, decimal>>> _chartData = new ObservableCollection<List<Tuple<string, decimal>>>();
         public ObservableCollection<List<Tuple<string, decimal>>> ChartData
         {
             get
@@ -115,13 +115,14 @@ namespace EveryCent.ViewModels
                     var spend = movements.Where(m => !m.IsPositive && m.Date.Month == i).Sum(m => (decimal)m.Amount / 100);
                     _serieSpend.Add(new Tuple<string, decimal>(GetMonthShort(i), spend));
                 }
-
                 if (!_chartData.IsNullOrEmpty())
                     ChartData.Clear();
-                ChartData = new ObservableCollection<List<Tuple<string, decimal>>>()
-                {
-                    _serieIncome, _serieSpend
-                };
+                ChartData.Add(_serieIncome);
+                ChartData.Add(_serieSpend);
+                //ChartData = new ObservableCollection<List<Tuple<string, decimal>>>()
+                //{
+                //    _serieIncome, _serieSpend
+                //};
             }
             catch { }
         }

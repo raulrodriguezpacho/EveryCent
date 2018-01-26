@@ -13,7 +13,8 @@ namespace EveryCent
         {
             "€",
             "$",            
-            "£"            
+            "£",
+            ""
         };        
 
         static EveryCentDatabase database;

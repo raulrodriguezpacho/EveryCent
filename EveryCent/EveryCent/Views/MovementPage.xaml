@@ -22,9 +22,9 @@
 
         <StackLayout>
 
-            <Label Text="{globalization:Translate MovementPageTitle}" Style="{StaticResource labelBigStyle}" />
+            <Label Text="{globalization:Translate MovementPageTitle}" Style="{StaticResource labelBigStyle}" TextColor="White"/>
 
-            <Grid Padding="10,0,5,0" BackgroundColor="#FFAAAAAA">
+            <Grid Padding="10,0,5,0" BackgroundColor="LightGray">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -80,14 +80,14 @@
 
             <ScrollView>
 
-                <Grid Margin="0,0,0,5" Padding="10,0,5,0">
+                <Grid Margin="0,10,0,5" Padding="10,0,5,0">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".5*" />
                         <ColumnDefinition Width=".5*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="40" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -96,7 +96,7 @@
                     </Grid.RowDefinitions>
 
                     <Label Text="{Binding AmountLabel}" Style="{StaticResource labelMedStyle}" Grid.Row="0" Grid.Column="0"/>
-                    <Entry Text="{Binding Amount}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1"
+                    <Entry Text="{Binding Amount}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1" HeightRequest="30"
                         Style="{StaticResource entryStyle}">
                         <Entry.Behaviors>
                             <behaviors:EntryDecimalValidatorBehavior MaxLength="16" />
@@ -115,7 +115,7 @@
                     <Label Text="{globalization:Translate Details}" Grid.Row="4" Grid.Column="0" Style="{StaticResource labelMedStyle}" />
                     <Label Text="{Binding Description, Converter={StaticResource DescriptionToCharsLeftConverter}, ConverterParameter=100}" Grid.Row="4" Grid.Column="1" Margin="0,0,5,0"
                         Style="{StaticResource labelMiniStyle}" HorizontalOptions="End" VerticalOptions="End" TextColor="Gray" />
-                    <Editor Text="{Binding Description}" HeightRequest="100" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,5,0"
+                    <Editor Text="{Binding Description}" HeightRequest="60" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,5,0"
                         Style="{StaticResource editorStyle}">
                         <Editor.Behaviors>
                             <behaviors:EditorLengthValidatorBehavior MaxLength="100" />

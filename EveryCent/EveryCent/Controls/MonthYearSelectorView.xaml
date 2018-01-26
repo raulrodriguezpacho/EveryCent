@@ -13,11 +13,11 @@
     </ContentView.Resources>
     <ContentView.Content>
 
-        <Frame OutlineColor="Black" CornerRadius="5" Margin="5" Padding="5,0,5,0">
-            
-            <Grid Padding="0,2,5,2">
+        <Frame OutlineColor="Black" CornerRadius="5" HeightRequest="40" Padding="10,5,10,5" Margin="5,5,5,0">
+
+            <Grid BackgroundColor="White">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".5*" />
@@ -62,5 +62,6 @@
 
             </Grid>
         </Frame>
+        
     </ContentView.Content>
 </ContentView>

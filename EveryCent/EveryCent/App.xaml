@@ -8,7 +8,7 @@
 
             <Color x:Key="PageTextColor">Black</Color>
             <Color x:Key="PageSelectedTextColor">White</Color>
-            <Color x:Key="PageBackgroundColor">#FFEEEEEE</Color>
+            <Color x:Key="PageBackgroundColor">DarkGray</Color>
 
             <Style x:Key="labelMiniStyle" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Start" />

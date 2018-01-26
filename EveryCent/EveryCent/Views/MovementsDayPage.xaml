@@ -76,15 +76,18 @@
 
         <StackLayout>
 
-            <Label Text="{globalization:Translate MovementsDayPageTitle}" Style="{StaticResource labelBigStyle}" />
+            <Label Text="{globalization:Translate MovementsDayPageTitle}" Style="{StaticResource labelBigStyle}" TextColor="White" />
 
-            <Grid Padding="10,0,5,0" BackgroundColor="#FFAAAAAA">
+            <Grid Padding="10,0,5,0" BackgroundColor="LightGray">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
 
                 <Label Text="{Binding Day, Converter={StaticResource DayToDateConverter}}" Style="{StaticResource labelBigStyle}" Grid.Column="0"/>
 

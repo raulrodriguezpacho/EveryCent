@@ -80,21 +80,24 @@
 
             <controls:MonthYearBalanceView />
 
-            <Grid Margin="0,0,0,5" Padding="5,0,5,0" BackgroundColor="#FFAAAAAA">
+            <Grid Padding="5,0,5,0" BackgroundColor="LightGray">
                 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
 
                 <SearchBar Placeholder="..."  Text="{Binding SearchText, Mode=TwoWay}" WidthRequest="200" Grid.Column="0"
-                    BackgroundColor="White" TextColor="Black" HeightRequest="40" VerticalOptions="CenterAndExpand">
+                    BackgroundColor="White" TextColor="Black" HeightRequest="48" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                     <SearchBar.Behaviors>
                         <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding FindMovementCommand}" />
                     </SearchBar.Behaviors>
                 </SearchBar>
 
-                <Frame Grid.Column="1" HorizontalOptions="End" Style="{StaticResource frameOptionStyle}" HeightRequest="56">
+                <Frame Grid.Column="1" HorizontalOptions="End" Style="{StaticResource frameOptionStyle}" HeightRequest="50">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToMovementCommand}" CommandParameter="Add" />
                     </Frame.GestureRecognizers>
@@ -123,7 +126,7 @@
                 RefreshCommand="{Binding RefreshCommand}"
                 HasUnevenRows="True" 
                 SeparatorColor="Black" SeparatorVisibility="Default"
-                ItemTemplate="{StaticResource ListDataTemplateSelector}"
+                ItemTemplate="{StaticResource ListDataTemplateSelector}" VerticalOptions="StartAndExpand"
                 >
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior EventName="ItemTapped" 
