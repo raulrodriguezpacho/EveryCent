@@ -144,11 +144,37 @@ namespace EveryCent.Converters
         }
     }
 
-    public class BalanceToColorConverter : IValueConverter
+    public class BalanceIsPositiveToColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return ((bool)value ? Color.Green : Color.Red);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class BalanceToColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+                return Color.DarkGray;
+
+            Balance balance = (Balance)value;
+            if (balance.IsPositive)
+            {
+                return Color.Green;
+            }
+            else if (balance.Income - balance.Spend == 0)
+            {
+                return Color.DarkGray;
+            }
+            else
+                return Color.Red;            
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

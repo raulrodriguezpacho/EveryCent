@@ -10,9 +10,8 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-
-        <Grid BackgroundColor="{Binding Path=Balance.IsPositive, Converter={StaticResource BalanceToColorConverter}}" Padding="10,5,10,5"
-            HorizontalOptions="FillAndExpand">
+        
+        <Grid BackgroundColor="{Binding Path=Balance, Converter={StaticResource BalanceToColorConverter}}" Padding="10,5,10,5" HorizontalOptions="FillAndExpand">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
