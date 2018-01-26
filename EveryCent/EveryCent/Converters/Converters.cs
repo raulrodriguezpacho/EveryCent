@@ -124,10 +124,13 @@ namespace EveryCent.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+                return "";
+
             var balance = ((Balance)value).Income - ((Balance)value).Spend;
             var sign = "";
             if (balance > 0)
-                sign = "+ ";
+                sign = "+";
             else if (balance < 0)
                 sign = "";
             //return sign + decimal.Parse((((Balance)value).Income - ((Balance)value).Spend).ToString()).ToString("N2") + " " +

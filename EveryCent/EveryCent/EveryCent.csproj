@@ -105,7 +105,7 @@
     <Compile Include="Services\Repository\IRepository.cs" />
     <Compile Include="Services\Repository\MovementMockRepository.cs" />
     <Compile Include="Services\Repository\MovementRepository.cs" />
-    <Compile Include="Services\Repository\Respository.cs" />
+    <Compile Include="Services\Repository\Repository.cs" />
     <Compile Include="TemplatesSelector\CalendarDataTemplateSelector.cs" />
     <Compile Include="TemplatesSelector\ListDataTemplateSelector.cs" />
     <Compile Include="Triggers\DeselectListViewItemAction.cs" />

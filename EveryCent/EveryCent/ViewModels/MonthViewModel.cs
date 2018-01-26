@@ -49,7 +49,8 @@ namespace EveryCent.ViewModels
                     _selectedMonth = value;
                     OnPropertyChanged("SelectedMonth");
                     if (_position != Months.IndexOf(_selectedMonth))                    
-                        Position = Months.IndexOf(_selectedMonth);                                        
+                        Position = Months.IndexOf(_selectedMonth);                    
+                    GetBalance();
                 }                
             }
         }
@@ -64,7 +65,8 @@ namespace EveryCent.ViewModels
                 {
                     _selectedYear = value;
                     OnPropertyChanged("SelectedYear");
-                    ShowMonthMovements(GetMonth(_selectedMonth), value);
+                    ShowMonthMovements(GetMonth(_selectedMonth), value);                    
+                    GetBalance();
                 }                
             }
         }
@@ -78,7 +80,7 @@ namespace EveryCent.ViewModels
                 if (_position != value)
                 {
                     _position = value;
-                    OnPropertyChanged("Position");
+                    OnPropertyChanged("Position");                    
                 }
             }
         }
@@ -161,10 +163,16 @@ namespace EveryCent.ViewModels
 
             ShowDayLetters();
             ShowMonthMovements(GetMonth(_selectedMonth), _selectedYear);
+            GetBalance();
 
             MessagingCenter.Subscribe<ViewModelBase, string>(this, "currency", (sender, arg) =>
             {
                 CurrentCurrency = arg;
+            });
+            MessagingCenter.Subscribe<Movement>(this, "movement", (sender) =>
+            {
+                ShowMonthMovements(GetMonth(_selectedMonth), _selectedYear);
+                GetBalance();
             });
         }
 
@@ -252,16 +260,16 @@ namespace EveryCent.ViewModels
                 DayOfWeek diaSemana = firstDayOfMonth.DayOfWeek;
                 int monthDays = DateTime.DaysInMonth(year, month);
                 
-                var movements = _repositoryService.GetByMonth(GetMonth(_selectedMonth), _selectedYear);
+                var movements = _repositoryService.GetByMonth(month, year);
 
-                var income = movements.Where(m => m.IsPositive).Sum(m => (decimal)m.Amount / 100);
-                var spend = movements.Where(m => !m.IsPositive).Sum(m => (decimal)m.Amount / 100);
-                Balance = new Balance()
-                {
-                    Income = income,
-                    Spend = spend,
-                    IsPositive = income - spend > 0
-                };                
+                //var income = movements.Where(m => m.IsPositive).Sum(m => (decimal)m.Amount / 100);
+                //var spend = movements.Where(m => !m.IsPositive).Sum(m => (decimal)m.Amount / 100);
+                //Balance = new Balance()
+                //{
+                //    Income = income,
+                //    Spend = spend,
+                //    IsPositive = income - spend > 0
+                //};                
 
                 for (int i = 0; i < BlankDays(diaSemana); i++)
                 {
@@ -285,6 +293,23 @@ namespace EveryCent.ViewModels
             }
             catch { }
             return days;
-        }        
+        }
+        
+        private void GetBalance()
+        {
+            try
+            {
+                var movements = _repositoryService.GetByMonth(GetMonth(_selectedMonth), _selectedYear);
+                var income = movements.Where(m => m.IsPositive).Sum(m => (decimal)m.Amount / 100);
+                var spend = movements.Where(m => !m.IsPositive).Sum(m => (decimal)m.Amount / 100);
+                Balance = new Balance()
+                {
+                    Income = income,
+                    Spend = spend,
+                    IsPositive = income - spend > 0
+                };
+            }
+            catch { }
+        }
     }       
 }

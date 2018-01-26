@@ -31,7 +31,7 @@ namespace EveryCent
 
         public App(IModule platformModule)
         {            
-            LocatorBase.Register(platformModule, true); // NOW MOCKING!!
+            LocatorBase.Register(platformModule, false);
             InitializeComponent();
             SetLanguage();                        
             MainPage = new DashboardPage();            

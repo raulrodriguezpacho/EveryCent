@@ -94,10 +94,11 @@ namespace EveryCent.ViewModels
         {
             get
             {
-                return _deleteMovementCommand ?? (_deleteMovementCommand = new Command((param) =>
+                return _deleteMovementCommand ?? (_deleteMovementCommand = new Command(async (param) =>
                 {
-                    _repositoryService.DeleteAsync((Movement)param);
+                    await _repositoryService.DeleteAsync((Movement)param);
                     GetData(_day);
+                    MessagingCenter.Send<Movement>((Movement)param, "movement");
                 }));
             }
         }
@@ -117,6 +118,10 @@ namespace EveryCent.ViewModels
                     GetData(_day);
                 }
             }
+            MessagingCenter.Subscribe<Movement>(this, "movement", (sender) =>
+            {
+                GetData(_day);
+            });
         }
 
         private void GetData(Day day)

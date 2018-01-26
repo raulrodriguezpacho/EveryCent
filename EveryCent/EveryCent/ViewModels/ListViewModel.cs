@@ -69,6 +69,7 @@ namespace EveryCent.ViewModels
                 _selectedMonth = value;
                 OnPropertyChanged("SelectedMonth");
                 OnPropertyChanged("Movements");
+                GetBalance();
             }
         }
 
@@ -81,6 +82,7 @@ namespace EveryCent.ViewModels
                 _selectedYear = value;
                 OnPropertyChanged("SelectedYear");
                 OnPropertyChanged("Movements");
+                GetBalance();
             }
         }
 
@@ -151,10 +153,11 @@ namespace EveryCent.ViewModels
         {
             get
             {
-                return _deleteMovementCommand ?? (_deleteMovementCommand = new Command((param) =>
+                return _deleteMovementCommand ?? (_deleteMovementCommand = new Command(async (param) =>
                 {
-                    _repositoryService.DeleteAsync((Movement)param);
+                    await _repositoryService.DeleteAsync((Movement)param);
                     RefreshCommand.Execute(null);
+                    GetBalance();
                 }));
             }
         }
@@ -167,10 +170,17 @@ namespace EveryCent.ViewModels
             _navigationService = navigationService;
             _repositoryService = repositoryService;
 
+            GetBalance();
+
             MessagingCenter.Subscribe<ViewModelBase, string>(this, "currency", (sender, arg) =>
             {
                 CurrentCurrency = arg;
                 RefreshCommand.Execute(null);
+            });
+            MessagingCenter.Subscribe<Movement>(this, "movement", (sender) =>
+            {
+                RefreshCommand.Execute(null);
+                GetBalance();
             });
         }        
 
@@ -180,25 +190,31 @@ namespace EveryCent.ViewModels
             if (string.IsNullOrEmpty(_searchText))
             {
                 movements = _repositoryService.GetByMonth(GetMonth(_selectedMonth), _selectedYear).ToObservableCollection();
-
             }                
             else
             {
                 movements = (from M in _repositoryService.GetByMonth(GetMonth(_selectedMonth), _selectedYear)
                     where M.Description.ToLower().Contains(_searchText.ToLower())
                     select M).ToObservableCollection();
-            }
-
-            var income = movements.Where(m => m.IsPositive).Sum(m => (decimal)m.Amount / 100);
-            var spend = movements.Where(m => !m.IsPositive).Sum(m => (decimal)m.Amount / 100);
-            Balance = new Balance()
-            {
-                Income = income,
-                Spend = spend,
-                IsPositive = income - spend > 0
-            };
-
+            }            
             return movements;
+        }
+
+        private void GetBalance()
+        {
+            try
+            {
+                var movements = _repositoryService.GetByMonth(GetMonth(_selectedMonth), _selectedYear);
+                var income = movements.Where(m => m.IsPositive).Sum(m => (decimal)m.Amount / 100);
+                var spend = movements.Where(m => !m.IsPositive).Sum(m => (decimal)m.Amount / 100);
+                Balance = new Balance()
+                {
+                    Income = income,
+                    Spend = spend,
+                    IsPositive = income - spend > 0
+                };
+            }
+            catch { }
         }
     }
 }

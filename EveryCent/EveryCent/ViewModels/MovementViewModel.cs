@@ -102,13 +102,20 @@ namespace EveryCent.ViewModels
         {
             get
             {
-                return _saveCommand ?? (_saveCommand = new Command(() =>
+                return _saveCommand ?? (_saveCommand = new Command(async() =>
                 {
                     var keyboardService = LocatorBase.Resolve<IKeyboardService>();
                     keyboardService.HideKeyboard();
-
-                    decimal amountResult = decimal.Zero;
+                    int result = 0;
+                    decimal amountResult = decimal.Zero;                    
                     var ret = decimal.TryParse(_amount, out amountResult);
+                    Movement movement = new Movement()
+                    {
+                        Amount = (int)(amountResult * 100),
+                        Date = Date,
+                        IsPositive = IsPositive,
+                        Description = Description
+                    };
                     if (!ret)
                     {
                         ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.NotDecimalMsg, Resources.AppResources.Ok);
@@ -119,42 +126,29 @@ namespace EveryCent.ViewModels
                         ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.AmountZeroMsg, Resources.AppResources.Ok);
                         return;
                     }
-
                     if (_movementID == 0)
                     {
-                        var result = _repositoryService.InsertAsync(new Model.Movement()
-                        {
-                            Amount = (int)(amountResult * 100),
-                            Date = Date,
-                            IsPositive = IsPositive,
-                            Description = Description
-                        });
-                        if (result.Result == 1)
-                        {
-                            ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.MovementInsertedMsg, Resources.AppResources.Ok);
-                            _navigationService.NavigateBackAsync();
+                        result = await _repositoryService.InsertAsync(movement);
+                        if (result == 1)
+                        {                            
+                            await _navigationService.NavigateBackAsync();
                         }
                         else
                             ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.MovementErrorSavingMsg, Resources.AppResources.Ok);
                     }
                     else
                     {
-                        var result = _repositoryService.UpdateAsync(new Model.Movement()
-                        {
-                            ID = _movementID,
-                            Amount = (int)(amountResult * 100),
-                            Date = Date,
-                            IsPositive = IsPositive,
-                            Description = Description
-                        });
-                        if (result.Result == 1)
-                        {
-                            ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.MovementUpdatedMsg, Resources.AppResources.Ok);
-                            _navigationService.NavigateBackAsync();
+                        movement.ID = _movementID;
+                        result = await _repositoryService.UpdateAsync(movement);
+                        if (result == 1)
+                        {                            
+                            await _navigationService.NavigateBackAsync();
                         }
                         else
                             ShowAlert(Resources.AppResources.MovementSavingTitle, Resources.AppResources.MovementErrorSavingMsg, Resources.AppResources.Ok);
-                    }                                                        
+                    }
+                    if (result == 1)
+                        MessagingCenter.Send<Movement>(movement, "movement");
                 }));
             }
         }
