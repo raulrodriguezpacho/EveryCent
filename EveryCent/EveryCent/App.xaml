@@ -51,8 +51,8 @@
             </Style>
 
             <Style x:Key="entryStyle" TargetType="Entry">
-                <Setter Property="BackgroundColor" Value="White" />
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="White" />
                 <Setter Property="FontSize" Value="16" />
             </Style>
 

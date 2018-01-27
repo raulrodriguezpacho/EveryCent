@@ -13,15 +13,15 @@
     </ContentView.Resources>
     <ContentView.Content>
 
-        <Frame OutlineColor="Black" CornerRadius="5" HeightRequest="40" Padding="10,5,10,5" Margin="5,5,5,0">
+        <Frame CornerRadius="5" HeightRequest="40" Padding="10,5,10,5" Margin="5,5,5,0">
 
             <Grid BackgroundColor="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width=".5*" />
-                    <ColumnDefinition Width=".5*" />
+                    <ColumnDefinition Width=".65*" />
+                    <ColumnDefinition Width=".35*" />
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0" IsVisible="{Binding MonthsVisible}">
@@ -29,7 +29,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="{globalization:Translate MonthSelect}" Grid.Column="0" VerticalOptions="Center" />
+                    <Label Text="{globalization:Translate MonthSelect}" Grid.Column="0" VerticalOptions="Center" TextColor="DarkGray" />
                     <controls:BindablePicker Grid.Column="1"                        
                         BackgroundColor="White"
                         TextColor="Black"
@@ -42,7 +42,14 @@
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToCurrencyCommand}"/>
                     </Grid.GestureRecognizers>
-                    <cic:CircleImage HeightRequest="50" WidthRequest="50" BorderThickness="1" BorderColor="Goldenrod" FillColor="Gold" />
+                    <cic:CircleImage BorderThickness="1" BorderColor="Goldenrod" FillColor="Gold">
+                        <cic:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android="50" iOS="40" />
+                        </cic:CircleImage.HeightRequest>
+                        <cic:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android="50" iOS="40" />
+                        </cic:CircleImage.WidthRequest>
+                    </cic:CircleImage>
                     <Label Text="{Binding CurrentCurrency}" Style="{StaticResource labelBigStyle}" VerticalOptions="Center" HorizontalOptions="Center"/>
                 </Grid>
 
@@ -51,7 +58,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="{globalization:Translate YearSelect}" Grid.Column="0" VerticalOptions="Center" />
+                    <Label Text="{globalization:Translate YearSelect}" Grid.Column="0" VerticalOptions="Center" TextColor="DarkGray"/>
                     <controls:BindablePicker  Grid.Column="1"                    
                         BackgroundColor="White"
                         TextColor="Black"

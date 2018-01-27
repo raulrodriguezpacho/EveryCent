@@ -18,7 +18,7 @@ namespace EveryCent.Droid
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            await Task.Delay(2000);
+            await Task.Delay(1000);
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
     }

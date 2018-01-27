@@ -7,7 +7,7 @@
              x:Class="EveryCent.Views.DashboardPage"
              BackgroundColor="{StaticResource PageBackgroundColor}" BarBackgroundColor="#FFDDDDDD" BarTextColor="Black">
     <renderers:CustomTabbedPage.Children>
-        <!--<views:ChartPage Title="{globalization:Translate Graph}">
+        <views:ChartPage Title="{globalization:Translate Graph}">
             <views:ChartPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <OnPlatform.iOS>
@@ -21,7 +21,7 @@
                     </OnPlatform.WinPhone>
                 </OnPlatform>
             </views:ChartPage.Icon>
-        </views:ChartPage>-->
+        </views:ChartPage>
         <views:ListPage Title="{globalization:Translate List}">
             <views:ListPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">

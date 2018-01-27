@@ -158,6 +158,7 @@ namespace EveryCent.ViewModels
                     await _repositoryService.DeleteAsync((Movement)param);
                     RefreshCommand.Execute(null);
                     GetBalance();
+                    MessagingCenter.Send<Movement>((Movement)param, "movement");
                 }));
             }
         }
