@@ -30,6 +30,8 @@ namespace EveryCent
             }
         }
 
+        public static int TabHeight { get; set; }
+
         public App(IModule platformModule)
         {            
             LocatorBase.Register(platformModule, false);

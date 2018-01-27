@@ -14,11 +14,12 @@
 
         <StackLayout>
 
-            <controls:MonthYearSelectorView Grid.Column="1" />
+            <controls:MonthYearSelectorView />
 
             <charting:Chart x:Name="chart" BackgroundColor="White"
                     DataSource="{Binding ChartData, Mode=TwoWay}"
-                    HeightRequest="300"
+                    HeightRequest="{Binding HeightChart}"
+                    WidthRequest="{Binding WidthChart}"
                     Spacing="10"
                     XPath="Item1"
                     YPath="Item2"                 

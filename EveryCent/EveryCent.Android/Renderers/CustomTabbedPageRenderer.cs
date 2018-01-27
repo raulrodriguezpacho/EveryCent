@@ -14,11 +14,12 @@ using Android.Support.V4.View;
 using Android.Views;
 using Android.Widget;
 using EveryCent.Droid.Renderers;
+using EveryCent.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms.Platform.Android.AppCompat;
 
-[assembly: ExportRenderer(typeof(TabbedPage), typeof(CustomTabbedPageRenderer))]
+[assembly: ExportRenderer(typeof(CustomTabbedPage), typeof(CustomTabbedPageRenderer))]
 namespace EveryCent.Droid.Renderers
 {
     public class CustomTabbedPageRenderer : TabbedPageRenderer
@@ -36,7 +37,7 @@ namespace EveryCent.Droid.Renderers
             if (e.NewElement != null)
             {
                 e.NewElement.PropertyChanged += OnElementPropertyChanged;
-            }                        
+            }                  
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -45,7 +46,7 @@ namespace EveryCent.Droid.Renderers
             if (e.PropertyName == "Renderer")
             {
                 _pager = (ViewPager)ViewGroup.GetChildAt(0);
-                _layout = (TabLayout)ViewGroup.GetChildAt(1);
+                _layout = (TabLayout)ViewGroup.GetChildAt(1);                
                 ColorStateList colors = null;
                 if ((int)Build.VERSION.SdkInt >= 23)
                 {
@@ -66,6 +67,6 @@ namespace EveryCent.Droid.Renderers
                     }
                 }
             }              
-        }        
+        }       
     }
 }

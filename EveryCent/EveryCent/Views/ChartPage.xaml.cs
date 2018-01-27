@@ -10,14 +10,6 @@ namespace EveryCent.Views
         public ChartPage()
         {
             InitializeComponent();            
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            var size = LocatorBase.Resolve<IDeviceService>();
-            chart.WidthRequest = size.GetDeviceSize().Width * 2 -  chart.Spacing; // ??            
-        }
+        }        
     }
 }
