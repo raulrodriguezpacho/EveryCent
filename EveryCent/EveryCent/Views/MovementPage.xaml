@@ -22,7 +22,7 @@
 
         <StackLayout>
 
-            <Label Text="{globalization:Translate MovementPageTitle}" Style="{StaticResource labelBigStyle}" TextColor="White"/>
+            <Label Text="{globalization:Translate MovementPageTitle}" Style="{StaticResource labelBigStyle}" />
 
             <Grid Padding="10,0,5,0" BackgroundColor="LightGray">
 
@@ -116,7 +116,8 @@
                 <Label Text="{Binding Description, Converter={StaticResource DescriptionToCharsLeftConverter}, ConverterParameter=100}" Grid.Row="4" Grid.Column="1" Margin="0,0,5,0"
                         Style="{StaticResource labelMiniStyle}" HorizontalOptions="End" VerticalOptions="End" TextColor="Gray" />
                 <Editor Text="{Binding Description}" HeightRequest="60" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
-                        Style="{StaticResource editorStyle}">
+                    Style="{StaticResource editorStyle}"
+                    BackgroundColor="{Binding IsPositive, Converter={StaticResource IsPositiveToColorConverter}}">
                     <Editor.Behaviors>
                         <behaviors:EditorLengthValidatorBehavior MaxLength="100" />
                     </Editor.Behaviors>
@@ -124,7 +125,7 @@
 
             </Grid>
 
-            <Grid BackgroundColor="DarkGray" HorizontalOptions="End" VerticalOptions="EndAndExpand">
+            <Grid BackgroundColor="White" HorizontalOptions="End" VerticalOptions="EndAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />
                 </Grid.RowDefinitions>

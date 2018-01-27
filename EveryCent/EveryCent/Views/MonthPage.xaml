@@ -25,7 +25,7 @@
             </DataTemplate>
             <DataTemplate x:Key="DayNoneTemplate">
                 <ViewCell>
-                    <Frame CornerRadius="5" BackgroundColor="White" HasShadow="False"
+                    <Frame CornerRadius="5" BackgroundColor="White" HasShadow="True"
                         VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
                         <Label Text="{Binding Number}" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
                     </Frame>
@@ -86,13 +86,13 @@
                     <ColumnDefinition Width=".14*" />
                     <ColumnDefinition Width=".14*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="{Binding DayLetters[1]}" Grid.Column="0" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
-                <Label Text="{Binding DayLetters[2]}" Grid.Column="1" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
-                <Label Text="{Binding DayLetters[3]}" Grid.Column="2" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
-                <Label Text="{Binding DayLetters[4]}" Grid.Column="3" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
-                <Label Text="{Binding DayLetters[5]}" Grid.Column="4" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
-                <Label Text="{Binding DayLetters[6]}" Grid.Column="5" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
-                <Label Text="{Binding DayLetters[0]}" Grid.Column="6" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
+                <Label Text="{Binding DayLetters[1]}" Grid.Column="0" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[2]}" Grid.Column="1" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[3]}" Grid.Column="2" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[4]}" Grid.Column="3" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[5]}" Grid.Column="4" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[6]}" Grid.Column="5" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="{Binding DayLetters[0]}" Grid.Column="6" Style="{StaticResource labelMiniStyle}" HorizontalOptions="Center" VerticalOptions="Center" />
             </Grid>
 
             <cv:CarouselViewControl x:Name="meses" BackgroundColor="Transparent"
@@ -119,7 +119,7 @@
                 </cv:CarouselViewControl.ItemTemplate>
             </cv:CarouselViewControl>
 
-            <Grid BackgroundColor="DarkGray" HorizontalOptions="End" VerticalOptions="EndAndExpand">
+            <Grid BackgroundColor="White" HorizontalOptions="End" VerticalOptions="EndAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />
                 </Grid.RowDefinitions>

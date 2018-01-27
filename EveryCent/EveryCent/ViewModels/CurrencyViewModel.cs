@@ -12,7 +12,8 @@ namespace EveryCent.ViewModels
 {
     public class CurrencyViewModel: ViewModelBase
     {
-        private readonly INavigationService _navigationService;        
+        private readonly INavigationService _navigationService;
+        private readonly IDeviceService _deviceService;
 
         public string[] Currencies
         {
@@ -33,6 +34,28 @@ namespace EveryCent.ViewModels
                     _position = value;
                     OnPropertyChanged("Position");
                 }
+            }
+        }
+
+        private double _heightCoin = 0;
+        public double HeightCoin
+        {
+            get { return _heightCoin; }
+            set
+            {
+                _heightCoin = value;
+                OnPropertyChanged("HeightCoin");
+            }
+        }
+
+        private double _widthtCoin = 0;
+        public double WidthCoin
+        {
+            get { return _widthtCoin; }
+            set
+            {
+                _widthtCoin = value;
+                OnPropertyChanged("WidthCoin");
             }
         }
 
@@ -64,10 +87,15 @@ namespace EveryCent.ViewModels
         }
 
         public CurrencyViewModel(
-            INavigationService navigationService            
+            INavigationService navigationService,
+            IDeviceService deviceService
             )
         {
-            _navigationService = navigationService;                        
+            _navigationService = navigationService;
+            _deviceService = deviceService;
+
+            var size = _deviceService.GetDeviceSize();
+            WidthCoin = HeightCoin = size.Width - size.Width * 5 / 10;
         }
     }
 }

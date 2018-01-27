@@ -39,7 +39,7 @@
                         <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}, ConverterParameter=P}" Style="{StaticResource labelMedStyle}" Grid.Column="1" Grid.Row="0" 
                             HorizontalOptions="End" TextColor="Green"/>
                         <Label Text="{Binding Description}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource labelMiniStyle}" TextColor="Black" 
-                            HorizontalOptions="StartAndExpand"/>
+                            HorizontalOptions="EndAndExpand"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>
@@ -61,7 +61,7 @@
                         <Label Text="{Binding Amount, Converter={StaticResource IntlToTwoDecimalPlacesConverter}, ConverterParameter=N}" Style="{StaticResource labelMedStyle}" Grid.Column="1" Grid.Row="0" 
                             HorizontalOptions="End" TextColor="Red"/>
                         <Label Text="{Binding Description}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource labelMiniStyle}" TextColor="Black" 
-                            HorizontalOptions="StartAndExpand"/>
+                            HorizontalOptions="EndAndExpand"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>
@@ -76,7 +76,7 @@
 
         <StackLayout>
 
-            <Label Text="{globalization:Translate MovementsDayPageTitle}" Style="{StaticResource labelBigStyle}" TextColor="White" />
+            <Label Text="{globalization:Translate MovementsDayPageTitle}" Style="{StaticResource labelBigStyle}" />
 
             <Grid Padding="10,0,5,0" BackgroundColor="LightGray">
 
@@ -140,7 +140,7 @@
             <ListView ItemsSource="{Binding Movements}" BackgroundColor="White"
                 IsPullToRefreshEnabled="False"                
                 HasUnevenRows="True" 
-                SeparatorColor="Black" SeparatorVisibility="Default"
+                SeparatorColor="LightGray" SeparatorVisibility="Default"
                 ItemTemplate="{StaticResource ListDataTemplateSelector}"
                 >
                 <ListView.Behaviors>
@@ -155,7 +155,7 @@
                 </ListView.Triggers>
             </ListView>
 
-            <Grid BackgroundColor="DarkGray" HorizontalOptions="End" VerticalOptions="End">
+            <Grid BackgroundColor="White" HorizontalOptions="End" VerticalOptions="End">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />
                 </Grid.RowDefinitions>

@@ -15,16 +15,16 @@
 
         <StackLayout>
 
-            <Label Text="{globalization:Translate CurrencyPageTitle}" Style="{StaticResource labelBigStyle}" />
+            <Label Text="" Style="{StaticResource labelBigStyle}" />
 
-            <Grid Padding="10,0,5,0" BackgroundColor="#FFAAAAAA">
+            <Grid Padding="10,0,5,0" BackgroundColor="LightGray">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="{globalization:Translate CurrencyPageSubTitle}" Style="{StaticResource labelBigStyle}" Grid.Column="0"/>
+                <Label Text="{globalization:Translate CurrencyPageTitle}" Style="{StaticResource labelBigStyle}" Grid.Column="0"/>
 
                 <Frame Grid.Column="1" HorizontalOptions="End" Style="{StaticResource frameOptionStyle}">
                     <Frame.GestureRecognizers>
@@ -62,7 +62,10 @@
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path=BindingContext.SavePropertyCommand, Source={x:Reference Name=currencyPage}}" />
                             </Grid.GestureRecognizers>
-                            <cic:CircleImage HeightRequest="160" WidthRequest="160" BorderThickness="3" BorderColor="Goldenrod" FillColor="Gold" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <cic:CircleImage 
+                                HeightRequest="{Binding Path=BindingContext.HeightCoin, Source={x:Reference Name=currencyPage}}" 
+                                WidthRequest="{Binding Path=BindingContext.WidthCoin, Source={x:Reference Name=currencyPage}}" 
+                                BorderThickness="3" BorderColor="Goldenrod" FillColor="Gold" VerticalOptions="Center" HorizontalOptions="Center" />
                             <Label Text="{Binding .}" Style="{StaticResource labelSuperStyle}" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </Grid>
 
@@ -70,7 +73,7 @@
                 </cv:CarouselViewControl.ItemTemplate>
             </cv:CarouselViewControl>
 
-            <Grid BackgroundColor="DarkGray" HorizontalOptions="End" VerticalOptions="EndAndExpand">
+            <Grid BackgroundColor="White" HorizontalOptions="End" VerticalOptions="EndAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />
                 </Grid.RowDefinitions>
