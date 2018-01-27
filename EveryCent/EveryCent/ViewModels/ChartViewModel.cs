@@ -52,7 +52,7 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private ObservableCollection<List<Tuple<string, decimal>>> _chartData = new ObservableCollection<List<Tuple<string, decimal>>>();
+        private ObservableCollection<List<Tuple<string, decimal>>> _chartData;// = new ObservableCollection<List<Tuple<string, decimal>>>();
         public ObservableCollection<List<Tuple<string, decimal>>> ChartData
         {
             get
@@ -100,12 +100,8 @@ namespace EveryCent.ViewModels
 
         private void TransformToChartData(IList<Movement> movements)
         {
-            if (movements.IsNullOrEmpty())
-                return;
-
             _serieIncome.Clear();
             _serieSpend.Clear();
-
             try
             {
                 for (int i = 1; i <= 12; i++)
@@ -117,12 +113,13 @@ namespace EveryCent.ViewModels
                 }
                 if (!_chartData.IsNullOrEmpty())
                     ChartData.Clear();
-                ChartData.Add(_serieIncome);
-                ChartData.Add(_serieSpend);
-                //ChartData = new ObservableCollection<List<Tuple<string, decimal>>>()
-                //{
-                //    _serieIncome, _serieSpend
-                //};
+                //ChartData.Add(_serieIncome);
+                //ChartData.Add(_serieSpend);
+                ChartData = null;
+                ChartData = new ObservableCollection<List<Tuple<string, decimal>>>()
+                {
+                    _serieIncome, _serieSpend
+                };
             }
             catch { }
         }

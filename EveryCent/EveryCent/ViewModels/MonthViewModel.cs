@@ -85,7 +85,7 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private double _sizeCalendarDay = 50;
+        private double _sizeCalendarDay = 0;
         public double SizeCalendarDay
         {
             get { return _sizeCalendarDay; }
@@ -96,7 +96,7 @@ namespace EveryCent.ViewModels
             }
         }
 
-        private double _heightCalendar = 6 * 50;
+        private double _heightCalendar = 0;
         public double HeightCalendar
         {
             get { return _heightCalendar; }
@@ -104,6 +104,17 @@ namespace EveryCent.ViewModels
             {
                 _heightCalendar = value;
                 OnPropertyChanged("HeightCalendar");
+            }
+        }
+
+        private double _widthtCalendar = 0;
+        public double WidthCalendar
+        {
+            get { return _widthtCalendar; }
+            set
+            {
+                _widthtCalendar = value;
+                OnPropertyChanged("WidthCalendar");
             }
         }
 
@@ -161,6 +172,8 @@ namespace EveryCent.ViewModels
             _repositoryService = repositoryService;
             _deviceService = deviceService;
 
+            SetCalendar();
+
             ShowDayLetters();
             ShowMonthMovements(GetMonth(_selectedMonth), _selectedYear);
             GetBalance();
@@ -174,6 +187,28 @@ namespace EveryCent.ViewModels
                 ShowMonthMovements(GetMonth(_selectedMonth), _selectedYear);
                 GetBalance();
             });
+        }
+
+        private void SetCalendar()
+        {
+            Size deviceSize = _deviceService.GetDeviceSize();            
+            if (deviceSize.Width / 7 > 50)
+            {
+                _sizeCalendarDay = 50;
+            }
+            else if (deviceSize.Width / 7 > 40)
+            {
+                _sizeCalendarDay = 40;
+            }
+            else
+            {
+                _sizeCalendarDay = 30;
+            }
+            _heightCalendar = _sizeCalendarDay * 6;            
+            _startPositionX = deviceSize.Width / 2 - (_sizeCalendarDay * 7 / 2);
+            if (_startPositionX < _sizeCalendarDay / 2)
+                _startPositionX = 0;
+            WidthCalendar = _sizeCalendarDay * 7;
         }
 
         private void ShowDayLetters()

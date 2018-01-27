@@ -73,7 +73,7 @@
 
             <controls:MonthYearBalanceView />
 
-            <Grid HorizontalOptions="Center" Margin="20,0,20,0">
+            <Grid HorizontalOptions="Center" WidthRequest="{Binding WidthCalendar}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
                 </Grid.RowDefinitions>
@@ -111,7 +111,7 @@
                                 MaxItemsRow="7"
                                 StartPositionX="{Binding Path=BindingContext.StartPositionX, Source={x:Reference page}}"
                                 ItemsSource="{Binding Days}" 
-                                Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="StartAndExpand"
+                                Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"
                                 HeightRequest="{Binding Path=BindingContext.HeightCalendar, Source={x:Reference page}}"
                                 />
                         </Grid>
