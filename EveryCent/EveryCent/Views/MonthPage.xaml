@@ -118,7 +118,7 @@
                     </DataTemplate>
                 </cv:CarouselViewControl.ItemTemplate>
             </cv:CarouselViewControl>
-
+            
             <Grid BackgroundColor="White" HorizontalOptions="End" VerticalOptions="EndAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />

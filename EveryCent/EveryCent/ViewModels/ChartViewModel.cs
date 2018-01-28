@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using EveryCent.Base;
+using Microcharts;
 
 namespace EveryCent.ViewModels
 {
@@ -20,9 +21,10 @@ namespace EveryCent.ViewModels
         private readonly IMovementRepository _repositoryService;
         private readonly INavigationService _navigationService;
         private readonly IDeviceService _deviceService;
+       
+        private List<Microcharts.Entry> _chartEntries = new List<Microcharts.Entry>();
 
-        private List<Tuple<string, decimal>> _serieIncome = new List<Tuple<string, decimal>>();
-        private List<Tuple<string, decimal>> _serieSpend = new List<Tuple<string, decimal>>();        
+        public event EventHandler<EventArgs> UpdateData;
 
         private string _selectedMonth = DateTimeFormatInfo.CurrentInfo.MonthNames[DateTime.Now.Month - 1];
         public string SelectedMonth
@@ -62,31 +64,11 @@ namespace EveryCent.ViewModels
                 _heightChart = value;
                 OnPropertyChanged("HeightChart");
             }
-        }
-
-        private double _widthtChart = 0;
-        public double WidthChart
+        }        
+        
+        public BarChart ChartData
         {
-            get { return _widthtChart; }
-            set
-            {
-                _widthtChart = value;
-                OnPropertyChanged("WidthChart");
-            }
-        }
-
-        private ObservableCollection<List<Tuple<string, decimal>>> _chartData;// = new ObservableCollection<List<Tuple<string, decimal>>>();
-        public ObservableCollection<List<Tuple<string, decimal>>> ChartData
-        {
-            get
-            {
-                return _chartData;
-            }
-            set
-            {
-                _chartData = value;
-                OnPropertyChanged("ChartData");
-            }
+            get; private set;
         }
 
         private ICommand _goToCurrencyCommand;
@@ -115,6 +97,7 @@ namespace EveryCent.ViewModels
             MessagingCenter.Subscribe<ViewModelBase, string>(this, "currency", (sender, arg) =>
             {
                 CurrentCurrency = arg;
+                GetData();
             });
             MessagingCenter.Subscribe<Movement>(this, "movement", (sender) =>
             {
@@ -130,43 +113,39 @@ namespace EveryCent.ViewModels
 
         private void TransformToChartData(IList<Movement> movements)
         {
-            _serieIncome.Clear();
-            _serieSpend.Clear();
             try
-            {
+            {                
+                ChartData = null;
+                ChartData = new BarChart();
+
+                if (!_chartEntries.IsNullOrEmpty())
+                    _chartEntries.Clear();                
                 for (int i = 1; i <= 12; i++)
                 {
                     var income = movements.Where(m => m.IsPositive && m.Date.Month == i).Sum(m => (decimal)m.Amount / 100);
-                    _serieIncome.Add(new Tuple<string, decimal>(GetMonthShort(i), income));
                     var spend = movements.Where(m => !m.IsPositive && m.Date.Month == i).Sum(m => (decimal)m.Amount / 100);
-                    _serieSpend.Add(new Tuple<string, decimal>(GetMonthShort(i), spend));
+                    Microcharts.Entry entry = new Microcharts.Entry((float)(income - spend))
+                    {
+                        Label = GetMonthShort(i),
+                        ValueLabel = (income > spend ? "+" : "") + decimal.Parse((income - spend).ToString()).ToString("N2") +
+                            (Application.Current.Properties.ContainsKey("Currency") ? " " + Application.Current.Properties["Currency"].ToString() : ""),
+                        Color = (income > spend ? SkiaSharp.SKColor.Parse("#008200") : 
+                             (income < spend ? SkiaSharp.SKColor.Parse("#FF0000") : SkiaSharp.SKColor.Parse("#ADAAAD"))),
+                        TextColor = SkiaSharp.SKColor.Parse("#000000")
+                    };
+                    _chartEntries.Add(entry);
                 }
-                if (!_chartData.IsNullOrEmpty())
-                    ChartData.Clear();
-                ChartData = null;
-                ChartData = new ObservableCollection<List<Tuple<string, decimal>>>()
-                {
-                    _serieIncome, _serieSpend
-                };
+                ChartData.Entries = _chartEntries;
+                if (UpdateData != null)
+                    UpdateData(this, null);
             }
-            catch { }
-        }
+            catch { }            
+        }        
 
         private void SetChart()
         {
             var size = _deviceService.GetDeviceSize();
-            WidthChart = size.Width;            
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    HeightChart = size.Height - 20 - 40 - 30 - App.TabHeight;
-                    break;
-                case Device.Android:
-                    HeightChart = size.Height - 40 - 30 - App.TabHeight;
-                    break;
-                case Device.WinPhone:
-                    break;
-            }
+            HeightChart = size.Width;            
         }
     }
 }

@@ -42,7 +42,7 @@
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToCurrencyCommand}"/>
                     </Grid.GestureRecognizers>
-                    <cic:CircleImage BorderThickness="1" BorderColor="Goldenrod" FillColor="Gold">
+                    <cic:CircleImage BorderThickness="1" BorderColor="LightGray" FillColor="Gold">
                         <cic:CircleImage.HeightRequest>
                             <OnPlatform x:TypeArguments="x:Double" Android="50" iOS="40" />
                         </cic:CircleImage.HeightRequest>

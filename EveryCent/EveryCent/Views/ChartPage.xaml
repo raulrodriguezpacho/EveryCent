@@ -2,9 +2,9 @@
 <base:ViewPageBase xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:EveryCent.Base"
-             xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"
-             xmlns:charting="clr-namespace:XLabs.Forms.Charting.Controls;assembly=XLabs.Forms.Charting"       
+             xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"             
              xmlns:controls="clr-namespace:EveryCent.Controls"             
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="EveryCent.Views.ChartPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <base:ViewPageBase.Padding>
@@ -16,23 +16,9 @@
 
             <controls:MonthYearSelectorView />
 
-            <charting:Chart x:Name="chart" BackgroundColor="White"
-                    DataSource="{Binding ChartData, Mode=TwoWay}"
-                    HeightRequest="{Binding HeightChart}"
-                    WidthRequest="{Binding WidthChart}"
-                    Spacing="10"
-                    XPath="Item1"
-                    YPath="Item2"                 
-                    Color="White">
+            <microcharts:ChartView x:Name="chartView" BackgroundColor="White" HeightRequest="{Binding HeightChart}" />
 
-                <charting:Chart.Series>
-                    <charting:Series Type="Bar" Color="Green"/>
-                    <charting:Series Type="Bar" Color="Red"/>
-                </charting:Chart.Series>
-
-            </charting:Chart>
-
-            <Grid BackgroundColor="DarkGray" HorizontalOptions="End" VerticalOptions="EndAndExpand">
+            <Grid BackgroundColor="White" HorizontalOptions="End" VerticalOptions="EndAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />
                 </Grid.RowDefinitions>

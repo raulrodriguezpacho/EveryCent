@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EveryCent.Controls.LogoView">
+  <ContentView.Content>
+      
+        <Grid BackgroundColor="Yellow" HorizontalOptions="End" VerticalOptions="EndAndExpand">
+            
+            <Image HorizontalOptions="End" VerticalOptions="EndAndExpand" HeightRequest="30">
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource">
+                        <OnPlatform.iOS>
+                            <FileImageSource File="Images/icon_mini.png" />
+                        </OnPlatform.iOS>
+                        <OnPlatform.Android>
+                            <FileImageSource File="icon_mini.png" />
+                        </OnPlatform.Android>
+                        <OnPlatform.WinPhone>
+                            <FileImageSource File="Assets/Images/icon_mini.png" />
+                        </OnPlatform.WinPhone>
+                    </OnPlatform>
+                </Image.Source>
+            </Image>
+        </Grid>
+      
+    </ContentView.Content>
+</ContentView>

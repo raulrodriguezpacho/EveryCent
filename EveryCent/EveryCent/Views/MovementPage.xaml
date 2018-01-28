@@ -5,6 +5,7 @@
              xmlns:globalization="clr-namespace:EveryCent.MarkupExtensions;assembly=EveryCent"      
              xmlns:converters="clr-namespace:EveryCent.Converters"
              xmlns:behaviors="clr-namespace:EveryCent.Behaviors"
+             xmlns:controls="clr-namespace:EveryCent.Controls"
              x:Class="EveryCent.Views.MovementPage"
              BackgroundColor="{StaticResource PageBackgroundColor}">
     <base:ViewPageBase.Padding>
