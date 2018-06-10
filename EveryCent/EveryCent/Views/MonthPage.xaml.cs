@@ -1,5 +1,6 @@
 ﻿using EveryCent.Base;
 using EveryCent.ViewModels;
+using System;
 using System.Globalization;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,7 +12,11 @@ namespace EveryCent.Views
     {
         public MonthPage()
         {
-            InitializeComponent();                        
+            InitializeComponent();
+            if (this.BindingContext != null && this.BindingContext is MonthViewModel)
+            {
+                ((MonthViewModel)this.BindingContext).Position = DateTime.Now.Month - 1;
+            }
         }
 
         protected override void OnAppearing()
